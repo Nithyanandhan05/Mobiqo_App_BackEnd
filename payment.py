@@ -3,8 +3,9 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import uuid
 import razorpay
-from datetime import datetime, timedelta
-from models import db, Order, Payment, Warranty, Product
+from datetime import datetime
+from models import db, Order, Payment, Product, User
+from utils import send_universal_push_notification
 
 payment_bp = Blueprint('payment', __name__)
 
@@ -46,6 +47,7 @@ def create_razorpay_order():
 def process_payment():
     try:
         user_id = get_jwt_identity()
+        user = db.session.get(User, user_id)
         data = request.get_json()
         order_id = data.get('order_id')
         
@@ -61,13 +63,21 @@ def process_payment():
 
         # 1. Update Order Status
         order = db.session.get(Order, order_id)
+        product_name = "your item"
+        
         if order:
             order.status = "Paid & Processing"
             order.payment_method = payment_method 
             
+            # Fetch product name for the notification
+            if order.product_id:
+                product = db.session.get(Product, order.product_id)
+                if product: 
+                    product_name = product.name
+            
         transaction_id = razorpay_payment_id if razorpay_payment_id else f"TXN-{uuid.uuid4().hex[:8].upper()}"
         
-        # 2. Save the payment (FIXED: Removed user_id as it doesn't exist in the Payment table)
+        # 2. Save the payment
         new_payment = Payment(
             order_id=order_id, 
             payment_method=payment_method, 
@@ -79,36 +89,24 @@ def process_payment():
         )
         db.session.add(new_payment)
         
-        # 3. AUTO-REGISTER WARRANTY
-        if order and order.product_id:
-            product = db.session.get(Product, order.product_id)
-            if product:
-                today = datetime.now().date()
-                expiry = today + timedelta(days=365) # Standard 1 Year Warranty
-                
-                device_type = 'Smartphone'
-                name_lower = product.name.lower()
-                if 'macbook' in name_lower or 'laptop' in name_lower:
-                    device_type = 'Laptop'
-                elif any(x in name_lower for x in ['headphone', 'airpods', 'buds', 'sony']):
-                    device_type = 'Headphones'
-
-                auto_warranty = Warranty(
-                    user_id=user_id,
-                    product_id=product.id,
-                    device_name=product.name,
-                    device_type=device_type,
-                    purchase_date=today,
-                    expiry_date=expiry,
-                    status="Secure"
-                )
-                db.session.add(auto_warranty)
-                print(f"✅ Auto-Warranty activated for {product.name}")
-
-        # Commit everything (Order update, Payment, and new Warranty) at once
+        # NOTE: Warranty is intentionally NOT registered here anymore. 
+        # It is handled in admin.py when the order is marked "Delivered".
+        
         db.session.commit()
         
-        return jsonify({"status": "success", "message": "Payment successful and Warranty Registered!", "transaction_id": transaction_id}), 200
+        # 🚀 3. TRIGGER FLIPKART/AMAZON STYLE NOTIFICATION
+        send_universal_push_notification(
+            user,
+            "📦 Order Confirmed!",
+            f"Your order for the {product_name} was successful. We will notify you once it dispatches."
+        )
+        
+        return jsonify({
+            "status": "success", 
+            "message": "Payment successful!", 
+            "transaction_id": transaction_id
+        }), 200
+        
     except Exception as e:
         db.session.rollback()
         print(f"❌ PROCESS PAYMENT ERROR: {e}")
@@ -121,7 +119,6 @@ def get_payment_history():
     try:
         user_id = get_jwt_identity()
         
-        # FIXED: We find the payments by checking the user's orders first
         user_orders = Order.query.filter_by(user_id=user_id).all()
         order_ids = [o.id for o in user_orders]
         

@@ -187,6 +187,8 @@ def get_all_orders():
         print(f"ADMIN ORDERS GET ERROR: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Replace ONLY the update_order function in your admin.py file with this:
+
 @admin_bp.route('/admin/orders/<int:order_id>', methods=['PUT'])
 @jwt_required()
 def update_order(order_id):
@@ -195,21 +197,48 @@ def update_order(order_id):
         order = db.session.get(Order, order_id)
         if not order: return jsonify({"status": "error", "message": "Order not found"}), 404
         
+        old_status = order.status
         if 'status' in data: order.status = str(data['status'])
         if 'tracking_number' in data: order.tracking_number = str(data['tracking_number'])
+        
+        product_name = "your item"
+        prod = None
+        if order.product_id:
+            prod = db.session.get(Product, order.product_id)
+            if prod: product_name = prod.name
+
+        # 🚀 WARRANTY GENERATION ON DELIVERY 🚀
+        if order.status == "Delivered" and old_status != "Delivered":
+            existing_w = Warranty.query.filter_by(user_id=order.user_id, product_id=order.product_id).first()
+            if not existing_w and prod:
+                dev_type = 'Laptop' if 'laptop' in prod.name.lower() or 'macbook' in prod.name.lower() else 'Smartphone'
+                new_warranty = Warranty(
+                    user_id=order.user_id, product_id=prod.id, device_name=prod.name, 
+                    device_type=dev_type, purchase_date=datetime.now().date(), 
+                    expiry_date=datetime.now().date() + timedelta(days=365), status="Secure"
+                )
+                db.session.add(new_warranty)
+
         db.session.commit()
 
-        if order.user_id:
+        # 🚀 DYNAMIC MODERN TRACKING NOTIFICATIONS
+        if order.user_id and old_status != order.status:
             user = db.session.get(User, order.user_id)
-            send_universal_push_notification(
-                user,
-                "📦 Order Update!",
-                f"Your order status has been updated to: {order.status}."
-            )
+            if order.status == "Shipped":
+                title, body = "🚚 Order Shipped!", f"Good news! Your {product_name} has been packed and dispatched."
+            elif order.status == "Out for Delivery":
+                title, body = "🛵 Arriving Today!", f"Get ready! Your {product_name} is out for delivery. Keep your phone handy."
+            elif order.status == "Delivered":
+                title, body = "✅ Package Delivered", f"Your {product_name} was delivered. Your 1-Year Warranty is now active. Enjoy!"
+            else:
+                title, body = "📦 Order Update", f"Your order status has been updated to: {order.status}."
+                
+            send_universal_push_notification(user, title, body)
+
         return jsonify({"status": "success", "message": "Order updated"}), 200
     except Exception as e:
+        db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
-
 # ==========================================
 # 3. WARRANTY MANAGEMENT (ADMIN)
 # ==========================================

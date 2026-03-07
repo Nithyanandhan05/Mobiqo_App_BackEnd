@@ -3,7 +3,8 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import uuid
 import razorpay
-from models import db, Order, Payment
+from datetime import datetime, timedelta
+from models import db, Order, Payment, Warranty, Product
 
 payment_bp = Blueprint('payment', __name__)
 
@@ -44,17 +45,13 @@ def create_razorpay_order():
 @jwt_required()
 def process_payment():
     try:
-        # 1. Get the securely logged-in user's ID
         user_id = get_jwt_identity()
-        
         data = request.get_json()
         order_id = data.get('order_id')
         
-        # Web/App safe default for payment method
         payment_method = data.get('payment_method') or "Online / Razorpay"
         amount = data.get('amount')
         
-        # Data passed from the Android/Web Razorpay SDK
         razorpay_payment_id = data.get('razorpay_payment_id')
         razorpay_order_id = data.get('razorpay_order_id')
         razorpay_signature = data.get('razorpay_signature')
@@ -62,7 +59,7 @@ def process_payment():
         if not order_id: 
             return jsonify({"status": "error", "message": "Order ID required"}), 400
 
-        # 2. Update Order Status
+        # 1. Update Order Status
         order = db.session.get(Order, order_id)
         if order:
             order.status = "Paid & Processing"
@@ -70,9 +67,8 @@ def process_payment():
             
         transaction_id = razorpay_payment_id if razorpay_payment_id else f"TXN-{uuid.uuid4().hex[:8].upper()}"
         
-        # 3. CRITICAL FIX: Save the payment directly linked to the user_id!
+        # 2. Save the payment (FIXED: Removed user_id as it doesn't exist in the Payment table)
         new_payment = Payment(
-            user_id=user_id,
             order_id=order_id, 
             payment_method=payment_method, 
             amount=amount, 
@@ -82,11 +78,40 @@ def process_payment():
             status="Successful"
         )
         db.session.add(new_payment)
+        
+        # 3. AUTO-REGISTER WARRANTY
+        if order and order.product_id:
+            product = db.session.get(Product, order.product_id)
+            if product:
+                today = datetime.now().date()
+                expiry = today + timedelta(days=365) # Standard 1 Year Warranty
+                
+                device_type = 'Smartphone'
+                name_lower = product.name.lower()
+                if 'macbook' in name_lower or 'laptop' in name_lower:
+                    device_type = 'Laptop'
+                elif any(x in name_lower for x in ['headphone', 'airpods', 'buds', 'sony']):
+                    device_type = 'Headphones'
+
+                auto_warranty = Warranty(
+                    user_id=user_id,
+                    product_id=product.id,
+                    device_name=product.name,
+                    device_type=device_type,
+                    purchase_date=today,
+                    expiry_date=expiry,
+                    status="Secure"
+                )
+                db.session.add(auto_warranty)
+                print(f"✅ Auto-Warranty activated for {product.name}")
+
+        # Commit everything (Order update, Payment, and new Warranty) at once
         db.session.commit()
         
-        return jsonify({"status": "success", "message": "Payment successful", "transaction_id": transaction_id}), 200
+        return jsonify({"status": "success", "message": "Payment successful and Warranty Registered!", "transaction_id": transaction_id}), 200
     except Exception as e:
         db.session.rollback()
+        print(f"❌ PROCESS PAYMENT ERROR: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
@@ -96,26 +121,26 @@ def get_payment_history():
     try:
         user_id = get_jwt_identity()
         
-        # OPTIMIZATION: Ultra-fast direct query using the explicitly linked user_id
-        payments = Payment.query.filter_by(user_id=user_id).order_by(Payment.created_at.desc()).all()
+        # FIXED: We find the payments by checking the user's orders first
+        user_orders = Order.query.filter_by(user_id=user_id).all()
+        order_ids = [o.id for o in user_orders]
         
-        if not payments:
+        if not order_ids:
             return jsonify({"status": "success", "history": []}), 200
+            
+        payments = Payment.query.filter(Payment.order_id.in_(order_ids)).order_by(Payment.created_at.desc()).all()
             
         history_list = []
         for p in payments:
-            # We fetch the Order just to get the fancy "INV-1234" invoice number for the UI
-            order = db.session.get(Order, p.order_id)
+            # Match the order to get the invoice number
+            order = next((o for o in user_orders if o.id == p.order_id), None)
             invoice_str = getattr(order, 'invoice_no', None) if order else f"ORD-{p.order_id}"
             
-            # Format the date like Amazon: "Oct 12, 10:30 AM"
             date_str = p.created_at.strftime("%b %d, %I:%M %p") if p.created_at else "Unknown Date"
             
-            # Map database status to UI status
             raw_status = p.status or "Pending"
             ui_status = "Successful" if raw_status in ["Completed", "Paid & Processing", "Successful"] else raw_status
             
-            # Ensure amount has ₹ symbol
             amount_str = str(p.amount)
             if not amount_str.startswith('₹'):
                 amount_str = f"₹{amount_str}"

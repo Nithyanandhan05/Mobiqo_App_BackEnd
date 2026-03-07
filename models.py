@@ -13,7 +13,8 @@ class User(db.Model):
     password = db.Column(db.String(200))
     reg_date = db.Column(db.DateTime, default=datetime.utcnow)
     is_blocked = db.Column(db.Boolean, default=False)
-    fcm_token = db.Column(db.String(255), nullable=True)
+    fcm_token_android = db.Column(db.String(255), nullable=True)
+    fcm_token_web = db.Column(db.String(255), nullable=True)
     
     # OTP Columns for Password Reset
     reset_otp = db.Column(db.String(10), nullable=True)

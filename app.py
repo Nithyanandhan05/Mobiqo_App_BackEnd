@@ -12,6 +12,7 @@ import re
 import os
 import urllib.parse
 import json
+import time
 
 # --- IMPORT THE NEW IMAGE FETCHER ---
 from image_fetcher import fetch_dynamic_image
@@ -54,14 +55,14 @@ app.register_blueprint(compare_bp)
 app.register_blueprint(admin_bp) 
 
 # --- AI SETUP ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBWmTzcC0pTMXw-bWhrHBCJOj347RbN6s8"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyB5KvowY7dbSEI0auPIAW87twqEDWAd0-c"
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
 
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 # ==========================================
-# FIREBASE & NOTIFICATION SCHEDULER SETUP
+# FIREBASE SETUP & UNIVERSAL PUSH SENDER
 # ==========================================
 try:
     if not firebase_admin._apps:
@@ -71,6 +72,9 @@ try:
 except Exception as e:
     print(f"⚠️ Firebase Init Error: {e}")
 
+# ==========================================
+# WARRANTY SCHEDULER
+# ==========================================
 def check_warranties_and_notify():
     """Background task to check for warranties expiring in 30 days and 7 days."""
     with app.app_context():
@@ -86,31 +90,22 @@ def check_warranties_and_notify():
                 w_date = w.expiry_date.date() if isinstance(w.expiry_date, datetime) else w.expiry_date
                 user = db.session.get(User, w.user_id)
                 
-                if user and getattr(user, 'fcm_token', None):
-                    try:
-                        if w_date == target_30_days:
-                            message = messaging.Message(
-                                notification=messaging.Notification(
-                                    title="Warranty Expiring in 1 Month! 📅",
-                                    body=f"Your warranty for {w.device_name} expires in 30 days. Renew now to stay covered."
-                                ),
-                                token=user.fcm_token,
-                            )
-                            messaging.send(message)
-                            print(f"📩 30-Day Alert sent to {user.full_name}")
-                            
-                        elif w_date == target_7_days:
-                            message = messaging.Message(
-                                notification=messaging.Notification(
-                                    title="Warranty Expiring Next Week! ⚠️",
-                                    body=f"Your warranty for {w.device_name} expires in 7 days. Extend it immediately."
-                                ),
-                                token=user.fcm_token,
-                            )
-                            messaging.send(message)
-                            print(f"📩 7-Day Alert sent to {user.full_name}")
-                    except Exception as e:
-                        print(f"❌ Failed to send to {user.full_name}: {e}")
+                if user:
+                    if w_date == target_30_days:
+                        send_universal_push_notification(
+                            user, 
+                            "Warranty Expiring in 1 Month! 📅", 
+                            f"Your warranty for {w.device_name} expires in 30 days. Renew now to stay covered."
+                        )
+                        print(f"📩 30-Day Alert sent to {user.full_name}")
+                        
+                    elif w_date == target_7_days:
+                        send_universal_push_notification(
+                            user, 
+                            "Warranty Expiring Next Week! ⚠️", 
+                            f"Your warranty for {w.device_name} expires in 7 days. Extend it immediately."
+                        )
+                        print(f"📩 7-Day Alert sent to {user.full_name}")
 
 # Start the background scheduler
 scheduler = BackgroundScheduler()
@@ -506,7 +501,7 @@ def remove_payment_method(id):
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ==========================================
-# 6. ULTIMATE DATABASE FIX ROUTE
+# 6. ULTIMATE DATABASE FIX ROUTE (UPDATED)
 # ==========================================
 @app.route('/fix_db', methods=['GET'])
 def fix_db():
@@ -514,52 +509,49 @@ def fix_db():
         db.create_all()
         
         with db.engine.connect() as conn:
+            try: conn.execute(text("ALTER TABLE user ADD COLUMN fcm_token_android VARCHAR(255);"))
+            except Exception: pass
+            
+            try: conn.execute(text("ALTER TABLE user ADD COLUMN fcm_token_web VARCHAR(255);"))
+            except Exception: pass
+            
+            try: conn.execute(text("UPDATE user SET fcm_token_android = fcm_token WHERE fcm_token IS NOT NULL AND fcm_token_android IS NULL;"))
+            except Exception: pass
+            
             try: conn.execute(text("ALTER TABLE `order` ADD COLUMN invoice_no VARCHAR(20) UNIQUE;"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE `order` ADD COLUMN tracking_number VARCHAR(100);"))
             except Exception: pass
-
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN product_id INT;"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN device_type VARCHAR(50);"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN status VARCHAR(20) DEFAULT 'Secure';"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN invoice_url VARCHAR(255);"))
             except Exception: pass
-
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN purchase_date DATE;"))
             except Exception: pass
-
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN expiry_date DATE;"))
             except Exception: pass
-
-            try: conn.execute(text("ALTER TABLE user ADD COLUMN fcm_token VARCHAR(255);"))
-            except Exception: pass
-
-            # --- NEW CLAIM COLUMNS ---
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN claim_issue_type VARCHAR(100);"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN claim_description TEXT;"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN claim_invoice_url VARCHAR(255);"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN claim_device_url VARCHAR(255);"))
             except Exception: pass
-            
             try: conn.execute(text("ALTER TABLE warranty ADD COLUMN service_mode VARCHAR(100);"))
+            except Exception: pass
+            try: conn.execute(text("ALTER TABLE product ADD COLUMN stock INT DEFAULT 50;"))
+            except Exception: pass
+            try: conn.execute(text("ALTER TABLE product ADD COLUMN category VARCHAR(100) DEFAULT 'Electronics';"))
             except Exception: pass
 
             conn.commit()
             
-        return jsonify({"status": "success", "message": "Database upgraded! Claim columns added."}), 200
+        return jsonify({"status": "success", "message": "Database upgraded! Dual FCM tokens ready."}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -595,26 +587,89 @@ def update_fcm_token():
     try:
         user_id = get_jwt_identity()
         data = request.get_json()
-        token = data.get('fcm_token')
+        token = data.get('fcm_token') or data.get('token')
+        platform = data.get('platform', 'android').lower()
         
         user = db.session.get(User, user_id)
         if user and token:
-            user.fcm_token = token
+            if platform == 'web':
+                user.fcm_token_web = token
+            else:
+                user.fcm_token_android = token
+                
             db.session.commit()
-            return jsonify({"status": "success", "message": "FCM Token updated successfully"}), 200
+            return jsonify({"status": "success", "message": f"{platform.title()} FCM Token updated successfully"}), 200
             
         return jsonify({"status": "error", "message": "Invalid token or user"}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ==========================================
-# 9. 🚀 FORCE WARRANTY NOTIFICATION CHECK
+# 9. DIRECT DIAGNOSTIC PUSH TEST
+# ==========================================
+@app.route('/test_push', methods=['POST'])
+@jwt_required()
+def test_push():
+    """A direct route to instantly test push notifications for the logged-in user."""
+    try:
+        user_id = get_jwt_identity()
+        user = db.session.get(User, user_id)
+        
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        token_android = getattr(user, 'fcm_token_android', None)
+        token_web = getattr(user, 'fcm_token_web', None)
+
+        if not token_android and not token_web:
+            return jsonify({
+                "status": "error",
+                "message": "Python sees NO tokens for this user.",
+                "db_email": user.email
+            }), 400
+
+        tokens_to_notify = []
+        if token_android: tokens_to_notify.append(token_android)
+        if token_web: tokens_to_notify.append(token_web)
+
+        success_count = 0
+        for token in tokens_to_notify:
+            try:
+                message = messaging.Message(
+                    notification=messaging.Notification(
+                        title="Test Notification 🚀", 
+                        body="Firebase is working perfectly!"
+                    ),
+                    token=token
+                )
+                messaging.send(message)
+                success_count += 1
+            except Exception as e:
+                print(f"⚠️ Error sending to token {token}: {e}")
+
+        if success_count > 0:
+            return jsonify({
+                "status": "success", 
+                "message": f"Notification fired successfully to {success_count} devices!",
+                "android_token_used": token_android
+            }), 200
+        else:
+            return jsonify({
+                "status": "error", 
+                "message": "Firebase rejected the tokens. They might be expired."
+            }), 400
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": "General Crash: " + str(e)}), 500
+
+# ==========================================
+# 10. FORCE WARRANTY NOTIFICATION CHECK
 # ==========================================
 @app.route('/force_check', methods=['GET'])
 def force_check():
     try:
         check_warranties_and_notify()
-        return "✅ Warranty check triggered! Check your VS Code terminal and your phone.", 200
+        return "✅ Warranty check triggered! Check your VS Code terminal and your devices.", 200
     except Exception as e:
         return f"❌ FAILED: {str(e)}", 500
 

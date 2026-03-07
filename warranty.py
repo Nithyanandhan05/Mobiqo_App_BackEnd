@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from datetime import datetime, timedelta, date
 from werkzeug.utils import secure_filename
 import os
+from utils import send_universal_push_notification
 
 from models import db, Warranty, Product, User
 
@@ -36,28 +37,15 @@ def send_push_notification(user_id, title, body):
 # ==========================================
 def get_dynamic_status(w):
     db_status = w.status or "Secure"
-    if db_status in ["Pending", "Rejected"]:
-        return db_status
-
+    if db_status in ["Pending", "Rejected"]: return db_status
     if w.expiry_date:
         today = datetime.now().date()
         safe_expiry = w.expiry_date
-        
-        if isinstance(safe_expiry, datetime):
-            safe_expiry = safe_expiry.date()
-        elif isinstance(safe_expiry, str):
-            # FIXED: Robust parsing for both "YYYY-MM-DD" and "Mar 06, 2026"
-            try: safe_expiry = datetime.strptime(safe_expiry.split()[0], "%Y-%m-%d").date()
-            except: 
-                try: safe_expiry = datetime.strptime(safe_expiry, "%b %d, %Y").date()
-                except: pass
-
+        if isinstance(safe_expiry, datetime): safe_expiry = safe_expiry.date()
         if isinstance(safe_expiry, date):
             days = (safe_expiry - today).days
-            if days < 0:
-                return "Expired"
-            elif days <= 30:
-                return "Alert"
+            if days < 0: return "Expired"
+            elif days <= 30: return "Alert"
     return "Secure"
 
 # ==========================================

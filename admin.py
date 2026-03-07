@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from datetime import datetime, timedelta, date
-
+from utils import send_universal_push_notification
 from models import db, User, Order, Product, Warranty, Address, AiSearchLog, AiSetting
 
 admin_bp = Blueprint('admin', __name__)
@@ -134,11 +134,12 @@ def get_admin_dashboard():
                 "total_orders": str(total_orders),
                 "active_warranties": str(active_warranties),
                 "ai_searches": str(ai_searches),
-                "pending_claims": str(Warranty.query.filter_by(status='Pending').count()), # Added to match React
-                "revenue": "₹" + str(total_orders * 1500) # Mock revenue based on orders
+                "pending_claims": str(Warranty.query.filter_by(status='Pending').count()),
+                "revenue": "₹" + str(total_orders * 1500) 
             },
-            "recent_claims": [], # Handled in warranties route now
-            "trending_queries": [{"query": "Best gaming phone under 30k", "count": "142"}] # Mock data to prevent undefined mapping
+            "recent_claims": [], 
+            "recent_orders": orders_data, # FIXED: Added this back to the JSON payload
+            "trending_queries": [{"query": "Best gaming phone under 30k", "count": "142"}]
         }), 200
     except Exception as e:
         print(f"ADMIN DASHBOARD ERROR: {e}")
@@ -199,15 +200,14 @@ def update_order(order_id):
         db.session.commit()
 
         if order.user_id:
-            send_push_notification(
-                order.user_id,
+            user = db.session.get(User, order.user_id)
+            send_universal_push_notification(
+                user,
                 "📦 Order Update!",
-                f"Your order is now marked as {order.status}."
+                f"Your order status has been updated to: {order.status}."
             )
-
-        return jsonify({"status": "success", "message": "Order updated successfully"}), 200
+        return jsonify({"status": "success", "message": "Order updated"}), 200
     except Exception as e:
-        db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ==========================================
@@ -257,103 +257,66 @@ def admin_get_warranties():
 def approve_warranty(warranty_id):
     try:
         data = request.get_json(silent=True) or {}
-        action = data.get('action', '') 
-        
-        if not action:
-            return jsonify({"status": "error", "message": "Action is required"}), 400
-            
-        action_lower = str(action).lower()
-        
+        action = data.get('action', '').lower() 
         warranty = db.session.get(Warranty, warranty_id)
         if not warranty: return jsonify({"status": "error", "message": "Warranty not found"}), 404
             
-        if action_lower == "approve": 
-            warranty.status = "Secure"
-        elif action_lower == "reject": 
-            warranty.status = "Rejected"
-            
+        warranty.status = "Secure" if action == "approve" else "Rejected"
         db.session.commit()
 
         if warranty.user_id:
-            status_emoji = "✅" if action_lower == "approve" else "❌"
-            send_push_notification(
-                warranty.user_id,
-                f"Warranty Claim {str(action).capitalize()}d {status_emoji}",
-                f"Your warranty claim for {warranty.device_name} has been {action_lower}d."
+            user = db.session.get(User, warranty.user_id)
+            status_emoji = "✅" if action == "approve" else "❌"
+            send_universal_push_notification(
+                user,
+                f"Warranty Claim {action.capitalize()}d {status_emoji}",
+                f"Your claim for {warranty.device_name} has been {action}d."
             )
-
-        return jsonify({
-            "status": "success", 
-            "message": f"Warranty {action_lower}d successfully", 
-            "device_name": str(warranty.device_name)
-        }), 200
+        return jsonify({"status": "success", "message": f"Warranty {action}d"}), 200
     except Exception as e:
-        db.session.rollback()
-        print(f"APPROVE ERROR: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
-
 # ==========================================
-# 4. AI RECOMMENDATION SETTINGS
+# 4. PAYMENT MANAGEMENT (ADMIN) - NEW!
 # ==========================================
-@admin_bp.route('/admin/ai_settings', methods=['GET'])
+@admin_bp.route('/admin/payments', methods=['GET'])
 @jwt_required()
-def get_ai_settings():
+def get_payments():
     try:
-        settings = AiSetting.query.first()
-        if not settings:
-            settings = AiSetting()
-            db.session.add(settings)
-            db.session.commit()
+        orders = Order.query.order_by(Order.id.desc()).all()
+        payments_data = []
+        for o in orders:
+            user = db.session.get(User, o.user_id) if o.user_id else None
+            prod = db.session.get(Product, o.product_id) if o.product_id else None
             
-        logs = AiSearchLog.query.order_by(AiSearchLog.timestamp.desc()).limit(15).all()
-        logs_data = []
-        for log in logs:
-            logs_data.append({
-                "log_id": f"#{8900 + log.id}",
-                "preferences": str(log.preferences) if log.preferences else "General",
-                "product": str(log.recommended_product) if log.recommended_product else "Unknown",
-                "match_percent": log.match_percent or 0,
-                "date": log.timestamp.strftime("%b %d") if getattr(log, 'timestamp', None) else "N/A"
+            payments_data.append({
+                "id": o.id,
+                "user_name": str(user.full_name) if user and user.full_name else "Guest",
+                "transaction_id": getattr(o, 'invoice_no', f"TXN-{o.id}892"),
+                "amount": format_price_safely(prod.price) if prod else "₹0",
+                "order_id": f"#ORD-{o.id}",
+                "status": str(o.status) if o.status else "Pending"
             })
-            
-        return jsonify({
-            "status": "success",
-            "data": {
-                "is_enabled": bool(settings.is_enabled),
-                "gaming": settings.gaming_weight or 1.0,
-                "camera": settings.camera_weight or 1.0,
-                "battery": settings.battery_weight or 1.0,
-                "budget": settings.budget_weight or 1.0,
-                "engine_mode": str(settings.engine_mode) if settings.engine_mode else "balanced",
-                "logs": logs_data
-            }
-        }), 200
+        return jsonify({"status": "success", "payments": payments_data}), 200
     except Exception as e:
-        print(f"AI SETTINGS GET ERROR: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
-@admin_bp.route('/admin/ai_settings', methods=['PUT'])
+@admin_bp.route('/admin/payments/<int:payment_id>/refund', methods=['PUT'])
 @jwt_required()
-def update_ai_settings():
+def refund_payment(payment_id):
     try:
-        data = request.get_json(silent=True) or {}
-        settings = AiSetting.query.first()
+        # Using Order ID as Payment ID for this example
+        order = db.session.get(Order, payment_id)
+        if not order: return jsonify({"status": "error", "message": "Transaction not found"}), 404
         
-        if 'is_enabled' in data: settings.is_enabled = bool(data['is_enabled'])
-        if 'gaming' in data: settings.gaming_weight = float(data['gaming'])
-        if 'camera' in data: settings.camera_weight = float(data['camera'])
-        if 'battery' in data: settings.battery_weight = float(data['battery'])
-        if 'budget' in data: settings.budget_weight = float(data['budget'])
-        if 'engine_mode' in data: settings.engine_mode = str(data['engine_mode'])
-        
+        order.status = "Refunded"
         db.session.commit()
-        return jsonify({"status": "success", "message": "Settings saved successfully"}), 200
+        return jsonify({"status": "success", "message": "Refund processed successfully"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ==========================================
-# 5. USER MANAGEMENT
+# 5. USER MANAGEMENT (ADMIN)
 # ==========================================
 @admin_bp.route('/admin/users', methods=['GET'])
 @jwt_required()
@@ -388,6 +351,53 @@ def get_all_users():
         print(f"USER MANAGEMENT GET ERROR: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@admin_bp.route('/admin/users/<int:user_id>', methods=['GET'])
+@jwt_required()
+def get_user_profile(user_id):
+    # FIXED: Added missing user profile endpoint
+    try:
+        user = db.session.get(User, user_id)
+        if not user: return jsonify({"status": "error", "message": "User not found"}), 404
+
+        orders = Order.query.filter_by(user_id=user.id).all()
+        warranties = Warranty.query.filter_by(user_id=user.id).all()
+
+        order_data = []
+        for o in orders:
+            prod = db.session.get(Product, o.product_id) if o.product_id else None
+            order_data.append({
+                "id": o.id,
+                "product_name": str(prod.name) if prod and prod.name else "Unknown",
+                "price": format_price_safely(prod.price) if prod else "₹0",
+                "status": str(o.status),
+                "date": format_date_safely(getattr(o, 'created_at', None)) 
+            })
+
+        warranty_data = []
+        for w in warranties:
+            warranty_data.append({
+                "id": w.id,
+                "device_name": str(w.device_name),
+                "status": get_dynamic_status(w),
+                "expiry_date": format_date_safely(w.expiry_date)
+            })
+
+        return jsonify({
+            "status": "success",
+            "user": {
+                "id": user.id,
+                "full_name": str(user.full_name) if user.full_name else "Unknown",
+                "email": str(user.email) if user.email else "N/A",
+                "mobile": str(getattr(user, 'phone', 'N/A')), 
+                "reg_date": format_date_safely(user.reg_date),
+                "is_blocked": bool(user.is_blocked)
+            },
+            "orders": order_data,
+            "warranties": warranty_data
+        }), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 @admin_bp.route('/admin/users/<int:user_id>/toggle_block', methods=['PUT'])
 @jwt_required()
 def toggle_user_block(user_id):
@@ -402,6 +412,133 @@ def toggle_user_block(user_id):
         
         status_msg = "Blocked" if user.is_blocked else "Unblocked"
         return jsonify({"status": "success", "message": f"User {status_msg} successfully", "is_blocked": user.is_blocked}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500# ==========================================
+# 6. PRODUCT INVENTORY MANAGEMENT
+# ==========================================
+@admin_bp.route('/admin/products', methods=['GET', 'POST'])
+@jwt_required()
+def admin_products():
+    if request.method == 'GET':
+        try:
+            products = Product.query.order_by(Product.id.desc()).all()
+            prod_list = []
+            for p in products:
+                prod_list.append({
+                    "id": p.id,
+                    "name": str(p.name) if p.name else "Unknown",
+                    "price": str(p.price) if p.price else "?0",
+                    "image_url": str(p.image_url) if p.image_url else "",
+                    "stock": p.stock if p.stock is not None else 0,
+                    "category": str(p.category) if p.category else "Electronics",
+                    "battery_spec": str(p.battery_spec) if p.battery_spec else "",
+                    "display_spec": str(p.display_spec) if p.display_spec else "",
+                    "processor_spec": str(p.processor_spec) if p.processor_spec else "",
+                    "camera_spec": str(p.camera_spec) if p.camera_spec else ""
+                })
+            return jsonify({"status": "success", "products": prod_list}), 200
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
+            
+    elif request.method == 'POST':
+        try:
+            data = request.get_json(silent=True) or {}
+            new_prod = Product(
+                name=data.get('name', ''),
+                price=data.get('price', ''),
+                image_url=data.get('image_url', ''),
+                battery_spec=data.get('battery_spec', ''),
+                display_spec=data.get('display_spec', ''),
+                processor_spec=data.get('processor_spec', ''),
+                camera_spec=data.get('camera_spec', ''),
+                stock=int(data.get('stock', 50)),
+                category=data.get('category', 'Electronics')
+            )
+            db.session.add(new_prod)
+            db.session.commit()
+            return jsonify({"status": "success", "message": "Product created successfully!"}), 201
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"status": "error", "message": str(e)}), 500
+
+@admin_bp.route('/admin/products/<int:product_id>', methods=['GET'])
+@jwt_required()
+def get_admin_product(product_id):
+    try:
+        p = db.session.get(Product, product_id)
+        if not p:
+            return jsonify({"status": "error", "message": "Product not found"}), 404
+        
+        prod_data = {
+            "id": p.id,
+            "name": str(p.name) if p.name else "Unknown",
+            "price": str(p.price) if p.price else "?0",
+            "image_url": str(p.image_url) if p.image_url else "",
+            "stock": p.stock if p.stock is not None else 0,
+            "category": str(p.category) if p.category else "Electronics",
+            "battery_spec": str(p.battery_spec) if p.battery_spec else "",
+            "display_spec": str(p.display_spec) if p.display_spec else "",
+            "processor_spec": str(p.processor_spec) if p.processor_spec else "",
+            "camera_spec": str(p.camera_spec) if p.camera_spec else ""
+        }
+        return jsonify({"status": "success", "product": prod_data}), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@admin_bp.route('/admin/products/<int:product_id>', methods=['PUT', 'DELETE'])
+@jwt_required()
+def edit_admin_product(product_id):
+    try:
+        p = db.session.get(Product, product_id)
+        if not p:
+            return jsonify({"status": "error", "message": "Product not found"}), 404
+            
+        if request.method == 'DELETE':
+            db.session.delete(p)
+            db.session.commit()
+            return jsonify({"status": "success", "message": "Product deleted"}), 200
+            
+        data = request.get_json(silent=True) or {}
+        if 'name' in data: p.name = data['name']
+        if 'price' in data: p.price = data['price']
+        if 'image_url' in data: p.image_url = data['image_url']
+        if 'battery_spec' in data: p.battery_spec = data['battery_spec']
+        if 'display_spec' in data: p.display_spec = data['display_spec']
+        if 'processor_spec' in data: p.processor_spec = data['processor_spec']
+        if 'camera_spec' in data: p.camera_spec = data['camera_spec']
+        if 'stock' in data: p.stock = int(data['stock'])
+        if 'category' in data: p.category = data['category']
+        
+        db.session.commit()
+        return jsonify({"status": "success", "message": "Product updated"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+def edit_admin_product(product_id):
+    try:
+        p = db.session.get(Product, product_id)
+        if not p:
+            return jsonify({"status": "error", "message": "Product not found"}), 404
+            
+        if request.method == 'DELETE':
+            db.session.delete(p)
+            db.session.commit()
+            return jsonify({"status": "success", "message": "Product deleted"}), 200
+            
+        data = request.get_json(silent=True) or {}
+        if 'name' in data: p.name = data['name']
+        if 'price' in data: p.price = data['price']
+        if 'image_url' in data: p.image_url = data['image_url']
+        if 'battery_spec' in data: p.battery_spec = data['battery_spec']
+        if 'display_spec' in data: p.display_spec = data['display_spec']
+        if 'processor_spec' in data: p.processor_spec = data['processor_spec']
+        if 'camera_spec' in data: p.camera_spec = data['camera_spec']
+        if 'stock' in data: p.stock = int(data['stock'])
+        if 'category' in data: p.category = data['category']
+        
+        db.session.commit()
+        return jsonify({"status": "success", "message": "Product updated"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500

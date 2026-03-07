@@ -5,24 +5,22 @@ from datetime import datetime, timedelta
 import random
 import string
 
-# Import database and models
-from models import db, Order, Product, Warranty
+# Import database, models, and notification helper
+from models import db, Order, Product, Warranty, User
+from utils import send_universal_push_notification
 
 orders_bp = Blueprint('orders', __name__)
 
 def generate_invoice_id():
-    """Generates a unique fintech-style invoice ID."""
     chars = string.ascii_uppercase + string.digits
     return "INV-" + ''.join(random.choice(chars) for _ in range(8))
 
-# ==========================================
-# 1. PLACE A NEW ORDER
-# ==========================================
 @orders_bp.route('/place_order', methods=['POST'])
 @jwt_required()
 def place_order():
     try:
         user_id = get_jwt_identity()
+        user = db.session.get(User, user_id)
         product_id = request.get_json().get('product_id')
         
         if not product_id: 
@@ -46,7 +44,6 @@ def place_order():
         
         # 2. Auto-Register Warranty
         expiry_date = datetime.now() + timedelta(days=365)
-        
         device_type = 'Smartphone'
         name_lower = product.name.lower()
         if 'macbook' in name_lower or 'laptop' in name_lower:
@@ -62,8 +59,14 @@ def place_order():
             status="Secure"
         )
         db.session.add(auto_warranty)
-
         db.session.commit()
+
+        # 🚀 TRIGGER NOTIFICATION
+        send_universal_push_notification(
+            user, 
+            "Order Confirmed! 🎉", 
+            f"Your order for {product.name} was placed successfully. Invoice: {invoice_no}"
+        )
         
         return jsonify({
             "status": "success", 
@@ -74,20 +77,15 @@ def place_order():
         
     except Exception as e:
         db.session.rollback()
-        # EXTREMELY IMPORTANT FOR DEBUGGING THE 500 ERROR
         print(f"\n[CRITICAL CHECKOUT ERROR]: {str(e)}\n") 
         return jsonify({"status": "error", "message": "Database error while placing order."}), 500
 
-# ==========================================
-# 2. GET USER'S ORDER HISTORY
-# ==========================================
 @orders_bp.route('/my_orders', methods=['GET'])
 @jwt_required()
 def my_orders():
     try:
         user_id = get_jwt_identity()
         orders = Order.query.filter_by(user_id=user_id).order_by(Order.order_date.desc()).all()
-        
         orders_list = []
         for o in orders:
             product = db.session.get(Product, o.product_id)
@@ -101,8 +99,6 @@ def my_orders():
                     "date": o.order_date.strftime("%d %b %Y"), 
                     "status": o.status
                 })
-                
         return jsonify({"status": "success", "orders": orders_list}), 200
     except Exception as e:
-        print(f"\n[GET ORDERS ERROR]: {str(e)}\n")
         return jsonify({"status": "error", "message": str(e)}), 500

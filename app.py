@@ -1,4 +1,10 @@
 # app.py
+import os
+from dotenv import load_dotenv
+
+# --- LOAD ENV VARS FIRST BEFORE IMPORTING BLUEPRINTS ---
+load_dotenv()
+
 from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
@@ -9,7 +15,6 @@ from google import genai
 from google.genai import types
 from werkzeug.utils import secure_filename
 import re
-import os
 import urllib.parse
 import json
 import time
@@ -54,9 +59,10 @@ app.register_blueprint(orders_bp)
 app.register_blueprint(compare_bp)
 app.register_blueprint(admin_bp) 
 
-# --- AI SETUP ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyB5KvowY7dbSEI0auPIAW87twqEDWAd0-c"
-client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
+# --- AI SETUP (USING ASSISTANT KEY) ---
+ASSISTANT_KEY = os.getenv("GEMINI_API_KEY_ASSISTANT")
+# os.getenv prevents KeyError if the .env file is missing
+client = genai.Client(api_key=ASSISTANT_KEY) if ASSISTANT_KEY else None
 
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)

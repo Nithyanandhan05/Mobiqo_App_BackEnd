@@ -1,6 +1,10 @@
 # app.py
 import os
 from dotenv import load_dotenv
+import random
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # --- LOAD ENV VARS FIRST BEFORE IMPORTING BLUEPRINTS ---
 load_dotenv()
@@ -34,6 +38,7 @@ from warranty import warranty_bp
 from orders import orders_bp
 from compare import compare_bp
 from admin import admin_bp 
+from utils import send_universal_push_notification
 
 app = Flask(__name__)
 CORS(app)
@@ -61,7 +66,6 @@ app.register_blueprint(admin_bp)
 
 # --- AI SETUP (USING ASSISTANT KEY) ---
 ASSISTANT_KEY = os.getenv("GEMINI_API_KEY_ASSISTANT")
-# os.getenv prevents KeyError if the .env file is missing
 client = genai.Client(api_key=ASSISTANT_KEY) if ASSISTANT_KEY else None
 
 bcrypt = Bcrypt(app)
@@ -82,7 +86,6 @@ except Exception as e:
 # WARRANTY SCHEDULER
 # ==========================================
 def check_warranties_and_notify():
-    """Background task to check for warranties expiring in 30 days and 7 days."""
     with app.app_context():
         print("🔍 Running Daily Warranty Check...")
         today = datetime.now().date()
@@ -113,11 +116,166 @@ def check_warranties_and_notify():
                         )
                         print(f"📩 7-Day Alert sent to {user.full_name}")
 
-# Start the background scheduler
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=check_warranties_and_notify, trigger="cron", hour=9, minute=0)
 scheduler.start()
 
+# ==========================================
+# REAL EMAIL CONFIGURATION & OTP STORE
+# ==========================================
+registration_otps = {} 
+
+# ⚠️ CHANGE THESE TWO LINES TO YOUR ACTUAL DETAILS ⚠️
+SENDER_EMAIL = "nithyanandhan205@gmail.com"  
+SENDER_PASSWORD = "dppufdkalsdpmmvp" 
+
+def send_real_email(receiver_email, otp):
+    """Sends a real email using Google's SMTP server."""
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = f"SmartElectro <{SENDER_EMAIL}>"
+        msg['To'] = receiver_email
+        msg['Subject'] = "Your SmartElectro Verification Code"
+        
+        body = f"""
+        Hello,
+        
+        Welcome to SmartElectro!
+        
+        Your 6-digit verification code is: {otp}
+        
+        Please enter this code in the app to complete your registration.
+        
+        Thanks,
+        The SmartElectro Team
+        """
+        msg.attach(MIMEText(body, 'plain'))
+        
+        # Connect to Gmail SMTP Server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls() # Secure the connection
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"❌ SMTP Email Failed: {e}")
+        return False
+
+@app.route('/send-otp', methods=['POST'])
+def send_otp():
+    try:
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        
+        if not email:
+            return jsonify({"status": "error", "message": "Email is required"}), 400
+            
+        if User.query.filter_by(email=email).first():
+            return jsonify({"status": "error", "message": "Email already exists in our system"}), 400
+            
+        otp = str(random.randint(100000, 999999))
+        registration_otps[email] = otp
+        
+        print(f"\n======================================")
+        print(f"⏳ ATTEMPTING TO SEND REAL EMAIL TO {email} -> OTP: {otp}")
+        print(f"======================================\n")
+        
+        # 🚀 CALL THE SMTP FUNCTION
+        if send_real_email(email, otp):
+            print(f"✅ Real email successfully sent to {email}")
+            return jsonify({"status": "success", "message": "OTP sent to your email"}), 200
+        else:
+            return jsonify({"status": "error", "message": "Failed to send email. Check VS Code logs."}), 500
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/verify-otp', methods=['POST'])
+def verify_otp():
+    try:
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        otp = data.get('otp', '').strip()
+        
+        if not email or not otp:
+            return jsonify({"status": "error", "message": "Email and OTP are required"}), 400
+            
+        if registration_otps.get(email) == otp:
+            return jsonify({"status": "success", "message": "OTP verified successfully"}), 200
+            
+        return jsonify({"status": "error", "message": "Invalid or expired OTP"}), 400
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# ==========================================
+# PASSWORD RECOVERY (FORGOT/RESET PASSWORD)
+# ==========================================
+password_reset_otps = {}
+
+@app.route('/forgot_password', methods=['POST'])
+def forgot_password():
+    try:
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        
+        if not email:
+            return jsonify({"status": "error", "message": "Email is required"}), 400
+            
+        # Check if user ACTUALLY exists (they must exist to reset password)
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"status": "error", "message": "No account found with this email"}), 404
+            
+        # Generate a 6-digit OTP
+        otp = str(random.randint(100000, 999999))
+        password_reset_otps[email] = otp
+        
+        print(f"\n======================================")
+        print(f"⏳ ATTEMPTING TO SEND RESET EMAIL TO {email} -> OTP: {otp}")
+        print(f"======================================\n")
+        
+        # 🚀 Reuse your existing SMTP function
+        if send_real_email(email, otp):
+            print(f"✅ Reset email successfully sent to {email}")
+            return jsonify({"status": "success", "message": "Reset OTP sent to your email"}), 200
+        else:
+            return jsonify({"status": "error", "message": "Failed to send reset email. Check server logs."}), 500
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/reset_password', methods=['POST'])
+def reset_password():
+    try:
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        otp = data.get('otp', '').strip()
+        new_password = data.get('new_password', '').strip()
+        
+        if not email or not otp or not new_password:
+            return jsonify({"status": "error", "message": "Email, OTP, and new password are required"}), 400
+            
+        if password_reset_otps.get(email) != otp:
+            return jsonify({"status": "error", "message": "Invalid or expired OTP"}), 400
+            
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"status": "error", "message": "User not found"}), 404
+            
+        # Hash the new password and save it
+        hashed = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        user.password = hashed
+        db.session.commit()
+        
+        # Clear the OTP from memory so it can't be reused
+        if email in password_reset_otps:
+            del password_reset_otps[email]
+            
+        return jsonify({"status": "success", "message": "Password updated successfully"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
 # ==========================================
 # HELPER FUNCTIONS
 # ==========================================
@@ -156,47 +314,59 @@ def get_offline_recommendation(budget):
         "alternatives": [], "analysis": "⚠️ AI QUOTA EXCEEDED: Showing offline fallback recommendation to prevent app crash."
     }
 
+
 # ==========================================
 # 1. AUTHENTICATION & SECURITY
 # ==========================================
 @app.route('/register', methods=['POST'])
 def register():
-    data = request.get_json()
-    clean_email = data.get('email', '').strip().lower()
-    clean_password = data.get('password', '').strip()
-    
-    if User.query.filter_by(email=clean_email).first():
-        return jsonify({"status":"error", "message": "Email already exists"}), 400
+    try:
+        data = request.get_json()
+        clean_email = data.get('email', '').strip().lower()
+        clean_password = data.get('password', '').strip()
         
-    hashed = bcrypt.generate_password_hash(clean_password).decode('utf-8')
-    new_user = User(
-        full_name=data.get('full_name', '').strip(), 
-        email=clean_email, 
-        mobile=data.get('mobile', '').strip(), 
-        password=hashed
-    )
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({"status":"success"}), 201
+        if User.query.filter_by(email=clean_email).first():
+            return jsonify({"status":"error", "message": "Email already exists"}), 400
+            
+        hashed = bcrypt.generate_password_hash(clean_password).decode('utf-8')
+        new_user = User(
+            full_name=data.get('full_name', '').strip(), 
+            email=clean_email, 
+            mobile=data.get('mobile', '').strip(), 
+            password=hashed
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        
+        if clean_email in registration_otps:
+            del registration_otps[clean_email]
+            
+        return jsonify({"status":"success", "message": "Registration successful"}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
-    clean_email = data.get('email', '').strip().lower()
-    clean_password = data.get('password', '').strip()
-    
-    user = User.query.filter_by(email=clean_email).first()
-    if user and bcrypt.check_password_hash(user.password, clean_password):
-        token = create_access_token(identity=str(user.id))
-        is_admin = True if user.email == 'admin@gmail.com' else False
-        return jsonify({
-            "status": "success",
-            "token": token,
-            "user_name": user.full_name,
-            "is_admin": is_admin 
-        }), 200
+    try:
+        data = request.get_json()
+        clean_email = data.get('email', '').strip().lower()
+        clean_password = data.get('password', '').strip()
         
-    return jsonify({"status":"error", "message": "Invalid credentials"}), 401
+        user = User.query.filter_by(email=clean_email).first()
+        if user and bcrypt.check_password_hash(user.password, clean_password):
+            token = create_access_token(identity=str(user.id))
+            is_admin = True if user.email == 'admin@gmail.com' else False
+            return jsonify({
+                "status": "success",
+                "token": token,
+                "user_name": user.full_name,
+                "is_admin": is_admin 
+            }), 200
+            
+        return jsonify({"status":"error", "message": "Invalid credentials"}), 401
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/auth/change-password', methods=['PUT'])
 @jwt_required()
@@ -616,7 +786,6 @@ def update_fcm_token():
 @app.route('/test_push', methods=['POST'])
 @jwt_required()
 def test_push():
-    """A direct route to instantly test push notifications for the logged-in user."""
     try:
         user_id = get_jwt_identity()
         user = db.session.get(User, user_id)

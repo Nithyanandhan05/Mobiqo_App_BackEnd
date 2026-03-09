@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from datetime import datetime, timedelta, date
 from utils import send_universal_push_notification
 from models import db, User, Order, Product, Warranty, Address, AiSearchLog, AiSetting
-
+from flask_jwt_extended import jwt_required, get_jwt_identity
 admin_bp = Blueprint('admin', __name__)
 
 # ==========================================
@@ -103,6 +103,7 @@ def get_dynamic_status(w):
 # 1. ADMIN DASHBOARD STATS
 # ==========================================
 @admin_bp.route('/admin/dashboard', methods=['GET'])
+@admin_bp.route('/api/admin/dashboard', methods=['GET'])
 @jwt_required()
 def get_admin_dashboard():
     try:
@@ -149,6 +150,7 @@ def get_admin_dashboard():
 # 2. ORDER MANAGEMENT
 # ==========================================
 @admin_bp.route('/admin/orders', methods=['GET'])
+@admin_bp.route('/api/admin/orders', methods=['GET'])
 @jwt_required()
 def get_all_orders():
     try:
@@ -190,6 +192,7 @@ def get_all_orders():
 # Replace ONLY the update_order function in your admin.py file with this:
 
 @admin_bp.route('/admin/orders/<int:order_id>', methods=['PUT'])
+@admin_bp.route('/api/admin/orders/<int:order_id>', methods=['PUT'])
 @jwt_required()
 def update_order(order_id):
     try:
@@ -243,45 +246,54 @@ def update_order(order_id):
 # 3. WARRANTY MANAGEMENT (ADMIN)
 # ==========================================
 @admin_bp.route('/admin/warranties', methods=['GET'])
+@admin_bp.route('/api/admin/warranties', methods=['GET'])
 @jwt_required()
-def admin_get_warranties():
+def get_admin_warranties():
     try:
+        user_id = get_jwt_identity()
+        admin_user = User.query.get(user_id)
+        
+        # Verify Admin Access
+        if not admin_user or admin_user.email != 'admin@gmail.com':
+            return jsonify({"status": "error", "message": "Unauthorized access"}), 403
+
         warranties = Warranty.query.order_by(Warranty.id.desc()).all()
-        warranty_data = []
+        w_list = []
         
         for w in warranties:
-            user = db.session.get(User, w.user_id) if w.user_id else None
+            # 🚀 Fetch the User to get Email and Phone
+            owner = User.query.get(w.user_id)
             
-            claim_desc = getattr(w, 'claim_description', None)
-            issue_type = getattr(w, 'claim_issue_type', None)
+            # 🚀 Fetch the Product to get the Device Image
+            product = Product.query.filter_by(name=w.device_name).first()
             
-            reason_text = ""
-            if issue_type: reason_text += f"[{issue_type}] "
-            if claim_desc: reason_text += str(claim_desc)
-            
-            display_status = get_dynamic_status(w) 
-            
-            if not reason_text.strip():
-                reason_text = "Manual invoice verification required." if display_status == "Pending" else "No claim details."
+            # Safely format dates
+            p_date = w.purchase_date.strftime('%b %d, %Y') if getattr(w, 'purchase_date', None) else "N/A"
+            e_date = w.expiry_date.strftime('%b %d, %Y') if getattr(w, 'expiry_date', None) else "Unknown"
 
-            warranty_data.append({
+            w_list.append({
                 "id": w.id,
-                "user_name": str(user.full_name) if user and user.full_name else "Unknown User",
-                "device_name": str(w.device_name) if w.device_name else "Unknown Device",
-                "device_type": str(w.device_type) if w.device_type else "Unknown",
-                "expiry_date": format_date_safely(w.expiry_date),
-                "status": str(display_status),
-                "claim_reason": reason_text,
-                "claim_invoice_url": str(w.claim_invoice_url) if getattr(w, 'claim_invoice_url', None) else None,
-                "claim_device_url": str(w.claim_device_url) if getattr(w, 'claim_device_url', None) else None
+                "user_name": owner.full_name if owner else "Unknown User",
+                "user_email": owner.email if owner else "N/A",          # Now sending email
+                "user_phone": owner.mobile if owner else "N/A",         # Now sending phone
+                "device_name": w.device_name,
+                "device_type": getattr(w, 'device_type', 'Electronics'),
+                "purchase_date": p_date,                                # Now sending purchase date
+                "expiry_date": e_date,
+                "status": w.status,
+                "product_image_url": product.image_url if product else None, # Now sending image
+                "claim_reason": getattr(w, 'claim_description', getattr(w, 'claim_issue_type', None)),
+                "claim_invoice_url": getattr(w, 'claim_invoice_url', None),
+                "claim_device_url": getattr(w, 'claim_device_url', None)
             })
-            
-        return jsonify({"status": "success", "warranties": warranty_data}), 200
-    except Exception as e:
-        print(f"ADMIN WARRANTIES ERROR: {e}")
-        return jsonify({"status": "error", "message": str(e)}), 500
 
+        return jsonify({"status": "success", "warranties": w_list}), 200
+        
+    except Exception as e:
+        print(f"Error fetching admin warranties: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 @admin_bp.route('/admin/warranties/<int:warranty_id>/approve', methods=['PUT'])
+@admin_bp.route('/api/admin/warranties/<int:warranty_id>/approve', methods=['PUT'])
 @jwt_required()
 def approve_warranty(warranty_id):
     try:
@@ -308,6 +320,7 @@ def approve_warranty(warranty_id):
 # 4. PAYMENT MANAGEMENT (ADMIN) - NEW!
 # ==========================================
 @admin_bp.route('/admin/payments', methods=['GET'])
+@admin_bp.route('/api/admin/payments', methods=['GET'])
 @jwt_required()
 def get_payments():
     try:
@@ -330,6 +343,7 @@ def get_payments():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 @admin_bp.route('/admin/payments/<int:payment_id>/refund', methods=['PUT'])
+@admin_bp.route('/api/admin/payments/<int:payment_id>/refund', methods=['PUT'])
 @jwt_required()
 def refund_payment(payment_id):
     try:
@@ -348,6 +362,7 @@ def refund_payment(payment_id):
 # 5. USER MANAGEMENT (ADMIN)
 # ==========================================
 @admin_bp.route('/admin/users', methods=['GET'])
+@admin_bp.route('/api/admin/users', methods=['GET'])
 @jwt_required()
 def get_all_users():
     try:
@@ -381,6 +396,7 @@ def get_all_users():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 @admin_bp.route('/admin/users/<int:user_id>', methods=['GET'])
+@admin_bp.route('/api/admin/users/<int:user_id>', methods=['GET'])
 @jwt_required()
 def get_user_profile(user_id):
     # FIXED: Added missing user profile endpoint
@@ -428,6 +444,7 @@ def get_user_profile(user_id):
         return jsonify({"status": "error", "message": str(e)}), 500
 
 @admin_bp.route('/admin/users/<int:user_id>/toggle_block', methods=['PUT'])
+@admin_bp.route('/api/admin/users/<int:user_id>/toggle_block', methods=['PUT'])
 @jwt_required()
 def toggle_user_block(user_id):
     try:
@@ -447,6 +464,7 @@ def toggle_user_block(user_id):
 # 6. PRODUCT INVENTORY MANAGEMENT
 # ==========================================
 @admin_bp.route('/admin/products', methods=['GET', 'POST'])
+@admin_bp.route('/api/admin/products', methods=['GET', 'POST'])
 @jwt_required()
 def admin_products():
     if request.method == 'GET':
@@ -492,6 +510,7 @@ def admin_products():
             return jsonify({"status": "error", "message": str(e)}), 500
 
 @admin_bp.route('/admin/products/<int:product_id>', methods=['GET'])
+@admin_bp.route('/api/admin/products/<int:product_id>', methods=['GET'])
 @jwt_required()
 def get_admin_product(product_id):
     try:
@@ -516,6 +535,7 @@ def get_admin_product(product_id):
         return jsonify({"status": "error", "message": str(e)}), 500
 
 @admin_bp.route('/admin/products/<int:product_id>', methods=['PUT', 'DELETE'])
+@admin_bp.route('/api/admin/products/<int:product_id>', methods=['PUT', 'DELETE'])
 @jwt_required()
 def edit_admin_product(product_id):
     try:
@@ -524,9 +544,22 @@ def edit_admin_product(product_id):
             return jsonify({"status": "error", "message": "Product not found"}), 404
             
         if request.method == 'DELETE':
-            db.session.delete(p)
-            db.session.commit()
-            return jsonify({"status": "success", "message": "Product deleted"}), 200
+            # Order.product_id is NOT NULL so we can't set it to NULL via ORM.
+            # Use raw SQL to temporarily disable FK checks, delete, then re-enable.
+            try:
+                # Nullable FK (Warranty) - safe to null first
+                Warranty.query.filter_by(product_id=product_id).update({"product_id": None})
+                db.session.flush()
+                # Disable FK checks, delete product row, re-enable
+                db.session.execute(db.text("SET FOREIGN_KEY_CHECKS=0"))
+                db.session.execute(db.text("DELETE FROM product WHERE id = :pid"), {"pid": product_id})
+                db.session.execute(db.text("SET FOREIGN_KEY_CHECKS=1"))
+                db.session.commit()
+                return jsonify({"status": "success", "message": "Product deleted"}), 200
+            except Exception as del_err:
+                db.session.rollback()
+                db.session.execute(db.text("SET FOREIGN_KEY_CHECKS=1"))
+                return jsonify({"status": "error", "message": str(del_err)}), 500
             
         data = request.get_json(silent=True) or {}
         if 'name' in data: p.name = data['name']
@@ -544,30 +577,73 @@ def edit_admin_product(product_id):
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
-def edit_admin_product(product_id):
-    try:
-        p = db.session.get(Product, product_id)
-        if not p:
-            return jsonify({"status": "error", "message": "Product not found"}), 404
-            
-        if request.method == 'DELETE':
-            db.session.delete(p)
-            db.session.commit()
-            return jsonify({"status": "success", "message": "Product deleted"}), 200
-            
-        data = request.get_json(silent=True) or {}
-        if 'name' in data: p.name = data['name']
-        if 'price' in data: p.price = data['price']
-        if 'image_url' in data: p.image_url = data['image_url']
-        if 'battery_spec' in data: p.battery_spec = data['battery_spec']
-        if 'display_spec' in data: p.display_spec = data['display_spec']
-        if 'processor_spec' in data: p.processor_spec = data['processor_spec']
-        if 'camera_spec' in data: p.camera_spec = data['camera_spec']
-        if 'stock' in data: p.stock = int(data['stock'])
-        if 'category' in data: p.category = data['category']
-        
-        db.session.commit()
-        return jsonify({"status": "success", "message": "Product updated"}), 200
     except Exception as e:
         db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# ==========================================
+# 7. AI SETTINGS & LOGS (ADMIN)
+# ==========================================
+@admin_bp.route('/admin/ai_settings', methods=['GET'])
+@admin_bp.route('/api/admin/ai_settings', methods=['GET'])
+@jwt_required()
+def get_ai_settings():
+    try:
+        # Get or create AiSetting
+        settings = AiSetting.query.first()
+        if not settings:
+            settings = AiSetting()
+            db.session.add(settings)
+            db.session.commit()
+            
+        # Get latest AI Search Logs
+        logs = AiSearchLog.query.order_by(AiSearchLog.id.desc()).limit(20).all()
+        logs_data = []
+        for log in logs:
+            logs_data.append({
+                "log_id": f"SEQ-{log.id:04d}",
+                "date": log.timestamp.strftime('%b %d, %H:%M') if log.timestamp else "Unknown",
+                "match_percent": log.match_percent or 95,
+                "preferences": str(log.preferences or getattr(log, 'query', 'Unknown Query')),
+                "product": str(log.recommended_product or "Generic AI Pick")
+            })
+
+        data = {
+            "is_enabled": settings.is_enabled,
+            "gaming": settings.gaming_weight,
+            "camera": settings.camera_weight,
+            "battery": settings.battery_weight,
+            "budget": settings.budget_weight,
+            "engine_mode": settings.engine_mode,
+            "logs": logs_data
+        }
+        
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        print(f"Error fetching AI settings: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@admin_bp.route('/admin/ai_settings', methods=['PUT'])
+@admin_bp.route('/api/admin/ai_settings', methods=['PUT'])
+@jwt_required()
+def update_ai_settings():
+    try:
+        data = request.get_json(silent=True) or {}
+        settings = AiSetting.query.first()
+        if not settings:
+            settings = AiSetting()
+            db.session.add(settings)
+            
+        if 'is_enabled' in data: settings.is_enabled = bool(data['is_enabled'])
+        if 'gaming' in data: settings.gaming_weight = int(data['gaming'])
+        if 'camera' in data: settings.camera_weight = int(data['camera'])
+        if 'battery' in data: settings.battery_weight = int(data['battery'])
+        if 'budget' in data: settings.budget_weight = int(data['budget'])
+        if 'engine_mode' in data: settings.engine_mode = str(data['engine_mode'])
+        
+        db.session.commit()
+        return jsonify({"status": "success", "message": "AI Settings updated successfully"}), 200
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error updating AI settings: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500

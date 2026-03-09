@@ -5,7 +5,7 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+import secrets
 # --- LOAD ENV VARS FIRST BEFORE IMPORTING BLUEPRINTS ---
 load_dotenv()
 
@@ -207,7 +207,110 @@ def verify_otp():
         return jsonify({"status": "error", "message": "Invalid or expired OTP"}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+# ==========================================
+# SECURE PASSWORD RESET LINK (WEB/ADMIN)
+# ==========================================
+password_reset_tokens = {} # Stores {email: token}
 
+def send_real_reset_link_email(receiver_email, token):
+    """Sends an HTML email with a clickable reset button."""
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = f"SmartElectro <{SENDER_EMAIL}>"
+        msg['To'] = receiver_email
+        msg['Subject'] = "SmartElectro - Password Reset Request"
+        
+        # ⚠️ CHANGE THIS TO YOUR REACT WEB APP'S IP ADDRESS & PORT
+        # Example: http://10.79.196.213:5173/reset-password
+        react_web_url = "http://10.79.196.213:5173/reset-password"
+        
+        # Build the final clickable link with the token and email attached
+        reset_link = f"{react_web_url}?token={token}&email={urllib.parse.quote(receiver_email)}"
+        
+        html_body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 30px;">
+            <div style="max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <h2 style="color: #1E1E1E; text-align: center;">Password Reset Request</h2>
+                <p style="color: #555; font-size: 15px;">Hello,</p>
+                <p style="color: #555; font-size: 15px;">An admin has requested a password reset for your account. Please click the secure button below to create a new password.</p>
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="{reset_link}" style="background-color: #2874F0; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Reset My Password</a>
+                </div>
+                <p style="color: #999; font-size: 12px; text-align: center;">If you didn't request this, you can safely ignore this email.</p>
+            </div>
+        </body>
+        </html>
+        """
+        msg.attach(MIMEText(html_body, 'html'))
+        
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"❌ Link Email Failed: {e}")
+        return False
+
+# 1. Admin Endpoint to trigger the email
+@app.route('/admin/users/send_reset_link', methods=['POST'])
+@jwt_required()
+def admin_send_reset_link():
+    try:
+        # Verify the user requesting this is actually the Admin
+        admin_id = get_jwt_identity()
+        admin = db.session.get(User, admin_id)
+        if not admin or admin.email != 'admin@gmail.com':
+            return jsonify({"status": "error", "message": "Unauthorized"}), 403
+
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"status": "error", "message": "User not found"}), 404
+            
+        # Generate a secure 32-character URL-safe token
+        token = secrets.token_urlsafe(32)
+        password_reset_tokens[email] = token
+        
+        print(f"⏳ Admin triggered Reset Link for {email}...")
+        if send_real_reset_link_email(email, token):
+            return jsonify({"status": "success", "message": "Reset link sent to user"}), 200
+        else:
+            return jsonify({"status": "error", "message": "Failed to send email"}), 500
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# 2. Endpoint for React to submit the new password using the token
+@app.route('/reset_password_with_link', methods=['POST'])
+def reset_password_with_link():
+    try:
+        data = request.get_json() or {}
+        email = data.get('email', '').strip().lower()
+        token = data.get('token', '').strip()
+        new_password = data.get('new_password', '').strip()
+        
+        # Verify token matches memory
+        if password_reset_tokens.get(email) != token:
+            return jsonify({"status": "error", "message": "Invalid or expired link."}), 400
+            
+        user = User.query.filter_by(email=email).first()
+        if not user: return jsonify({"status": "error", "message": "User not found"}), 404
+            
+        # Hash new password
+        user.password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        db.session.commit()
+        
+        # Destroy the token so it can't be used twice
+        del password_reset_tokens[email]
+        
+        return jsonify({"status": "success", "message": "Password updated successfully!"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
 # ==========================================
 # PASSWORD RECOVERY (FORGOT/RESET PASSWORD)
 # ==========================================

@@ -4,7 +4,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from datetime import datetime, timedelta, date
 from werkzeug.utils import secure_filename
 import os
-from utils import send_universal_push_notification
 
 from models import db, Warranty, Product, User
 
@@ -33,7 +32,7 @@ def send_push_notification(user_id, title, body):
         print(f"❌ FCM CRASH: {e}")
 
 # ==========================================
-# HELPER TO DYNAMICALLY OVERRIDE STATUS
+# HELPERS
 # ==========================================
 def get_dynamic_status(w):
     db_status = w.status or "Secure"
@@ -47,6 +46,15 @@ def get_dynamic_status(w):
             if days < 0: return "Expired"
             elif days <= 30: return "Alert"
     return "Secure"
+
+def get_device_image(device_name):
+    """Finds the product image by matching the warranty device name to the product database."""
+    if not device_name: return ""
+    try:
+        prod = Product.query.filter(Product.name.ilike(f"%{device_name}%")).first()
+        return prod.image_url if prod and prod.image_url else ""
+    except Exception:
+        return ""
 
 # ==========================================
 # 1. GET ALL USER WARRANTIES
@@ -66,7 +74,8 @@ def get_my_warranties():
                 "id": w.id,
                 "name": w.device_name,
                 "status": get_dynamic_status(w),
-                "expiry": expiry_str
+                "expiry": expiry_str,
+                "image_url": get_device_image(w.device_name) # Added Image Fetch
             })
             
         return jsonify({
@@ -97,7 +106,8 @@ def get_alerts():
                 "id": w.id,
                 "name": w.device_name,
                 "status": get_dynamic_status(w),
-                "expiry": expiry_str
+                "expiry": expiry_str,
+                "image_url": get_device_image(w.device_name) # Added Image Fetch
             })
 
         return jsonify({
@@ -160,9 +170,16 @@ def get_warranty_detail(id):
         if w.invoice_url: invoice_name = w.invoice_url.split('/')[-1]
 
         data = {
-            "id": w.id, "device_name": w.device_name, "device_type": w.device_type or "Smartphone",
-            "purchase_date": purchase_str, "expiry_date": expiry_str, "status": get_dynamic_status(w),
-            "progress": progress, "months_left": months_left, "invoice_name": invoice_name,
+            "id": w.id, 
+            "device_name": w.device_name, 
+            "device_type": w.device_type or "Smartphone",
+            "purchase_date": purchase_str, 
+            "expiry_date": expiry_str, 
+            "status": get_dynamic_status(w),
+            "progress": progress, 
+            "months_left": months_left, 
+            "invoice_name": invoice_name,
+            "image_url": get_device_image(w.device_name), # Added Image Fetch
             "history": [
                 {"title": "Warranty Registered", "date": purchase_str, "desc": "Your warranty was successfully registered.", "is_last": False},
                 {"title": "Coverage Active", "date": purchase_str, "desc": "Your device is fully covered.", "is_last": True}

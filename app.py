@@ -22,6 +22,7 @@ import re
 import urllib.parse
 import json
 import time
+from scanner import scanner_bp
 
 # --- IMPORT THE NEW IMAGE FETCHER ---
 from image_fetcher import fetch_dynamic_image
@@ -63,6 +64,7 @@ app.register_blueprint(warranty_bp)
 app.register_blueprint(orders_bp)
 app.register_blueprint(compare_bp)
 app.register_blueprint(admin_bp) 
+app.register_blueprint(scanner_bp)
 
 # --- AI SETUP (USING ASSISTANT KEY) ---
 ASSISTANT_KEY = os.getenv("GEMINI_API_KEY_ASSISTANT")
@@ -126,8 +128,8 @@ scheduler.start()
 registration_otps = {} 
 
 # ⚠️ CHANGE THESE TWO LINES TO YOUR ACTUAL DETAILS ⚠️
-SENDER_EMAIL = "nithyanandhan205@gmail.com"  
-SENDER_PASSWORD = "dppufdkalsdpmmvp" 
+SENDER_EMAIL = "mobiqoapp@gmail.com"  
+SENDER_PASSWORD = "gewdecyklvzgvlqa" 
 
 def send_real_email(receiver_email, otp):
     """Sends a real email using Google's SMTP server."""

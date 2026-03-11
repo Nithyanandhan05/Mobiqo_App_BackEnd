@@ -22,6 +22,21 @@ COMPARE_KEY = os.getenv("GEMINI_API_KEY_COMPARE")
 # os.getenv prevents KeyError if the .env file is missing
 client = genai.Client(api_key=COMPARE_KEY) if COMPARE_KEY else None
 
+# ==========================================
+# HELPER FUNCTIONS
+# ==========================================
+def safe_get_price(price_val):
+    """Safely extracts a numeric price from any string format (e.g. '₹45,000' -> 45000.0)"""
+    if not price_val:
+        return 0.0
+    try:
+        if isinstance(price_val, (float, int)):
+            return float(price_val)
+        clean_price = str(price_val).replace('₹', '').replace(',', '').strip()
+        return float(clean_price) if clean_price else 0.0
+    except Exception:
+        return 0.0
+
 def cache_to_dict(cache_obj):
     return {
         "id": cache_obj.id,
@@ -76,9 +91,7 @@ def save_or_update_product(phone_data):
     if not phone_data or 'name' not in phone_data:
         return -1
     
-    raw_price = str(phone_data.get('price', '0')).replace('₹', '').replace(',', '').strip()
-    try: numeric_price = float(raw_price)
-    except: numeric_price = 0.0
+    numeric_price = safe_get_price(phone_data.get('price', '0'))
 
     battery_val = phone_data.get('battery', {}).get('capacity', 'Standard')
     display_val = phone_data.get('display', {}).get('type', 'Standard')
@@ -124,13 +137,36 @@ def search_devices():
     try:
         results = []
         
-        # 1. FORCE EXACT MATCH AS THE FIRST RESULT
-        if query.lower() != 'a' and len(query) > 1:
+        # 1. Check in CompareDeviceCache for exact match
+        exact_cache = CompareDeviceCache.query.filter_by(search_query=query.lower()).first()
+        if exact_cache:
+            results.append({
+                "id": exact_cache.id,
+                "name": exact_cache.name,
+                "price": exact_cache.price,
+                "match_percent": "Cached Data",
+                "specs": "Detailed Specs Available",
+                "category": "Cached Search",
+                "image_url": exact_cache.image_url
+            })
+        else:
+            # 1. FORCE EXACT MATCH AS THE FIRST RESULT (from Product table)
             exact_name = query.title()
-            image_url = fetch_dynamic_image(exact_name)
-            
             product = Product.query.filter_by(name=exact_name).first()
-            if not product:
+            if product:
+                num_price = safe_get_price(product.price)
+                results.append({
+                    "id": product.id,
+                    "name": product.name,
+                    "price": f"₹{num_price:,.0f}" if num_price > 0 else "Compare to reveal",
+                    "match_percent": "Exact Match",
+                    "specs": "Basic Specs Available",
+                    "category": "Product DB",
+                    "image_url": product.image_url
+                })
+            else:
+                # If not in Product DB, create a placeholder for exact match
+                image_url = fetch_dynamic_image(exact_name)
                 product = Product(
                     name=exact_name, price=0.0, image_url=image_url,
                     battery_spec="Standard", display_spec="Standard",
@@ -141,59 +177,114 @@ def search_devices():
                     db.session.commit()
                 except:
                     db.session.rollback()
+                results.append({
+                    "id": product.id if product else 0,
+                    "name": exact_name,
+                    "price": "Compare to reveal",
+                    "match_percent": "Exact Match",
+                    "specs": "Live Web Data",
+                    "category": "Web Search",
+                    "image_url": image_url
+                })
 
-            results.append({
-                "id": product.id if product else 0,
-                "name": exact_name,
-                "price": "Compare to reveal",
-                "match_percent": "Exact Match",
-                "specs": "Live Web Data",
-                "category": "Web Search",
-                "image_url": image_url
-            })
 
-        # 2. FETCH AUTOSUGGESTIONS AS FALLBACKS
-        search_url = "https://duckduckgo.com/ac/?q=top+flagship+smartphone" if query.lower() == 'a' else f"https://duckduckgo.com/ac/?q={urllib.parse.quote(query)}+smartphone"
-        headers = {"User-Agent": "Mozilla/5.0"}
-        response = requests.get(search_url, headers=headers)
-        suggestions = response.json()
+        # 2. FETCH AUTOSUGGESTIONS AS FALLBACKS (from Product and Cache)
+        # Prioritize cached devices
+        cached_suggestions = CompareDeviceCache.query.filter(
+            CompareDeviceCache.search_query.ilike(f'%{query}%')
+        ).limit(5).all()
 
-        banned_words = ['case', 'cover', 'price', 'review', 'vs', 'specs']
-        
-        for item in suggestions:
-            phrase = item['phrase'].replace(' smartphone', '').replace(' mobile', '').title()
-            
-            # Filter out junk searches and duplicates
-            if any(b in phrase.lower() for b in banned_words):
+        for item in cached_suggestions:
+            if any(r['name'].lower() == item.name.lower() for r in results):
                 continue
-            if any(r['name'].lower() == phrase.lower() for r in results):
-                continue
-                
-            image_url = fetch_dynamic_image(phrase)
-            product = Product.query.filter_by(name=phrase).first()
-            if not product:
-                product = Product(
-                    name=phrase, price=0.0, image_url=image_url,
-                    battery_spec="Standard", display_spec="Standard",
-                    processor_spec="Standard", camera_spec="Standard"
-                )
-                db.session.add(product)
-                try:
-                    db.session.commit()
-                except:
-                    db.session.rollback()
-
             results.append({
-                "id": product.id if product else 0,
-                "name": phrase,
-                "price": "Compare to reveal",
-                "match_percent": "Live Web",
-                "specs": "Internet Data Source",
-                "category": "Web Search",
-                "image_url": image_url
+                "id": item.id,
+                "name": item.name,
+                "price": item.price,
+                "match_percent": "Cached Data",
+                "specs": "Detailed Specs Available",
+                "category": "Cached Search",
+                "image_url": item.image_url
             })
-            
             if len(results) >= 5: break
+
+        # Then product DB devices
+        if len(results) < 5:
+            product_suggestions = Product.query.filter(
+                Product.name.ilike(f'%{query}%')
+            ).limit(5).all()
+            for item in product_suggestions:
+                if any(r['name'].lower() == item.name.lower() for r in results):
+                    continue
+                num_price = safe_get_price(item.price)
+                results.append({
+                    "id": item.id,
+                    "name": item.name,
+                    "price": f"₹{num_price:,.0f}" if num_price > 0 else "Compare to reveal",
+                    "match_percent": "Product DB",
+                    "specs": "Basic Specs Available",
+                    "category": "Product DB",
+                    "image_url": item.image_url
+                })
+                if len(results) >= 5: break
+
+        # Finally, use DuckDuckGo for new suggestions if needed
+        if len(results) < 5:
+            search_url = "https://duckduckgo.com/ac/?q=top+flagship+smartphone" if query.lower() == 'a' else f"https://duckduckgo.com/ac/?q={urllib.parse.quote(query)}+smartphone"
+            headers = {"User-Agent": "Mozilla/5.0"}
+            response = requests.get(search_url, headers=headers)
+            suggestions = response.json()
+
+            banned_words = ['case', 'cover', 'price', 'review', 'vs', 'specs']
+            
+            for item in suggestions:
+                phrase = item['phrase'].replace(' smartphone', '').replace(' mobile', '').title()
+                
+                # Filter out junk searches and duplicates
+                if any(b in phrase.lower() for b in banned_words):
+                    continue
+                if any(r['name'].lower() == phrase.lower() for r in results):
+                    continue
+                    
+                image_url = fetch_dynamic_image(phrase)
+                product = Product.query.filter_by(name=phrase).first()
+                if not product:
+                    product = Product(
+                        name=phrase, price=0.0, image_url=image_url,
+                        battery_spec="Standard", display_spec="Standard",
+                        processor_spec="Standard", camera_spec="Standard"
+                    )
+                    db.session.add(product)
+                    try:
+                        db.session.commit()
+                    except:
+                        db.session.rollback()
+
+                # Check cache/product price for this suggestion
+                phrase_cache = CompareDeviceCache.query.filter_by(search_query=phrase.lower()).first()
+                num_product_price = safe_get_price(product.price if product else 0)
+
+                if phrase_cache and phrase_cache.price and phrase_cache.price not in ["₹0", "₹0.00", "0", "N/A", ""]:
+                    display_price = phrase_cache.price
+                    display_specs = f"{phrase_cache.processor or ''} · {phrase_cache.ram or ''}".strip(" ·") or "Detailed Specs Available"
+                elif product and num_product_price > 0:
+                    display_price = f"₹{int(num_product_price):,}"
+                    display_specs = product.processor_spec or "Internet Data Source"
+                else:
+                    display_price = "Compare to reveal"
+                    display_specs = "Internet Data Source"
+
+                results.append({
+                    "id": product.id if product else 0,
+                    "name": phrase,
+                    "price": display_price,
+                    "match_percent": "Live Web",
+                    "specs": display_specs,
+                    "category": "Web Search",
+                    "image_url": image_url
+                })
+                
+                if len(results) >= 5: break
 
         return jsonify({"status": "success", "results": results}), 200
     except Exception as e:

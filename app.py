@@ -6,6 +6,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import secrets
+
 # --- LOAD ENV VARS FIRST BEFORE IMPORTING BLUEPRINTS ---
 load_dotenv()
 
@@ -22,12 +23,8 @@ import re
 import urllib.parse
 import json
 import time
-from scanner import scanner_bp
 
-# --- IMPORT THE NEW IMAGE FETCHER ---
 from image_fetcher import fetch_dynamic_image
-
-# --- FIREBASE & SCHEDULER IMPORTS ---
 import firebase_admin
 from firebase_admin import credentials, messaging
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -39,6 +36,7 @@ from warranty import warranty_bp
 from orders import orders_bp
 from compare import compare_bp
 from admin import admin_bp 
+from scanner import scanner_bp
 from utils import send_universal_push_notification
 
 app = Flask(__name__)
@@ -55,7 +53,6 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=30)
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'static', 'uploads')
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# --- INITIALIZE DB WITH APP ---
 db.init_app(app)
 
 # --- REGISTER BLUEPRINTS ---
@@ -84,9 +81,6 @@ try:
 except Exception as e:
     print(f"⚠️ Firebase Init Error: {e}")
 
-# ==========================================
-# WARRANTY SCHEDULER
-# ==========================================
 def check_warranties_and_notify():
     with app.app_context():
         print("🔍 Running Daily Warranty Check...")
@@ -108,15 +102,12 @@ def check_warranties_and_notify():
                             "Warranty Expiring in 1 Month! 📅", 
                             f"Your warranty for {w.device_name} expires in 30 days. Renew now to stay covered."
                         )
-                        print(f"📩 30-Day Alert sent to {user.full_name}")
-                        
                     elif w_date == target_7_days:
                         send_universal_push_notification(
                             user, 
                             "Warranty Expiring Next Week! ⚠️", 
                             f"Your warranty for {w.device_name} expires in 7 days. Extend it immediately."
                         )
-                        print(f"📩 7-Day Alert sent to {user.full_name}")
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=check_warranties_and_notify, trigger="cron", hour=9, minute=0)
@@ -126,13 +117,10 @@ scheduler.start()
 # REAL EMAIL CONFIGURATION & OTP STORE
 # ==========================================
 registration_otps = {} 
-
-# ⚠️ CHANGE THESE TWO LINES TO YOUR ACTUAL DETAILS ⚠️
 SENDER_EMAIL = "mobiqoapp@gmail.com"  
 SENDER_PASSWORD = "gewdecyklvzgvlqa" 
 
 def send_real_email(receiver_email, otp):
-    """Sends a real email using Google's SMTP server."""
     try:
         msg = MIMEMultipart()
         msg['From'] = f"SmartElectro <{SENDER_EMAIL}>"
@@ -141,21 +129,16 @@ def send_real_email(receiver_email, otp):
         
         body = f"""
         Hello,
-        
         Welcome to SmartElectro!
-        
         Your 6-digit verification code is: {otp}
-        
         Please enter this code in the app to complete your registration.
-        
         Thanks,
         The SmartElectro Team
         """
         msg.attach(MIMEText(body, 'plain'))
         
-        # Connect to Gmail SMTP Server
         server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls() # Secure the connection
+        server.starttls()
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
         server.send_message(msg)
         server.quit()
@@ -179,17 +162,10 @@ def send_otp():
         otp = str(random.randint(100000, 999999))
         registration_otps[email] = otp
         
-        print(f"\n======================================")
-        print(f"⏳ ATTEMPTING TO SEND REAL EMAIL TO {email} -> OTP: {otp}")
-        print(f"======================================\n")
-        
-        # 🚀 CALL THE SMTP FUNCTION
         if send_real_email(email, otp):
-            print(f"✅ Real email successfully sent to {email}")
             return jsonify({"status": "success", "message": "OTP sent to your email"}), 200
         else:
-            return jsonify({"status": "error", "message": "Failed to send email. Check VS Code logs."}), 500
-
+            return jsonify({"status": "error", "message": "Failed to send email."}), 500
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -200,33 +176,22 @@ def verify_otp():
         email = data.get('email', '').strip().lower()
         otp = data.get('otp', '').strip()
         
-        if not email or not otp:
-            return jsonify({"status": "error", "message": "Email and OTP are required"}), 400
-            
         if registration_otps.get(email) == otp:
             return jsonify({"status": "success", "message": "OTP verified successfully"}), 200
-            
         return jsonify({"status": "error", "message": "Invalid or expired OTP"}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-# ==========================================
-# SECURE PASSWORD RESET LINK (WEB/ADMIN)
-# ==========================================
-password_reset_tokens = {} # Stores {email: token}
+
+password_reset_tokens = {} 
 
 def send_real_reset_link_email(receiver_email, token):
-    """Sends an HTML email with a clickable reset button."""
     try:
         msg = MIMEMultipart()
         msg['From'] = f"SmartElectro <{SENDER_EMAIL}>"
         msg['To'] = receiver_email
         msg['Subject'] = "SmartElectro - Password Reset Request"
         
-        # ⚠️ CHANGE THIS TO YOUR REACT WEB APP'S IP ADDRESS & PORT
-        # Example: http://10.79.196.213:5173/reset-password
         react_web_url = "http://10.79.196.213:5173/reset-password"
-        
-        # Build the final clickable link with the token and email attached
         reset_link = f"{react_web_url}?token={token}&email={urllib.parse.quote(receiver_email)}"
         
         html_body = f"""
@@ -239,7 +204,6 @@ def send_real_reset_link_email(receiver_email, token):
                 <div style="text-align: center; margin: 30px 0;">
                     <a href="{reset_link}" style="background-color: #2874F0; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Reset My Password</a>
                 </div>
-                <p style="color: #999; font-size: 12px; text-align: center;">If you didn't request this, you can safely ignore this email.</p>
             </div>
         </body>
         </html>
@@ -256,12 +220,10 @@ def send_real_reset_link_email(receiver_email, token):
         print(f"❌ Link Email Failed: {e}")
         return False
 
-# 1. Admin Endpoint to trigger the email
 @app.route('/admin/users/send_reset_link', methods=['POST'])
 @jwt_required()
 def admin_send_reset_link():
     try:
-        # Verify the user requesting this is actually the Admin
         admin_id = get_jwt_identity()
         admin = db.session.get(User, admin_id)
         if not admin or admin.email != 'admin@gmail.com':
@@ -274,11 +236,9 @@ def admin_send_reset_link():
         if not user:
             return jsonify({"status": "error", "message": "User not found"}), 404
             
-        # Generate a secure 32-character URL-safe token
         token = secrets.token_urlsafe(32)
         password_reset_tokens[email] = token
         
-        print(f"⏳ Admin triggered Reset Link for {email}...")
         if send_real_reset_link_email(email, token):
             return jsonify({"status": "success", "message": "Reset link sent to user"}), 200
         else:
@@ -286,7 +246,6 @@ def admin_send_reset_link():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# 2. Endpoint for React to submit the new password using the token
 @app.route('/reset_password_with_link', methods=['POST'])
 def reset_password_with_link():
     try:
@@ -295,27 +254,21 @@ def reset_password_with_link():
         token = data.get('token', '').strip()
         new_password = data.get('new_password', '').strip()
         
-        # Verify token matches memory
         if password_reset_tokens.get(email) != token:
             return jsonify({"status": "error", "message": "Invalid or expired link."}), 400
             
         user = User.query.filter_by(email=email).first()
         if not user: return jsonify({"status": "error", "message": "User not found"}), 404
             
-        # Hash new password
         user.password = bcrypt.generate_password_hash(new_password).decode('utf-8')
         db.session.commit()
         
-        # Destroy the token so it can't be used twice
         del password_reset_tokens[email]
-        
         return jsonify({"status": "success", "message": "Password updated successfully!"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
-# ==========================================
-# PASSWORD RECOVERY (FORGOT/RESET PASSWORD)
-# ==========================================
+
 password_reset_otps = {}
 
 @app.route('/forgot_password', methods=['POST'])
@@ -324,28 +277,18 @@ def forgot_password():
         data = request.get_json() or {}
         email = data.get('email', '').strip().lower()
         
-        if not email:
-            return jsonify({"status": "error", "message": "Email is required"}), 400
+        if not email: return jsonify({"status": "error", "message": "Email is required"}), 400
             
-        # Check if user ACTUALLY exists (they must exist to reset password)
         user = User.query.filter_by(email=email).first()
-        if not user:
-            return jsonify({"status": "error", "message": "No account found with this email"}), 404
+        if not user: return jsonify({"status": "error", "message": "No account found with this email"}), 404
             
-        # Generate a 6-digit OTP
         otp = str(random.randint(100000, 999999))
         password_reset_otps[email] = otp
         
-        print(f"\n======================================")
-        print(f"⏳ ATTEMPTING TO SEND RESET EMAIL TO {email} -> OTP: {otp}")
-        print(f"======================================\n")
-        
-        # 🚀 Reuse your existing SMTP function
         if send_real_email(email, otp):
-            print(f"✅ Reset email successfully sent to {email}")
             return jsonify({"status": "success", "message": "Reset OTP sent to your email"}), 200
         else:
-            return jsonify({"status": "error", "message": "Failed to send reset email. Check server logs."}), 500
+            return jsonify({"status": "error", "message": "Failed to send reset email."}), 500
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
@@ -359,42 +302,32 @@ def reset_password():
         new_password = data.get('new_password', '').strip()
         
         if not email or not otp or not new_password:
-            return jsonify({"status": "error", "message": "Email, OTP, and new password are required"}), 400
+            return jsonify({"status": "error", "message": "All fields required"}), 400
             
         if password_reset_otps.get(email) != otp:
             return jsonify({"status": "error", "message": "Invalid or expired OTP"}), 400
             
         user = User.query.filter_by(email=email).first()
-        if not user:
-            return jsonify({"status": "error", "message": "User not found"}), 404
-            
-        # Hash the new password and save it
+        
         hashed = bcrypt.generate_password_hash(new_password).decode('utf-8')
         user.password = hashed
         db.session.commit()
         
-        # Clear the OTP from memory so it can't be reused
-        if email in password_reset_otps:
-            del password_reset_otps[email]
+        if email in password_reset_otps: del password_reset_otps[email]
             
         return jsonify({"status": "success", "message": "Password updated successfully"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
-# ==========================================
-# HELPER FUNCTIONS
-# ==========================================
+
 def save_product_if_not_exists(phone_data):
-    if not phone_data or 'name' not in phone_data:
-        return None
+    if not phone_data or 'name' not in phone_data: return None
         
     product = Product.query.filter_by(name=phone_data['name']).first()
     if not product:
         raw_price = str(phone_data.get('price', '0')).replace('₹', '').replace(',', '').strip()
-        try:
-            numeric_price = float(raw_price)
-        except:
-            numeric_price = 0.0
+        try: numeric_price = float(raw_price)
+        except: numeric_price = 0.0
 
         product = Product(
             name=phone_data['name'], 
@@ -443,8 +376,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         
-        if clean_email in registration_otps:
-            del registration_otps[clean_email]
+        if clean_email in registration_otps: del registration_otps[clean_email]
             
         return jsonify({"status":"success", "message": "Registration successful"}), 201
     except Exception as e:
@@ -483,9 +415,6 @@ def change_password():
         new_password = data.get('new_password', '').strip()
 
         user = User.query.get(user_id)
-        if not user:
-            return jsonify({"status": "error", "message": "User not found"}), 404
-
         if not bcrypt.check_password_hash(user.password, current_password):
             return jsonify({"status": "error", "message": "Incorrect current password"}), 401
 
@@ -506,8 +435,6 @@ def delete_account():
     try:
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
-        if not user:
-            return jsonify({"status": "error", "message": "User not found"}), 404
         db.session.delete(user)
         db.session.commit()
         return jsonify({"status": "success", "message": "Account deleted successfully."}), 200
@@ -537,93 +464,81 @@ def get_profile():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-@app.route('/privacy/settings', methods=['GET'])
+@app.route('/privacy/settings', methods=['GET', 'PUT'])
 @jwt_required()
-def get_privacy_settings():
-    try:
-        user_id = get_jwt_identity()
-        settings = PrivacySetting.query.filter_by(user_id=user_id).first()
-        if not settings:
-            settings = PrivacySetting(user_id=user_id, two_factor_auth=False, biometric_login=False)
-            db.session.add(settings)
-            db.session.commit()
-        data = { "two_factor_auth": settings.two_factor_auth, "biometric_login": settings.biometric_login }
-        return jsonify({"status": "success", "settings": data}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-@app.route('/privacy/settings', methods=['PUT'])
-@jwt_required()
-def update_privacy_settings():
-    try:
-        user_id = get_jwt_identity()
+def privacy_settings():
+    user_id = get_jwt_identity()
+    settings = PrivacySetting.query.filter_by(user_id=user_id).first()
+    if not settings:
+        settings = PrivacySetting(user_id=user_id, two_factor_auth=False, biometric_login=False)
+        db.session.add(settings)
+        db.session.commit()
+        
+    if request.method == 'PUT':
         data = request.get_json()
-        settings = PrivacySetting.query.filter_by(user_id=user_id).first()
-        if not settings:
-            settings = PrivacySetting(user_id=user_id)
-            db.session.add(settings)
-
         if 'two_factor_auth' in data: settings.two_factor_auth = data['two_factor_auth']
         if 'biometric_login' in data: settings.biometric_login = data['biometric_login']
         db.session.commit()
         return jsonify({"status": "success", "message": "Privacy settings updated"}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        
+    return jsonify({"status": "success", "settings": { "two_factor_auth": settings.two_factor_auth, "biometric_login": settings.biometric_login }}), 200
 
-@app.route('/notifications/preferences', methods=['GET'])
+@app.route('/notifications/preferences', methods=['GET', 'PUT'])
 @jwt_required()
-def get_notification_preferences():
-    try:
-        user_id = get_jwt_identity()
-        prefs = NotificationPreference.query.filter_by(user_id=user_id).first()
-        if not prefs:
-            prefs = NotificationPreference(user_id=user_id)
-            db.session.add(prefs)
-            db.session.commit()
-            
-        data = {
-            "order_updates": prefs.order_updates, "warranty_alerts": prefs.warranty_alerts,
-            "ai_updates": prefs.ai_updates, "promotions": prefs.promotions, "frequency": prefs.frequency
-        }
-        return jsonify({"status": "success", "preferences": data}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-@app.route('/notifications/preferences', methods=['PUT'])
-@jwt_required()
-def update_notification_preferences():
-    try:
-        user_id = get_jwt_identity()
+def notification_preferences():
+    user_id = get_jwt_identity()
+    prefs = NotificationPreference.query.filter_by(user_id=user_id).first()
+    if not prefs:
+        prefs = NotificationPreference(user_id=user_id)
+        db.session.add(prefs)
+        db.session.commit()
+        
+    if request.method == 'PUT':
         data = request.get_json()
-        prefs = NotificationPreference.query.filter_by(user_id=user_id).first()
-        if not prefs:
-            prefs = NotificationPreference(user_id=user_id)
-            db.session.add(prefs)
-
         if 'order_updates' in data: prefs.order_updates = data['order_updates']
         if 'warranty_alerts' in data: prefs.warranty_alerts = data['warranty_alerts']
         if 'ai_updates' in data: prefs.ai_updates = data['ai_updates']
         if 'promotions' in data: prefs.promotions = data['promotions']
         if 'frequency' in data: prefs.frequency = data['frequency']
-
         db.session.commit()
         return jsonify({"status": "success", "message": "Preferences updated"}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+
+    data = {
+        "order_updates": prefs.order_updates, "warranty_alerts": prefs.warranty_alerts,
+        "ai_updates": prefs.ai_updates, "promotions": prefs.promotions, "frequency": prefs.frequency
+    }
+    return jsonify({"status": "success", "preferences": data}), 200
+
 
 # ==========================================
-# 3. AI RECOMMENDATION ENGINE
+# 3. AI RECOMMENDATION ENGINE (UPDATED PROMPT)
 # ==========================================
 @app.route('/recommend', methods=['POST'])
 def recommend():
     try:
         data = request.get_json()
+        
+        # 🚀 EXTRACT ALL RELEVANT USER INPUTS
         budget = data.get('budget', 30000)
+        brand = data.get('brand', 'Any')
+        usage = data.get('usage', 'General')
+        storage = data.get('storage', '128GB')
+        battery = data.get('battery', 'Standard')
+        notes = data.get('notes', '')
+
         try:
+            # 🚀 UPDATED PROMPT: Passes ALL details to Gemini for deep analysis
             prompt = f"""
-            Recommend a smartphone currently available in India. Budget ₹{budget}, Brand {data.get('brand', 'Any')}.
+            Recommend the absolute best single smartphone currently available in India meeting these exact user requirements:
+            - Budget: Under ₹{budget}
+            - Preferred Brand(s): {brand}
+            - Primary Usage Type: {usage}
+            - Minimum Storage Required: {storage}
+            - Battery Preference: {battery}
+            - User's Extra Notes/Features: {notes if notes else 'None'}
+            
             CRITICAL RULE: Use live search to find the CURRENT active market price on Amazon India or Flipkart today. Do NOT use old launch prices.
-            Return STRICT JSON: {{ "top_match": {{ "name": "Exact Name", "search_name": "Clean Name", "price": "₹XX,XXX", "match_percent": "95%", "battery_spec": "5000mAh", "display_spec": "120Hz", "processor_spec": "Snapdragon", "camera_spec": "50MP" }}, "alternatives": [{{ "name": "Alt 1", "price": "₹YY,YYY", "match_percent": "90%" }}], "analysis": "Brief paragraph." }}
+            Return STRICT JSON: {{ "top_match": {{ "name": "Exact Name", "search_name": "Clean Name", "price": "₹XX,XXX", "match_percent": "95%", "battery_spec": "5000mAh", "display_spec": "120Hz", "processor_spec": "Snapdragon", "camera_spec": "50MP" }}, "alternatives": [{{ "name": "Alt 1", "price": "₹YY,YYY", "match_percent": "90%" }}], "analysis": "A brief paragraph explaining EXACTLY why this phone fits their usage, storage, and custom notes." }}
             """
             
             response = client.models.generate_content(
@@ -657,7 +572,7 @@ def recommend():
                 alt['id'] = save_product_if_not_exists(alt)
                 
         try:
-            new_log = AiSearchLog(query=f"Budget: {budget}, Brand: {data.get('brand', 'Any')}")
+            new_log = AiSearchLog(query=f"Budget: {budget}, Brand: {brand}, Usage: {usage}, Storage: {storage}, Notes: {notes}")
             db.session.add(new_log)
             db.session.commit()
         except Exception as e:
@@ -782,7 +697,7 @@ def remove_payment_method(id):
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ==========================================
-# 6. ULTIMATE DATABASE FIX ROUTE (UPDATED)
+# 6. ULTIMATE DATABASE FIX ROUTE
 # ==========================================
 @app.route('/fix_db', methods=['GET'])
 def fix_db():
@@ -884,98 +799,6 @@ def update_fcm_token():
         return jsonify({"status": "error", "message": "Invalid token or user"}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-
-# ==========================================
-# 9. DIRECT DIAGNOSTIC PUSH TEST
-# ==========================================
-@app.route('/test_push', methods=['POST'])
-@jwt_required()
-def test_push():
-    try:
-        user_id = get_jwt_identity()
-        user = db.session.get(User, user_id)
-        
-        if not user:
-            return jsonify({"error": "User not found"}), 404
-
-        token_android = getattr(user, 'fcm_token_android', None)
-        token_web = getattr(user, 'fcm_token_web', None)
-
-        if not token_android and not token_web:
-            return jsonify({
-                "status": "error",
-                "message": "Python sees NO tokens for this user.",
-                "db_email": user.email
-            }), 400
-
-        tokens_to_notify = []
-        if token_android: tokens_to_notify.append(token_android)
-        if token_web: tokens_to_notify.append(token_web)
-
-        success_count = 0
-        for token in tokens_to_notify:
-            try:
-                message = messaging.Message(
-                    notification=messaging.Notification(
-                        title="Test Notification 🚀", 
-                        body="Firebase is working perfectly!"
-                    ),
-                    token=token
-                )
-                messaging.send(message)
-                success_count += 1
-            except Exception as e:
-                print(f"⚠️ Error sending to token {token}: {e}")
-
-        if success_count > 0:
-            return jsonify({
-                "status": "success", 
-                "message": f"Notification fired successfully to {success_count} devices!",
-                "android_token_used": token_android
-            }), 200
-        else:
-            return jsonify({
-                "status": "error", 
-                "message": "Firebase rejected the tokens. They might be expired."
-            }), 400
-
-    except Exception as e:
-        return jsonify({"status": "error", "message": "General Crash: " + str(e)}), 500
-
-# ==========================================
-# 10. FORCE WARRANTY NOTIFICATION CHECK
-# ==========================================
-@app.route('/force_check', methods=['GET'])
-def force_check():
-    try:
-        check_warranties_and_notify()
-        return "✅ Warranty check triggered! Check your VS Code terminal and your devices.", 200
-    except Exception as e:
-        return f"❌ FAILED: {str(e)}", 500
-
-@app.route('/create_compare_cache', methods=['GET'])
-def create_compare_cache():
-    try:
-        db.create_all()
-        return "✅ Compare Cache Table Created Successfully!"
-    except Exception as e:
-        return str(e)
-
-@app.route('/fix_compare_table', methods=['GET'])
-def fix_compare_table():
-    try:
-        from sqlalchemy import text
-        with db.engine.connect() as conn:
-            try: conn.execute(text("ALTER TABLE compare_device_cache ADD COLUMN antutu_score VARCHAR(50);"))
-            except Exception: pass
-            try: conn.execute(text("ALTER TABLE compare_device_cache ADD COLUMN battery_life VARCHAR(50);"))
-            except Exception: pass
-            try: conn.execute(text("ALTER TABLE compare_device_cache ADD COLUMN expert_score VARCHAR(50);"))
-            except Exception: pass
-            conn.commit()
-        return "✅ SUCCESS! The missing columns were added to your database.", 200
-    except Exception as e:
-        return f"❌ FAILED: {str(e)}", 500
 
 # ==========================================
 # APP RUNNER

@@ -116,6 +116,10 @@ def save_or_update_product(phone_data):
         product.display_spec = display_val
         product.processor_spec = processor_val
         product.camera_spec = camera_val
+        
+        # 🚀 AUTO-HEALER: Fix broken GSM Arena images when saving
+        if not product.image_url or "gsmarena" in str(product.image_url):
+            product.image_url = phone_data.get('image_url', fetch_dynamic_image(product.name))
 
     try:
         db.session.commit()
@@ -140,6 +144,11 @@ def search_devices():
         # 1. Check in CompareDeviceCache for exact match
         exact_cache = CompareDeviceCache.query.filter_by(search_query=query.lower()).first()
         if exact_cache:
+            # 🚀 AUTO-HEALER: Fix broken cache images
+            if not exact_cache.image_url or "gsmarena" in str(exact_cache.image_url):
+                exact_cache.image_url = fetch_dynamic_image(exact_cache.name)
+                db.session.commit()
+                
             results.append({
                 "id": exact_cache.id,
                 "name": exact_cache.name,
@@ -154,6 +163,11 @@ def search_devices():
             exact_name = query.title()
             product = Product.query.filter_by(name=exact_name).first()
             if product:
+                # 🚀 AUTO-HEALER: Fix broken DB images
+                if not product.image_url or "gsmarena" in str(product.image_url):
+                    product.image_url = fetch_dynamic_image(product.name)
+                    db.session.commit()
+                    
                 num_price = safe_get_price(product.price)
                 results.append({
                     "id": product.id,
@@ -187,9 +201,7 @@ def search_devices():
                     "image_url": image_url
                 })
 
-
         # 2. FETCH AUTOSUGGESTIONS AS FALLBACKS (from Product and Cache)
-        # Prioritize cached devices
         cached_suggestions = CompareDeviceCache.query.filter(
             CompareDeviceCache.search_query.ilike(f'%{query}%')
         ).limit(5).all()
@@ -197,6 +209,12 @@ def search_devices():
         for item in cached_suggestions:
             if any(r['name'].lower() == item.name.lower() for r in results):
                 continue
+            
+            # 🚀 AUTO-HEALER
+            if not item.image_url or "gsmarena" in str(item.image_url):
+                item.image_url = fetch_dynamic_image(item.name)
+                db.session.commit()
+                
             results.append({
                 "id": item.id,
                 "name": item.name,
@@ -216,6 +234,12 @@ def search_devices():
             for item in product_suggestions:
                 if any(r['name'].lower() == item.name.lower() for r in results):
                     continue
+                
+                # 🚀 AUTO-HEALER
+                if not item.image_url or "gsmarena" in str(item.image_url):
+                    item.image_url = fetch_dynamic_image(item.name)
+                    db.session.commit()
+                    
                 num_price = safe_get_price(item.price)
                 results.append({
                     "id": item.id,
@@ -240,7 +264,6 @@ def search_devices():
             for item in suggestions:
                 phrase = item['phrase'].replace(' smartphone', '').replace(' mobile', '').title()
                 
-                # Filter out junk searches and duplicates
                 if any(b in phrase.lower() for b in banned_words):
                     continue
                 if any(r['name'].lower() == phrase.lower() for r in results):
@@ -260,7 +283,6 @@ def search_devices():
                     except:
                         db.session.rollback()
 
-                # Check cache/product price for this suggestion
                 phrase_cache = CompareDeviceCache.query.filter_by(search_query=phrase.lower()).first()
                 num_product_price = safe_get_price(product.price if product else 0)
 
@@ -345,7 +367,6 @@ def fetch_single_device_from_ai(device_name):
 
     except Exception as e:
         print(f"⚠️ AI Fetch Error for {device_name}: {e}")
-        # FALLBACK: If AI fails or limits are hit, return placeholder data so the app doesn't crash!
         return {
             "name": device_name.title(),
             "price": "₹29,999",
@@ -385,7 +406,6 @@ def compare_devices():
                 db.session.commit()
             except Exception as cache_err:
                 db.session.rollback()
-                print(f"⚠️ Warning: Could not cache {dev1_query}: {cache_err}")
 
         # Fetch or Create Device 2
         d2_cache = CompareDeviceCache.query.filter_by(search_query=dev2_query).first()
@@ -398,7 +418,6 @@ def compare_devices():
                 db.session.commit()
             except Exception as cache_err:
                 db.session.rollback()
-                print(f"⚠️ Warning: Could not cache {dev2_query}: {cache_err}")
 
         # Sync with general product inventory
         device1_data['id'] = save_or_update_product(device1_data)
@@ -420,5 +439,5 @@ def compare_devices():
     except Exception as e:
         db.session.rollback()
         print("❌ CRITICAL ERROR in /compare_devices:")
-        traceback.print_exc() # This will print the exact line the crash happens on to your terminal
+        traceback.print_exc() 
         return jsonify({"status": "error", "message": f"Server Error: {str(e)}"}), 500

@@ -17,8 +17,8 @@ from models import db, Product
 scanner_bp = Blueprint('scanner', __name__)
 
 # Initialize Gemini Client using the Dedicated Scanner Key
-SCANNER_KEY = os.getenv("GEMINI_API_KEY_SCANNER")
-client = genai.Client(api_key=SCANNER_KEY) if SCANNER_KEY else None
+SCANNER = os.getenv("SCANNER")
+client = genai.Client(api_key=SCANNER) if SCANNER else None
 
 def safe_get_price(price_val):
     """Safely extracts a numeric price from any string format."""

@@ -135,12 +135,60 @@ def save_or_update_product(phone_data):
 @compare_bp.route('/search_devices', methods=['GET'])
 def search_devices():
     query = request.args.get('q', '').strip()
-    if not query:
-        return jsonify({"status": "success", "results": []}), 200
-
+    
     try:
         results = []
         
+        # 🚀 FIXED: Fetch from CompareDeviceCache instead of Product DB when query is empty
+        if not query:
+            # Grab the latest comparisons (limit 15 so we can filter duplicates and still get 5)
+            recent_comparisons = CompareDeviceCache.query.order_by(CompareDeviceCache.id.desc()).limit(15).all()
+            seen_names = set()
+            
+            for item in recent_comparisons:
+                # Prevent showing the exact same phone twice if they compared it multiple times
+                if item.name.lower() in seen_names:
+                    continue
+                seen_names.add(item.name.lower())
+                
+                # Auto-heal broken images
+                if not item.image_url or "gsmarena" in str(item.image_url):
+                    item.image_url = fetch_dynamic_image(item.name)
+                    db.session.commit()
+                
+                # Format specs nicely for the UI
+                specs = f"{item.processor or ''} · {item.ram or ''}".strip(" ·")
+                if not specs: specs = "Detailed Specs Available"
+
+                results.append({
+                    "id": item.id,
+                    "name": item.name,
+                    "price": item.price if item.price and item.price != "0" else "Compare to reveal",
+                    "match_percent": "Recent",
+                    "specs": specs,
+                    "category": "Recent Comparison",
+                    "image_url": item.image_url
+                })
+                
+                if len(results) >= 5: break
+                
+            # FALLBACK: If the cache is completely empty, show products
+            if not results:
+                trending_products = Product.query.order_by(Product.id.desc()).limit(5).all()
+                for item in trending_products:
+                    num_price = safe_get_price(item.price)
+                    results.append({
+                        "id": item.id,
+                        "name": item.name,
+                        "price": f"₹{num_price:,.0f}" if num_price > 0 else "Compare to reveal",
+                        "match_percent": "Trending",
+                        "specs": item.processor_spec or "Basic Specs Available",
+                        "category": item.category or "Product DB",
+                        "image_url": item.image_url
+                    })
+
+            return jsonify({"status": "success", "results": results}), 200
+
         # 1. Check in CompareDeviceCache for exact match
         exact_cache = CompareDeviceCache.query.filter_by(search_query=query.lower()).first()
         if exact_cache:
@@ -254,7 +302,7 @@ def search_devices():
 
         # Finally, use DuckDuckGo for new suggestions if needed
         if len(results) < 5:
-            search_url = "https://duckduckgo.com/ac/?q=top+flagship+smartphone" if query.lower() == 'a' else f"https://duckduckgo.com/ac/?q={urllib.parse.quote(query)}+smartphone"
+            search_url = f"https://duckduckgo.com/ac/?q={urllib.parse.quote(query)}+smartphone"
             headers = {"User-Agent": "Mozilla/5.0"}
             response = requests.get(search_url, headers=headers)
             suggestions = response.json()

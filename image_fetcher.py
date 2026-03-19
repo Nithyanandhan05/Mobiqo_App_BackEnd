@@ -1,76 +1,73 @@
 # image_fetcher.py
 import requests
-from bs4 import BeautifulSoup
 import urllib.parse
 import re
+import os
 import json
+
+# Load the API key from your .env file
+SERPER_API_KEY = os.getenv("SERPER_API_KEY", "")
 
 def fetch_dynamic_image(search_name):
     """
-    The Ultimate Dual-Engine Image Scraper.
-    Tries Bing Images first for high-res products, falls back to Yahoo if blocked.
-    Forces clean, Flipkart/Amazon style e-commerce product shots.
+    Enterprise-Grade Image Fetcher using Google Images API (via Serper.dev).
+    100% reliable, no 403 scraping blocks.
     """
-    # 1. Aggressively clean the name so search engines don't get confused
+    if not search_name or search_name.strip() == "":
+        return "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80"
+
+    # 1. Clean the name so Google Search understands it perfectly
     clean_name = re.sub(r'\(.*?\)', '', search_name).strip()
-    clean_name = re.sub(r'\d+GB|\d+TB|\d+\+\d+Gb|\d+ Go', '', clean_name, flags=re.IGNORECASE).strip()
-    
-    # 🚀 THE FIX: Force Flipkart/Amazon style images (Front view, pure white background)
-    query = f"{clean_name} smartphone front view white background amazon flipkart"
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-    }
+    clean_name = re.sub(r'\d+GB|\d+TB|\d+\+\d+GB|\d+ Go', '', clean_name, flags=re.IGNORECASE).strip()
+    clean_name = re.sub(r'5G|4G', '', clean_name, flags=re.IGNORECASE).strip()
+    clean_name = re.sub(r'\s+', ' ', clean_name).strip()
 
-    # ==========================================
-    # ENGINE 1: BING IMAGES (Best Quality)
-    # ==========================================
-    try:
-        print(f"🔍 Searching Bing Images for: {clean_name}")
-        bing_url = f"https://www.bing.com/images/search?q={urllib.parse.quote(query)}&form=HDRSC2"
-        
-        res = requests.get(bing_url, headers=headers, timeout=5)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        
-        # Bing stores high-res image URLs inside a JSON string in the 'm' attribute
-        for a in soup.find_all('a', class_='iusc'):
-            m_data = a.get('m')
-            if m_data:
-                img_url = json.loads(m_data).get('murl')
-                # Ignore bad domains that block frontend rendering or provide messy images
-                bad_domains = ['gsmarena', 'phonearena', 'youtube', 'ui-avatars', 'video', 'pinterest']
-                if img_url and img_url.startswith('http') and not any(bad in img_url.lower() for bad in bad_domains):
-                    print(f"📸 SUCCESS! Found Flipkart/Amazon style Bing Image.")
-                    return img_url
-                    
-        print("⚠️ Bing returned no valid images. Switching to Yahoo...")
-    except Exception as e:
-        print(f"⚠️ Bing Search failed: {e}. Switching to Yahoo...")
+    print(f"🔍 Searching Google Images for: {clean_name}")
+    
+    # Query optimized for clear product photos
+    query = f"{clean_name} smartphone official render white background"
 
-    # ==========================================
-    # ENGINE 2: YAHOO IMAGES (Bulletproof Backup)
-    # ==========================================
-    try:
-        print(f"🔍 Searching Yahoo Images for: {clean_name}")
-        yahoo_url = f"https://images.search.yahoo.com/search/images?p={urllib.parse.quote(query)}"
-        
-        res = requests.get(yahoo_url, headers=headers, timeout=5)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        
-        for img in soup.find_all('img'):
-            src = img.get('data-src') or img.get('src')
-            # Ensure it's a real image and not a tracking pixel or logo
-            if src and src.startswith('http') and 'space' not in src and 'logo' not in src.lower():
-                print(f"📸 SUCCESS! Found Flipkart/Amazon style Yahoo Image.")
-                return src
+    if SERPER_API_KEY:
+        try:
+            url = "https://google.serper.dev/images"
+            payload = json.dumps({
+                "q": query,
+                "num": 5  # Fetch top 5 results to find the best one
+            })
+            headers = {
+                'X-API-KEY': SERPER_API_KEY,
+                'Content-Type': 'application/json'
+            }
+            
+            # Make the API call
+            response = requests.post(url, headers=headers, data=payload, timeout=8)
+            
+            if response.status_code == 200:
+                data = response.json()
+                images = data.get("images", [])
                 
-    except Exception as e:
-        print(f"⚠️ Yahoo Search failed: {e}")
+                for img in images:
+                    img_url = img.get("imageUrl")
+                    
+                    if img_url:
+                        # Skip bad websites (like youtube thumbnails)
+                        if any(bad in img_url.lower() for bad in ['youtube', 'icon', 'logo', 'avatar', 'gsmarena']):
+                            continue
+                            
+                        # 🚀 PROXY THE URL: We STILL need to proxy it because 
+                        # Android Coil will still get 403 Forbidden from Flipkart/Amazon servers!
+                        proxy_url = f"https://external-content.duckduckgo.com/iu/?u={urllib.parse.quote(img_url)}"
+                        
+                        print(f"✅ Image Found via API & Proxied: {proxy_url}")
+                        return proxy_url
+                        
+            else:
+                print(f"❌ Serper API Error: {response.text}")
 
-    # ==========================================
-    # GUARANTEED UNBLOCKED FALLBACK
-    # ==========================================
-    print(f"🔄 Using generic smartphone image for {search_name}")
-    # If the phone doesn't exist at all, return a high-quality generic phone photo
+        except Exception as e:
+            print(f"❌ Image Fetch Error: {e}")
+    else:
+        print("⚠️ SERPER_API_KEY is missing in .env! Add it to fetch real images.")
+
+    print("⚠️ Falling back to Unsplash generic image.")
     return "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80"

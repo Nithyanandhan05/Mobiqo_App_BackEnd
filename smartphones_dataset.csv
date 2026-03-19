@@ -1,0 +1,1001 @@
+brand,model,price,ram,storage,battery,camera_mp,display_inches,processor,best_for,5g_support,budget_category,rating,launched_year
+Samsung,Galaxy A06 5G,8499,4,64,5000,50,6.7,Dimensity 6300,budget,Yes,Under 10000,3.9,2025
+Samsung,Galaxy A15,14000,4,128,5000,50,6.5,Exynos 1330,budget,No,10000 to 15000,4.1,2024
+Samsung,Galaxy A15 5G,15999,8,128,5000,50,6.5,Dimensity 6100+,all-rounder,Yes,15000 to 20000,4.1,2024
+Samsung,Galaxy A25 5G,18000,8,128,5000,50,6.5,Exynos 1280,camera,Yes,15000 to 20000,4.2,2024
+Samsung,Galaxy A35 5G,23000,8,256,5000,50,6.6,Exynos 1380,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy A55 5G,25000,8,256,5000,50,6.6,Exynos 1480,camera,Yes,20000 to 30000,4.4,2024
+Samsung,Galaxy A56 5G,24999,8,256,5000,50,6.7,Exynos 1580,all-rounder,Yes,20000 to 30000,4.3,2025
+Samsung,Galaxy F06 5G,9999,6,128,5000,50,6.74,Dimensity 6300,all-rounder,Yes,Under 10000,4.2,2025
+Samsung,Galaxy F15 5G,15000,6,128,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy F35 5G,22000,8,128,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy F55 5G,25000,8,256,5000,50,6.7,Snapdragon 7 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy M15 5G,13999,4,128,6000,50,6.5,Dimensity 6100+,battery,Yes,10000 to 15000,4.0,2024
+Samsung,Galaxy M35 5G,18000,8,128,6000,50,6.6,Exynos 1380,battery,Yes,15000 to 20000,4.2,2024
+Samsung,Galaxy M55 5G,27000,8,256,6000,50,6.7,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy M56 5G,29999,8,256,5000,50,6.73,Exynos 1480,all-rounder,Yes,20000 to 30000,4.3,2025
+Samsung,Galaxy S24 FE,45999,8,256,4700,50,6.7,Exynos 2500,flagship,Yes,30000 to 50000,4.5,2024
+Samsung,Galaxy S24,74000,8,256,4000,50,6.2,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Plus,99000,12,256,4900,50,6.7,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Ultra,129000,12,256,5000,200,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.9,2024
+Samsung,Galaxy S25,80000,12,256,4000,50,6.2,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Plus,99000,12,256,4900,50,6.7,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Ultra,134999,12,512,5000,200,6.9,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.9,2025
+Samsung,Galaxy S26,87999,12,256,4000,50,6.2,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Plus,119999,12,256,4900,50,6.7,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Ultra,139999,12,256,5000,200,6.9,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.9,2026
+Samsung,Galaxy Z Fold 6,164999,12,256,4400,50,7.6,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.6,2024
+Samsung,Galaxy Z Flip 6,109999,12,256,4000,50,6.7,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.5,2024
+Samsung,Galaxy A07,9999,4,64,5000,13,6.7,Helio P35,budget,No,Under 10000,3.7,2023
+Samsung,Galaxy A14,11000,4,64,5000,50,6.6,Helio G80,budget,No,10000 to 15000,3.8,2023
+Samsung,Galaxy A13 5G,12999,4,64,5000,50,6.5,Dimensity 700,budget,Yes,10000 to 15000,3.9,2023
+Redmi,Redmi A4 5G,7999,3,64,5000,8,6.88,Snapdragon 4s Gen 2,budget,Yes,Under 10000,3.7,2025
+Redmi,Redmi 13C,8000,4,128,5000,50,6.74,Helio G85,budget,No,Under 10000,3.9,2023
+Redmi,Redmi 13 5G,14000,6,128,5000,50,6.74,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2024
+Redmi,Redmi 14C,9999,4,128,5160,50,6.88,Helio G81 Ultra,budget,No,Under 10000,3.9,2024
+Redmi,Redmi 14C 5G,12999,4,128,5160,50,6.88,Snapdragon 4s Gen 2,budget,Yes,10000 to 15000,4.0,2025
+Redmi,Redmi Note 13,15000,6,128,5100,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13 5G,17000,8,256,5100,108,6.67,Dimensity 6080,all-rounder,Yes,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13 Pro,22000,8,256,5100,200,6.67,Dimensity 7200,camera,Yes,20000 to 30000,4.4,2024
+Redmi,Redmi Note 13 Pro+,27000,12,256,5000,200,6.67,Dimensity 7200 Ultra,camera,Yes,20000 to 30000,4.5,2024
+Redmi,Redmi Note 14,17000,8,128,5500,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 14 5G,19000,8,256,5500,108,6.67,Dimensity 7025 Ultra,all-rounder,Yes,15000 to 20000,4.3,2024
+Redmi,Redmi Note 14 Pro,24999,8,256,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 14 Pro+,31999,12,512,5110,200,6.67,Dimensity 8400 Ultra,camera,Yes,30000 to 50000,4.6,2025
+Redmi,Redmi Note 15,16999,8,256,7000,108,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.2,2026
+Redmi,Redmi Note 15 Pro,24999,8,256,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi 12 5G,13000,4,128,5000,50,6.79,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2023
+Xiaomi,Poco C65,9000,4,128,5000,50,6.74,Helio G85,budget,No,Under 10000,3.8,2023
+Xiaomi,Poco C85x 5G,8999,4,64,6300,8,6.9,Helio G91,budget,Yes,Under 10000,3.8,2025
+Xiaomi,Poco M6 Plus 5G,9999,6,128,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,Under 10000,4.0,2025
+Xiaomi,Poco M7 5G,12999,8,128,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M6 Pro 5G,18000,8,256,5000,64,6.67,Helio G99 Ultra,all-rounder,No,15000 to 20000,4.3,2024
+Xiaomi,Poco X6,22000,8,256,5100,64,6.67,Snapdragon 7s Gen 2,gaming,Yes,20000 to 30000,4.3,2024
+Xiaomi,Poco X6 Pro,28000,12,256,5000,64,6.67,Dimensity 8300 Ultra,gaming,Yes,20000 to 30000,4.5,2024
+Xiaomi,Poco X7,19999,8,256,5110,50,6.67,Dimensity 7300 Ultra,camera,Yes,15000 to 20000,4.3,2025
+Xiaomi,Poco X7 Pro,27999,12,256,6000,50,6.67,Dimensity 8300 Ultra,gaming,Yes,20000 to 30000,4.5,2025
+Xiaomi,Poco F6,30000,12,256,4500,50,6.67,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F6 Pro,45000,12,256,4600,50,6.67,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F7 Pro,34999,12,256,5200,50,6.67,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Xiaomi,Xiaomi 14,69000,12,256,4610,50,6.36,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Xiaomi,Xiaomi 14 Ultra,99000,16,512,5000,50,6.73,Snapdragon 8 Gen 3,camera,Yes,Above 50000,4.8,2024
+Xiaomi,Xiaomi 15,81999,12,256,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 15 Ultra,109999,16,512,5000,50,6.73,Snapdragon 8 Elite,camera,Yes,Above 50000,4.9,2025
+Xiaomi,Xiaomi 17,81999,12,256,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus Nord CE 4 Lite,18000,8,128,5500,50,6.67,Snapdragon 695,battery,Yes,15000 to 20000,4.2,2024
+OnePlus,OnePlus Nord CE 4,25000,8,256,5500,50,6.7,Snapdragon 7s Gen 2,battery,Yes,20000 to 30000,4.3,2024
+OnePlus,OnePlus Nord CE 5,22999,8,256,5500,50,6.67,Snapdragon 7 Gen 3,all-rounder,Yes,20000 to 30000,4.3,2025
+OnePlus,OnePlus Nord 4,30000,8,256,5500,50,6.74,Snapdragon 7+ Gen 3,all-rounder,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus Nord 5,32999,8,256,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.5,2026
+OnePlus,OnePlus 12R,40000,8,256,5500,50,6.78,Snapdragon 8 Gen 1,gaming,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus 13R,43999,8,256,6000,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2025
+OnePlus,OnePlus 12,65000,12,256,5400,50,6.82,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+OnePlus,OnePlus 13,69999,12,256,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13s,79999,16,512,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus Open,139999,16,512,4805,48,7.82,Snapdragon 8 Gen 2,premium,Yes,Above 50000,4.6,2023
+Realme,Realme C65,10000,6,128,5000,50,6.67,Helio G85,budget,No,10000 to 15000,3.9,2024
+Realme,Realme C83 5G,11999,6,128,5000,50,6.72,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2026
+Realme,Realme P1 Speed,14999,6,128,5000,50,6.67,Dimensity 7050,gaming,Yes,10000 to 15000,4.1,2024
+Realme,Realme P2 Pro,17999,8,256,5200,50,6.7,Snapdragon 6 Gen 1,all-rounder,Yes,15000 to 20000,4.3,2024
+Realme,Realme P3 Pro,17999,8,128,5500,50,6.7,Snapdragon 6 Gen 1,camera,Yes,15000 to 20000,4.2,2025
+Realme,Realme P4 Lite 4G,9999,6,128,5000,50,6.75,Helio G100,budget,No,Under 10000,3.9,2025
+Realme,Realme Narzo 70 Pro,20000,8,128,5000,50,6.7,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2024
+Realme,Realme Narzo 80 Pro,17999,8,128,6000,50,6.72,Dimensity 7400,all-rounder,Yes,15000 to 20000,4.4,2026
+Realme,Realme 12 Pro,22000,8,256,5000,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2024
+Realme,Realme 12 Pro+,27000,12,256,5000,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.4,2024
+Realme,Realme 13 Pro,24999,8,256,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.3,2024
+Realme,Realme 13 Pro+,29999,12,512,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.5,2024
+Realme,Realme 14 Pro,27999,8,256,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,20000 to 30000,4.4,2025
+Realme,Realme 14 Pro+,34999,12,512,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Realme,Realme 15 Pro 5G,33999,8,256,6800,50,6.83,Snapdragon 7 Gen 4,camera,Yes,30000 to 50000,4.5,2026
+Realme,Realme 15T 5G,25999,12,256,7000,50,6.67,Dimensity 6400 Max,battery,Yes,20000 to 30000,4.3,2026
+Realme,Realme GT 6T,36000,8,256,5500,50,6.78,Snapdragon 7+ Gen 3,gaming,Yes,30000 to 50000,4.5,2024
+Realme,Realme GT 6,45000,12,256,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Realme,Realme GT 7,38999,12,256,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Realme,Realme GT 7T,29050,8,256,7000,50,6.8,Dimensity 8400-Max,battery,Yes,20000 to 30000,4.5,2026
+Realme,Realme GT 7 Pro,55999,12,256,6500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+iQOO,iQOO Z10 Lite 5G,9999,6,128,6000,50,6.56,Dimensity 6300,gaming,Yes,Under 10000,4.1,2026
+iQOO,iQOO Z9 Lite,11000,4,128,5000,50,6.56,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2024
+iQOO,iQOO Z9x,16000,6,128,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,15000 to 20000,4.2,2024
+iQOO,iQOO Z9,22000,8,256,5000,50,6.67,Dimensity 7200,all-rounder,Yes,20000 to 30000,4.3,2024
+iQOO,iQOO Z10x,13999,6,128,6000,50,6.67,Snapdragon 4 Gen 2,battery,Yes,10000 to 15000,4.1,2025
+iQOO,iQOO Z10 5G,26999,12,256,7300,50,6.67,Snapdragon 7s Gen 3,battery,Yes,20000 to 30000,4.4,2026
+iQOO,iQOO Z11x,18999,8,128,7200,50,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.3,2026
+iQOO,iQOO Neo 9,29999,8,256,5160,50,6.78,Dimensity 9300,gaming,Yes,20000 to 30000,4.5,2024
+iQOO,iQOO Neo 9 Pro,35000,8,256,4600,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+iQOO,iQOO Neo 10R 5G,28999,8,256,6400,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,20000 to 30000,4.6,2025
+iQOO,iQOO Neo 10,34999,8,256,6000,50,6.78,Snapdragon 8s Gen 4,gaming,Yes,30000 to 50000,4.6,2026
+iQOO,iQOO 12,55000,12,256,5100,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+iQOO,iQOO 13,64999,16,256,6150,50,6.82,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Vivo,Vivo T3x,13000,4,128,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,10000 to 15000,4.1,2024
+Vivo,Vivo T3 Pro,24000,8,256,5000,50,6.67,Dimensity 7300T,gaming,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo T3 Ultra,18999,8,256,5500,50,6.67,Dimensity 7300,gaming,Yes,15000 to 20000,4.2,2025
+Vivo,Vivo T4R 5G,25138,12,256,5700,50,6.77,Dimensity 7400,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo T4x,13999,8,128,6500,50,6.72,Dimensity 7300,battery,Yes,10000 to 15000,4.2,2025
+Vivo,Vivo V30e,25000,8,128,5000,50,6.67,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo V30 Pro,35000,12,256,5000,50,6.78,Dimensity 8200,camera,Yes,30000 to 50000,4.5,2024
+Vivo,Vivo V40e,27999,8,128,5500,50,6.67,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo V40 Pro,39999,12,256,5000,50,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2024
+Vivo,Vivo V50e,27999,8,256,5500,50,6.77,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo V50 Pro,42999,12,256,6000,50,6.78,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Vivo,Vivo Y400 Pro 5G,27999,8,256,5500,50,6.77,Dimensity 7400,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo X100,64999,16,256,5000,50,6.78,Dimensity 9300,camera,Yes,Above 50000,4.7,2024
+Vivo,Vivo X100 Pro,90000,16,512,5400,50,6.78,Dimensity 9300,flagship,Yes,Above 50000,4.8,2024
+Vivo,Vivo X200,64999,12,256,5800,50,6.67,Dimensity 9400,camera,Yes,Above 50000,4.7,2025
+Vivo,Vivo X200 Pro,94999,16,512,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X300 Pro,89999,16,512,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo Y300 5G,17999,8,128,5000,50,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+Vivo,Vivo Y300 Plus,22000,8,256,5500,50,6.77,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Vivo,Vivo Y60e,32999,12,256,5500,50,6.67,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2025
+OPPO,OPPO A3 Pro,18000,8,256,5100,50,6.67,Dimensity 6300,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A60,16000,8,128,5000,64,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A3,14999,6,128,5000,50,6.72,Helio G99,budget,No,10000 to 15000,4.0,2024
+OPPO,OPPO A80,20999,8,256,5000,50,6.67,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2025
+OPPO,OPPO F27 Pro+,25000,8,256,5000,64,6.7,Dimensity 6300,camera,Yes,20000 to 30000,4.2,2024
+OPPO,OPPO F29 Pro,27999,8,256,5700,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2025
+OPPO,OPPO Reno 12 Pro,36000,12,256,5000,50,6.7,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2024
+OPPO,OPPO Reno 13 Pro,39999,12,256,5600,50,6.83,Dimensity 8350,camera,Yes,30000 to 50000,4.5,2025
+OPPO,OPPO Find X8,70000,12,256,5630,50,6.59,Dimensity 9400,flagship,Yes,Above 50000,4.7,2025
+OPPO,OPPO Find X8 Pro,94999,16,512,5910,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.9,2025
+OPPO,OPPO K13 5G,13999,6,128,5800,50,6.72,Snapdragon 4s Gen 2,all-rounder,Yes,10000 to 15000,4.0,2025
+OPPO,OPPO K13x 5G,15999,6,128,6000,50,6.72,Snapdragon 695,battery,Yes,15000 to 20000,4.0,2025
+Motorola,Motorola Moto G35 5G,9999,4,128,5000,50,6.72,Unisoc T760,all-rounder,Yes,Under 10000,4.0,2025
+Motorola,Motorola Moto G55 5G,13999,8,128,5000,50,6.49,Dimensity 7025,all-rounder,Yes,10000 to 15000,4.1,2024
+Motorola,Motorola Moto G56 5G,13499,6,128,5000,50,6.56,Dimensity 6300,all-rounder,Yes,10000 to 15000,4.0,2025
+Motorola,Motorola Moto G67 Power,13999,8,256,6000,50,6.67,Snapdragon 695,battery,Yes,10000 to 15000,4.2,2025
+Motorola,Motorola Moto G75 5G,17999,8,256,5000,50,6.78,Snapdragon 6 Gen 1,all-rounder,Yes,15000 to 20000,4.2,2024
+Motorola,Motorola Moto G85 5G,18000,8,256,5000,50,6.67,Snapdragon 6s Gen 3,all-rounder,Yes,15000 to 20000,4.3,2024
+Motorola,Motorola Moto G86 Power,17999,8,256,6000,50,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.2,2025
+Motorola,Motorola Edge 50 Fusion,22000,8,256,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Edge 50 Pro,30000,12,256,4500,50,6.7,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Edge 50 Ultra,39999,12,256,4500,50,6.7,Snapdragon 8s Gen 3,camera,Yes,30000 to 50000,4.5,2024
+Motorola,Motorola Edge 60 Fusion,23999,8,256,5000,50,6.7,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.3,2025
+Motorola,Motorola Edge 60 Pro,29999,12,256,5000,50,6.7,Dimensity 8350 Extreme,camera,Yes,20000 to 30000,4.4,2025
+Motorola,Motorola Edge 70 Fusion,27999,8,256,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,20000 to 30000,4.3,2025
+Motorola,Motorola Razr 50,45000,8,256,4200,50,6.9,Snapdragon 7 Gen 1,premium,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Razr 50 Ultra,74999,12,512,3800,50,6.9,Snapdragon 8s Gen 3,premium,Yes,Above 50000,4.5,2024
+Motorola,Motorola Moto G64 5G,14000,8,128,6000,50,6.5,Dimensity 7025,battery,Yes,10000 to 15000,4.1,2024
+Nothing,CMF Phone 1,15999,6,128,5000,50,6.67,Dimensity 7300,all-rounder,Yes,15000 to 20000,4.2,2024
+Nothing,CMF Phone 2 Pro,18999,8,128,5000,50,6.77,Dimensity 7300 Pro,camera,Yes,15000 to 20000,4.4,2025
+Nothing,Nothing Phone 2a,25000,8,128,5000,50,6.7,Dimensity 7200 Pro,all-rounder,Yes,20000 to 30000,4.4,2024
+Nothing,Nothing Phone 2a Plus,28000,12,256,5000,50,6.7,Dimensity 7350 Pro,all-rounder,Yes,20000 to 30000,4.5,2024
+Nothing,Nothing Phone 3a,30000,8,256,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a Pro,29999,8,256,5000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,20000 to 30000,4.5,2025
+Nothing,Nothing Phone 4a,28999,8,256,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,20000 to 30000,4.5,2026
+Nothing,Nothing Phone 3,55999,12,256,4700,50,6.77,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 13,49000,4,128,3227,12,6.1,A15 Bionic,flagship,No,30000 to 50000,4.5,2021
+Apple,iPhone 13 mini,44999,4,128,2438,12,5.4,A15 Bionic,flagship,No,30000 to 50000,4.4,2021
+Apple,iPhone 14,59999,6,128,3279,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Plus,69999,6,128,4325,12,6.7,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Pro,89999,6,128,3200,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro Max,109999,6,128,4323,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 15,69000,6,128,3349,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Plus,79000,6,128,4383,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Pro,115000,8,256,3274,48,6.1,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro Max,134999,8,256,4422,48,6.7,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 16,79999,8,128,3561,48,6.1,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Plus,89999,8,128,4674,48,6.7,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Pro,119999,8,256,3582,48,6.3,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro Max,134999,8,256,4685,48,6.9,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16e,59999,8,128,3279,48,6.1,A16,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 17,89999,8,256,4000,48,6.1,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Plus,99999,8,256,4500,48,6.7,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Pro,129999,8,512,4000,48,6.3,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro Max,149999,8,512,4685,48,6.9,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Google,Pixel 8a,44999,8,128,4492,64,6.1,Tensor G3,camera,Yes,30000 to 50000,4.5,2024
+Google,Pixel 8,59999,8,128,4575,50,6.2,Tensor G3,camera,Yes,Above 50000,4.6,2024
+Google,Pixel 8 Pro,89999,12,256,5050,50,6.7,Tensor G3,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9,79999,12,128,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9 Pro,99999,16,256,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro XL,119999,16,256,5060,50,6.8,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9a,44999,8,256,4700,48,6.3,Tensor G4,camera,Yes,30000 to 50000,4.6,2025
+Google,Pixel 9 Pro Fold,179999,16,256,4650,48,8.0,Tensor G4,premium,Yes,Above 50000,4.6,2024
+Lava,Lava Agni 2,19999,8,128,4700,50,6.78,Dimensity 7050,all-rounder,Yes,15000 to 20000,4.0,2023
+Lava,Lava Agni 3,22999,8,256,5000,50,6.78,Dimensity 7300,all-rounder,Yes,20000 to 30000,4.1,2024
+Lava,Lava Agni 4 5G,24998,8,256,5000,50,6.67,Dimensity 8350,gaming,Yes,20000 to 30000,4.3,2026
+Lava,Lava Blaze 2 5G,11999,4,128,5000,50,6.52,Dimensity 6020,budget,Yes,10000 to 15000,3.8,2023
+Lava,Lava Blaze 3 5G,13999,6,128,5000,50,6.56,Dimensity 6080,budget,Yes,10000 to 15000,3.9,2024
+Lava,Lava Blaze Curve 5G,13999,8,128,5000,50,6.67,Dimensity 7050,all-rounder,Yes,10000 to 15000,4.0,2024
+Lava,Lava Yuva 3,9499,4,64,5000,13,6.5,Helio G37,budget,No,Under 10000,3.7,2023
+Lava,Lava Yuva 4 Pro,11999,4,64,5000,50,6.56,Helio G85,budget,No,10000 to 15000,3.8,2024
+Infinix,Infinix Hot 40i,8999,4,64,5000,13,6.6,Helio G36,budget,No,Under 10000,3.7,2024
+Infinix,Infinix Hot 40 Pro,11999,8,128,5000,108,6.78,Helio G99,camera,No,10000 to 15000,4.0,2024
+Infinix,Infinix Hot 50 5G,8999,4,64,5000,48,6.7,Dimensity 6000,budget,Yes,Under 10000,3.8,2025
+Infinix,Infinix Hot 50 Pro+,12999,8,256,5000,108,6.78,Helio G100,camera,No,10000 to 15000,4.1,2025
+Infinix,Infinix Note 40,17999,8,256,5000,108,6.78,Helio G99 Ultra,camera,No,15000 to 20000,4.2,2024
+Infinix,Infinix Note 40 Pro,21999,12,256,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 5G,18999,8,256,5000,108,6.78,Dimensity 7020,camera,Yes,15000 to 20000,4.2,2024
+Infinix,Infinix GT 30 5G,14999,8,128,5000,50,6.78,Dimensity 6300,gaming,Yes,10000 to 15000,4.1,2025
+Infinix,Infinix GT 30 Pro,17999,8,256,5000,64,6.78,Dimensity 7300,gaming,Yes,15000 to 20000,4.3,2025
+Infinix,Infinix Zero 40 5G,27999,12,256,5000,108,6.78,Dimensity 8020,camera,Yes,20000 to 30000,4.4,2024
+Infinix,Infinix Zero 40 Ultra,34999,12,512,5000,200,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2025
+Tecno,Tecno Spark 30C,8999,4,64,5000,16,6.67,Helio G36,budget,No,Under 10000,3.7,2024
+Tecno,Tecno Spark 30 Pro,13999,8,128,5000,64,6.78,Helio G99,camera,No,10000 to 15000,4.0,2024
+Tecno,Tecno Pova 6 Pro,19999,8,256,6000,108,6.78,Dimensity 6080,battery,Yes,15000 to 20000,4.2,2024
+Tecno,Tecno Pova 6 Neo,12999,8,128,6000,50,6.78,Helio G91 Ultra,battery,No,10000 to 15000,4.0,2024
+Tecno,Tecno Camon 30 Pro,25999,8,256,5000,50,6.78,Dimensity 8050,camera,Yes,20000 to 30000,4.3,2024
+Tecno,Tecno Camon 40 Pro,27999,12,256,5200,50,6.78,Dimensity 8350,camera,Yes,20000 to 30000,4.4,2025
+Tecno,Tecno Phantom X2 Pro,44999,12,256,5160,50,6.8,Dimensity 9000,flagship,Yes,30000 to 50000,4.5,2023
+Tecno,Tecno Phantom V Fold,69999,12,256,4800,50,7.85,Dimensity 9000+,premium,Yes,Above 50000,4.4,2023
+Honor,Honor X7b,12999,6,128,6000,108,6.8,Snapdragon 695,battery,Yes,10000 to 15000,4.0,2024
+Honor,Honor X8b,16999,8,256,4500,108,6.78,Snapdragon 6 Gen 1,camera,Yes,15000 to 20000,4.2,2024
+Honor,Honor 90 Lite,19999,8,256,4500,100,6.7,Dimensity 6080,camera,Yes,15000 to 20000,4.2,2023
+Honor,Honor 90 5G,29999,12,256,5000,200,6.7,Snapdragon 7 Gen 1,camera,Yes,20000 to 30000,4.4,2023
+Honor,Honor 200 Lite,22999,8,256,4500,108,6.7,Snapdragon 695,camera,Yes,20000 to 30000,4.2,2024
+Honor,Honor 200 Pro,49999,12,512,5200,50,6.78,Snapdragon 8s Gen 3,camera,Yes,30000 to 50000,4.6,2024
+Honor,Honor Magic 6 Pro,69999,12,256,5600,50,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Honor,Honor Magic 7 Pro,79999,12,512,5600,50,6.8,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Honor,Honor X9b,22999,12,256,5800,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.2,2024
+Honor,Honor X9c,24999,12,256,6600,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.3,2025
+Asus,Asus ROG Phone 8,89999,12,256,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+Asus,Asus ROG Phone 8 Pro,109999,16,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.8,2024
+Asus,Asus ROG Phone 9,99999,16,256,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Asus,Asus ROG Phone 9 Pro,129999,24,1024,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.9,2025
+Asus,Asus Zenfone 11 Ultra,79999,12,256,5500,50,6.78,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Asus,Asus Zenfone 12 Ultra,89999,12,256,5500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Sony,Sony Xperia 1 VI,119999,12,256,5000,52,6.5,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.5,2024
+Sony,Sony Xperia 5 VI,89999,8,256,4000,50,6.1,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.4,2024
+Sony,Sony Xperia 10 VI,39999,6,128,5000,48,6.1,Snapdragon 6 Gen 1,all-rounder,Yes,30000 to 50000,4.1,2024
+Sony,Sony Xperia 1 VII,134999,12,256,5000,52,6.5,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.6,2025
+Nokia,Nokia G42 5G,12999,6,128,4895,50,6.56,Snapdragon 480+,all-rounder,Yes,10000 to 15000,4.0,2023
+Nokia,Nokia G310 5G,14999,4,128,4470,50,6.56,Snapdragon 480+,budget,Yes,10000 to 15000,3.9,2024
+Nokia,Nokia C32,8999,4,64,5050,16,6.52,Helio G37,budget,No,Under 10000,3.7,2023
+Nokia,Nokia G21,11999,4,64,5050,50,6.5,Helio G85,budget,No,10000 to 15000,3.8,2023
+Nokia,Nokia XR21,39999,8,128,4800,64,6.49,Snapdragon 695,rugged,Yes,30000 to 50000,4.2,2023
+Samsung,Galaxy A06 5G,9178,4,128,5000,50,6.7,Dimensity 6300,budget,Yes,Under 10000,3.9,2025
+Samsung,Galaxy A06 5G,9518,8,64,5000,50,6.7,Dimensity 6300,budget,Yes,Under 10000,3.9,2025
+Samsung,Galaxy A06 5G,10028,8,128,5000,50,6.7,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2025
+Samsung,Galaxy A15,15120,4,256,5000,50,6.5,Exynos 1330,budget,No,15000 to 20000,4.1,2024
+Samsung,Galaxy A15,15680,8,128,5000,50,6.5,Exynos 1330,budget,No,15000 to 20000,4.1,2024
+Samsung,Galaxy A15,16520,8,256,5000,50,6.5,Exynos 1330,budget,No,15000 to 20000,4.1,2024
+Samsung,Galaxy A15 5G,17278,8,256,5000,50,6.5,Dimensity 6100+,all-rounder,Yes,15000 to 20000,4.1,2024
+Samsung,Galaxy A15 5G,17918,16,128,5000,50,6.5,Dimensity 6100+,all-rounder,Yes,15000 to 20000,4.1,2024
+Samsung,Galaxy A15 5G,18878,16,256,5000,50,6.5,Dimensity 6100+,all-rounder,Yes,15000 to 20000,4.1,2024
+Samsung,Galaxy A25 5G,19440,8,256,5000,50,6.5,Exynos 1280,camera,Yes,15000 to 20000,4.2,2024
+Samsung,Galaxy A25 5G,20160,16,128,5000,50,6.5,Exynos 1280,camera,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy A25 5G,21240,16,256,5000,50,6.5,Exynos 1280,camera,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy A35 5G,24840,8,512,5000,50,6.6,Exynos 1380,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy A35 5G,25760,16,256,5000,50,6.6,Exynos 1380,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy A35 5G,27140,16,512,5000,50,6.6,Exynos 1380,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy A55 5G,27000,8,512,5000,50,6.6,Exynos 1480,camera,Yes,20000 to 30000,4.4,2024
+Samsung,Galaxy A55 5G,28000,16,256,5000,50,6.6,Exynos 1480,camera,Yes,20000 to 30000,4.4,2024
+Samsung,Galaxy A55 5G,29500,16,512,5000,50,6.6,Exynos 1480,camera,Yes,20000 to 30000,4.4,2024
+Samsung,Galaxy A56 5G,26998,8,512,5000,50,6.7,Exynos 1580,all-rounder,Yes,20000 to 30000,4.3,2025
+Samsung,Galaxy A56 5G,27998,16,256,5000,50,6.7,Exynos 1580,all-rounder,Yes,20000 to 30000,4.3,2025
+Samsung,Galaxy A56 5G,29498,16,512,5000,50,6.7,Exynos 1580,all-rounder,Yes,20000 to 30000,4.3,2025
+Samsung,Galaxy F06 5G,10798,6,256,5000,50,6.74,Dimensity 6300,all-rounder,Yes,10000 to 15000,4.2,2025
+Samsung,Galaxy F06 5G,11198,12,128,5000,50,6.74,Dimensity 6300,all-rounder,Yes,10000 to 15000,4.2,2025
+Samsung,Galaxy F06 5G,11798,12,256,5000,50,6.74,Dimensity 6300,all-rounder,Yes,10000 to 15000,4.2,2025
+Samsung,Galaxy F15 5G,16200,6,256,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy F15 5G,16800,12,128,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy F15 5G,17700,12,256,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy F35 5G,23760,8,256,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy F35 5G,24640,16,128,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy F35 5G,25960,16,256,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy F55 5G,27000,8,512,5000,50,6.7,Snapdragon 7 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy F55 5G,28000,16,256,5000,50,6.7,Snapdragon 7 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy F55 5G,29500,16,512,5000,50,6.7,Snapdragon 7 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy M15 5G,15118,4,256,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy M15 5G,15678,8,128,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy M15 5G,16518,8,256,6000,50,6.5,Dimensity 6100+,battery,Yes,15000 to 20000,4.0,2024
+Samsung,Galaxy M35 5G,19440,8,256,6000,50,6.6,Exynos 1380,battery,Yes,15000 to 20000,4.2,2024
+Samsung,Galaxy M35 5G,20160,16,128,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy M35 5G,21240,16,256,6000,50,6.6,Exynos 1380,battery,Yes,20000 to 30000,4.2,2024
+Samsung,Galaxy M55 5G,29160,8,512,6000,50,6.7,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.3,2024
+Samsung,Galaxy M55 5G,30240,16,256,6000,50,6.7,Snapdragon 7 Gen 1,all-rounder,Yes,30000 to 50000,4.3,2024
+Samsung,Galaxy M55 5G,31860,16,512,6000,50,6.7,Snapdragon 7 Gen 1,all-rounder,Yes,30000 to 50000,4.3,2024
+Samsung,Galaxy M56 5G,32398,8,512,5000,50,6.73,Exynos 1480,all-rounder,Yes,30000 to 50000,4.3,2025
+Samsung,Galaxy M56 5G,33598,16,256,5000,50,6.73,Exynos 1480,all-rounder,Yes,30000 to 50000,4.3,2025
+Samsung,Galaxy M56 5G,35398,16,512,5000,50,6.73,Exynos 1480,all-rounder,Yes,30000 to 50000,4.3,2025
+Samsung,Galaxy S24 FE,49678,8,512,4700,50,6.7,Exynos 2500,flagship,Yes,30000 to 50000,4.5,2024
+Samsung,Galaxy S24 FE,51518,16,256,4700,50,6.7,Exynos 2500,flagship,Yes,Above 50000,4.5,2024
+Samsung,Galaxy S24 FE,54278,16,512,4700,50,6.7,Exynos 2500,flagship,Yes,Above 50000,4.5,2024
+Samsung,Galaxy S24,79920,8,512,4000,50,6.2,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24,82880,16,256,4000,50,6.2,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24,87320,16,512,4000,50,6.2,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Plus,106920,12,512,4900,50,6.7,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Plus,110880,24,256,4900,50,6.7,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Plus,116820,24,512,4900,50,6.7,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Samsung,Galaxy S24 Ultra,139320,12,512,5000,200,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.9,2024
+Samsung,Galaxy S24 Ultra,144480,24,256,5000,200,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.9,2024
+Samsung,Galaxy S24 Ultra,152220,24,512,5000,200,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.9,2024
+Samsung,Galaxy S25,86400,12,512,4000,50,6.2,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25,89600,24,256,4000,50,6.2,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25,94400,24,512,4000,50,6.2,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Plus,106920,12,512,4900,50,6.7,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Plus,110880,24,256,4900,50,6.7,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Plus,116820,24,512,4900,50,6.7,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Samsung,Galaxy S25 Ultra,145798,12,1024,5000,200,6.9,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.9,2025
+Samsung,Galaxy S25 Ultra,151198,24,512,5000,200,6.9,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.9,2025
+Samsung,Galaxy S25 Ultra,159298,24,1024,5000,200,6.9,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.9,2025
+Samsung,Galaxy S26,95038,12,512,4000,50,6.2,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26,98558,24,256,4000,50,6.2,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26,103838,24,512,4000,50,6.2,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Plus,129598,12,512,4900,50,6.7,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Plus,134398,24,256,4900,50,6.7,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Plus,141598,24,512,4900,50,6.7,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.8,2026
+Samsung,Galaxy S26 Ultra,151198,12,512,5000,200,6.9,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.9,2026
+Samsung,Galaxy S26 Ultra,156798,24,256,5000,200,6.9,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.9,2026
+Samsung,Galaxy S26 Ultra,165198,24,512,5000,200,6.9,Snapdragon 8 Elite 2,flagship,Yes,Above 50000,4.9,2026
+Samsung,Galaxy Z Fold 6,178198,12,512,4400,50,7.6,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.6,2024
+Samsung,Galaxy Z Fold 6,184798,24,256,4400,50,7.6,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.6,2024
+Samsung,Galaxy Z Fold 6,194698,24,512,4400,50,7.6,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.6,2024
+Samsung,Galaxy Z Flip 6,118798,12,512,4000,50,6.7,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.5,2024
+Samsung,Galaxy Z Flip 6,123198,24,256,4000,50,6.7,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.5,2024
+Samsung,Galaxy Z Flip 6,129798,24,512,4000,50,6.7,Snapdragon 8 Gen 3,premium,Yes,Above 50000,4.5,2024
+Samsung,Galaxy A07,10798,4,128,5000,13,6.7,Helio P35,budget,No,10000 to 15000,3.7,2023
+Samsung,Galaxy A07,11198,8,64,5000,13,6.7,Helio P35,budget,No,10000 to 15000,3.7,2023
+Samsung,Galaxy A07,11798,8,128,5000,13,6.7,Helio P35,budget,No,10000 to 15000,3.7,2023
+Samsung,Galaxy A14,11880,4,128,5000,50,6.6,Helio G80,budget,No,10000 to 15000,3.8,2023
+Samsung,Galaxy A14,12320,8,64,5000,50,6.6,Helio G80,budget,No,10000 to 15000,3.8,2023
+Samsung,Galaxy A14,12980,8,128,5000,50,6.6,Helio G80,budget,No,10000 to 15000,3.8,2023
+Samsung,Galaxy A13 5G,14038,4,128,5000,50,6.5,Dimensity 700,budget,Yes,10000 to 15000,3.9,2023
+Samsung,Galaxy A13 5G,14558,8,64,5000,50,6.5,Dimensity 700,budget,Yes,10000 to 15000,3.9,2023
+Samsung,Galaxy A13 5G,15338,8,128,5000,50,6.5,Dimensity 700,budget,Yes,15000 to 20000,3.9,2023
+Redmi,Redmi A4 5G,8638,3,128,5000,8,6.88,Snapdragon 4s Gen 2,budget,Yes,Under 10000,3.7,2025
+Redmi,Redmi A4 5G,8958,6,64,5000,8,6.88,Snapdragon 4s Gen 2,budget,Yes,Under 10000,3.7,2025
+Redmi,Redmi A4 5G,9438,6,128,5000,8,6.88,Snapdragon 4s Gen 2,budget,Yes,Under 10000,3.7,2025
+Redmi,Redmi 13C,8640,4,256,5000,50,6.74,Helio G85,budget,No,Under 10000,3.9,2023
+Redmi,Redmi 13C,8960,8,128,5000,50,6.74,Helio G85,budget,No,Under 10000,3.9,2023
+Redmi,Redmi 13C,9440,8,256,5000,50,6.74,Helio G85,budget,No,Under 10000,3.9,2023
+Redmi,Redmi 13 5G,15120,6,256,5000,50,6.74,Snapdragon 4 Gen 2,budget,Yes,15000 to 20000,4.0,2024
+Redmi,Redmi 13 5G,15680,12,128,5000,50,6.74,Snapdragon 4 Gen 2,budget,Yes,15000 to 20000,4.0,2024
+Redmi,Redmi 13 5G,16520,12,256,5000,50,6.74,Snapdragon 4 Gen 2,budget,Yes,15000 to 20000,4.0,2024
+Redmi,Redmi 14C,10798,4,256,5160,50,6.88,Helio G81 Ultra,budget,No,10000 to 15000,3.9,2024
+Redmi,Redmi 14C,11198,8,128,5160,50,6.88,Helio G81 Ultra,budget,No,10000 to 15000,3.9,2024
+Redmi,Redmi 14C,11798,8,256,5160,50,6.88,Helio G81 Ultra,budget,No,10000 to 15000,3.9,2024
+Redmi,Redmi 14C 5G,14038,4,256,5160,50,6.88,Snapdragon 4s Gen 2,budget,Yes,10000 to 15000,4.0,2025
+Redmi,Redmi 14C 5G,14558,8,128,5160,50,6.88,Snapdragon 4s Gen 2,budget,Yes,10000 to 15000,4.0,2025
+Redmi,Redmi 14C 5G,15338,8,256,5160,50,6.88,Snapdragon 4s Gen 2,budget,Yes,15000 to 20000,4.0,2025
+Redmi,Redmi Note 13,16200,6,256,5100,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13,16800,12,128,5100,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13,17700,12,256,5100,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13 5G,18360,8,512,5100,108,6.67,Dimensity 6080,all-rounder,Yes,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13 5G,19040,16,256,5100,108,6.67,Dimensity 6080,all-rounder,Yes,15000 to 20000,4.2,2024
+Redmi,Redmi Note 13 5G,20060,16,512,5100,108,6.67,Dimensity 6080,all-rounder,Yes,20000 to 30000,4.2,2024
+Redmi,Redmi Note 13 Pro,23760,8,512,5100,200,6.67,Dimensity 7200,camera,Yes,20000 to 30000,4.4,2024
+Redmi,Redmi Note 13 Pro,24640,16,256,5100,200,6.67,Dimensity 7200,camera,Yes,20000 to 30000,4.4,2024
+Redmi,Redmi Note 13 Pro,25960,16,512,5100,200,6.67,Dimensity 7200,camera,Yes,20000 to 30000,4.4,2024
+Redmi,Redmi Note 13 Pro+,29160,12,512,5000,200,6.67,Dimensity 7200 Ultra,camera,Yes,20000 to 30000,4.5,2024
+Redmi,Redmi Note 13 Pro+,30240,24,256,5000,200,6.67,Dimensity 7200 Ultra,camera,Yes,30000 to 50000,4.5,2024
+Redmi,Redmi Note 13 Pro+,31860,24,512,5000,200,6.67,Dimensity 7200 Ultra,camera,Yes,30000 to 50000,4.5,2024
+Redmi,Redmi Note 14,18360,8,256,5500,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 14,19040,16,128,5500,108,6.67,Snapdragon 685,gaming,No,15000 to 20000,4.2,2024
+Redmi,Redmi Note 14,20060,16,256,5500,108,6.67,Snapdragon 685,gaming,No,20000 to 30000,4.2,2024
+Redmi,Redmi Note 14 5G,20520,8,512,5500,108,6.67,Dimensity 7025 Ultra,all-rounder,Yes,20000 to 30000,4.3,2024
+Redmi,Redmi Note 14 5G,21280,16,256,5500,108,6.67,Dimensity 7025 Ultra,all-rounder,Yes,20000 to 30000,4.3,2024
+Redmi,Redmi Note 14 5G,22420,16,512,5500,108,6.67,Dimensity 7025 Ultra,all-rounder,Yes,20000 to 30000,4.3,2024
+Redmi,Redmi Note 14 Pro,26998,8,512,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 14 Pro,27998,16,256,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 14 Pro,29498,16,512,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 14 Pro+,34558,12,1024,5110,200,6.67,Dimensity 8400 Ultra,camera,Yes,30000 to 50000,4.6,2025
+Redmi,Redmi Note 14 Pro+,35838,24,512,5110,200,6.67,Dimensity 8400 Ultra,camera,Yes,30000 to 50000,4.6,2025
+Redmi,Redmi Note 14 Pro+,37758,24,1024,5110,200,6.67,Dimensity 8400 Ultra,camera,Yes,30000 to 50000,4.6,2025
+Redmi,Redmi Note 15,18358,8,512,7000,108,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.2,2026
+Redmi,Redmi Note 15,19038,16,256,7000,108,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.2,2026
+Redmi,Redmi Note 15,20058,16,512,7000,108,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.2,2026
+Redmi,Redmi Note 15 Pro,26998,8,512,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 15 Pro,27998,16,256,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi Note 15 Pro,29498,16,512,5200,200,6.67,Dimensity 7400,camera,Yes,20000 to 30000,4.4,2025
+Redmi,Redmi 12 5G,14040,4,256,5000,50,6.79,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2023
+Redmi,Redmi 12 5G,14560,8,128,5000,50,6.79,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2023
+Redmi,Redmi 12 5G,15340,8,256,5000,50,6.79,Snapdragon 4 Gen 2,budget,Yes,15000 to 20000,4.0,2023
+Xiaomi,Poco C65,9720,4,256,5000,50,6.74,Helio G85,budget,No,Under 10000,3.8,2023
+Xiaomi,Poco C65,10080,8,128,5000,50,6.74,Helio G85,budget,No,10000 to 15000,3.8,2023
+Xiaomi,Poco C65,10620,8,256,5000,50,6.74,Helio G85,budget,No,10000 to 15000,3.8,2023
+Xiaomi,Poco C85x 5G,9718,4,128,6300,8,6.9,Helio G91,budget,Yes,Under 10000,3.8,2025
+Xiaomi,Poco C85x 5G,10078,8,64,6300,8,6.9,Helio G91,budget,Yes,10000 to 15000,3.8,2025
+Xiaomi,Poco C85x 5G,10618,8,128,6300,8,6.9,Helio G91,budget,Yes,10000 to 15000,3.8,2025
+Xiaomi,Poco M6 Plus 5G,10798,6,256,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M6 Plus 5G,11198,12,128,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M6 Plus 5G,11798,12,256,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M7 5G,14038,8,256,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M7 5G,14558,16,128,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,10000 to 15000,4.0,2025
+Xiaomi,Poco M7 5G,15338,16,256,5000,50,6.79,Snapdragon 4 Gen 2,gaming,Yes,15000 to 20000,4.0,2025
+Xiaomi,Poco M6 Pro 5G,19440,8,512,5000,64,6.67,Helio G99 Ultra,all-rounder,No,15000 to 20000,4.3,2024
+Xiaomi,Poco M6 Pro 5G,20160,16,256,5000,64,6.67,Helio G99 Ultra,all-rounder,No,20000 to 30000,4.3,2024
+Xiaomi,Poco M6 Pro 5G,21240,16,512,5000,64,6.67,Helio G99 Ultra,all-rounder,No,20000 to 30000,4.3,2024
+Xiaomi,Poco X6,23760,8,512,5100,64,6.67,Snapdragon 7s Gen 2,gaming,Yes,20000 to 30000,4.3,2024
+Xiaomi,Poco X6,24640,16,256,5100,64,6.67,Snapdragon 7s Gen 2,gaming,Yes,20000 to 30000,4.3,2024
+Xiaomi,Poco X6,25960,16,512,5100,64,6.67,Snapdragon 7s Gen 2,gaming,Yes,20000 to 30000,4.3,2024
+Xiaomi,Poco X6 Pro,30240,12,512,5000,64,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2024
+Xiaomi,Poco X6 Pro,31360,24,256,5000,64,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2024
+Xiaomi,Poco X6 Pro,33040,24,512,5000,64,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2024
+Xiaomi,Poco X7,21598,8,512,5110,50,6.67,Dimensity 7300 Ultra,camera,Yes,20000 to 30000,4.3,2025
+Xiaomi,Poco X7,22398,16,256,5110,50,6.67,Dimensity 7300 Ultra,camera,Yes,20000 to 30000,4.3,2025
+Xiaomi,Poco X7,23598,16,512,5110,50,6.67,Dimensity 7300 Ultra,camera,Yes,20000 to 30000,4.3,2025
+Xiaomi,Poco X7 Pro,30238,12,512,6000,50,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2025
+Xiaomi,Poco X7 Pro,31358,24,256,6000,50,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2025
+Xiaomi,Poco X7 Pro,33038,24,512,6000,50,6.67,Dimensity 8300 Ultra,gaming,Yes,30000 to 50000,4.5,2025
+Xiaomi,Poco F6,32400,12,512,4500,50,6.67,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F6,33600,24,256,4500,50,6.67,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F6,35400,24,512,4500,50,6.67,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F6 Pro,48600,12,512,4600,50,6.67,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+Xiaomi,Poco F6 Pro,50400,24,256,4600,50,6.67,Snapdragon 8 Gen 2,gaming,Yes,Above 50000,4.6,2024
+Xiaomi,Poco F6 Pro,53100,24,512,4600,50,6.67,Snapdragon 8 Gen 2,gaming,Yes,Above 50000,4.6,2024
+Xiaomi,Poco F7 Pro,37798,12,512,5200,50,6.67,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Xiaomi,Poco F7 Pro,39198,24,256,5200,50,6.67,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Xiaomi,Poco F7 Pro,41298,24,512,5200,50,6.67,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Xiaomi,Xiaomi 14,74520,12,512,4610,50,6.36,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Xiaomi,Xiaomi 14,77280,24,256,4610,50,6.36,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Xiaomi,Xiaomi 14,81420,24,512,4610,50,6.36,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Xiaomi,Xiaomi 14 Ultra,106920,16,1024,5000,50,6.73,Snapdragon 8 Gen 3,camera,Yes,Above 50000,4.8,2024
+Xiaomi,Xiaomi 14 Ultra,110880,32,512,5000,50,6.73,Snapdragon 8 Gen 3,camera,Yes,Above 50000,4.8,2024
+Xiaomi,Xiaomi 14 Ultra,116820,32,1024,5000,50,6.73,Snapdragon 8 Gen 3,camera,Yes,Above 50000,4.8,2024
+Xiaomi,Xiaomi 15,88558,12,512,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 15,91838,24,256,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 15,96758,24,512,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 15 Ultra,118798,16,1024,5000,50,6.73,Snapdragon 8 Elite,camera,Yes,Above 50000,4.9,2025
+Xiaomi,Xiaomi 15 Ultra,123198,32,512,5000,50,6.73,Snapdragon 8 Elite,camera,Yes,Above 50000,4.9,2025
+Xiaomi,Xiaomi 15 Ultra,129798,32,1024,5000,50,6.73,Snapdragon 8 Elite,camera,Yes,Above 50000,4.9,2025
+Xiaomi,Xiaomi 17,88558,12,512,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 17,91838,24,256,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Xiaomi,Xiaomi 17,96758,24,512,5200,50,6.36,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus Nord CE 4 Lite,19440,8,256,5500,50,6.67,Snapdragon 695,battery,Yes,15000 to 20000,4.2,2024
+OnePlus,OnePlus Nord CE 4 Lite,20160,16,128,5500,50,6.67,Snapdragon 695,battery,Yes,20000 to 30000,4.2,2024
+OnePlus,OnePlus Nord CE 4 Lite,21240,16,256,5500,50,6.67,Snapdragon 695,battery,Yes,20000 to 30000,4.2,2024
+OnePlus,OnePlus Nord CE 4,27000,8,512,5500,50,6.7,Snapdragon 7s Gen 2,battery,Yes,20000 to 30000,4.3,2024
+OnePlus,OnePlus Nord CE 4,28000,16,256,5500,50,6.7,Snapdragon 7s Gen 2,battery,Yes,20000 to 30000,4.3,2024
+OnePlus,OnePlus Nord CE 4,29500,16,512,5500,50,6.7,Snapdragon 7s Gen 2,battery,Yes,20000 to 30000,4.3,2024
+OnePlus,OnePlus Nord CE 5,24838,8,512,5500,50,6.67,Snapdragon 7 Gen 3,all-rounder,Yes,20000 to 30000,4.3,2025
+OnePlus,OnePlus Nord CE 5,25758,16,256,5500,50,6.67,Snapdragon 7 Gen 3,all-rounder,Yes,20000 to 30000,4.3,2025
+OnePlus,OnePlus Nord CE 5,27138,16,512,5500,50,6.67,Snapdragon 7 Gen 3,all-rounder,Yes,20000 to 30000,4.3,2025
+OnePlus,OnePlus Nord 4,32400,8,512,5500,50,6.74,Snapdragon 7+ Gen 3,all-rounder,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus Nord 4,33600,16,256,5500,50,6.74,Snapdragon 7+ Gen 3,all-rounder,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus Nord 4,35400,16,512,5500,50,6.74,Snapdragon 7+ Gen 3,all-rounder,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus Nord 5,35638,8,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.5,2026
+OnePlus,OnePlus Nord 5,36958,16,256,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.5,2026
+OnePlus,OnePlus Nord 5,38938,16,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,30000 to 50000,4.5,2026
+OnePlus,OnePlus 12R,43200,8,512,5500,50,6.78,Snapdragon 8 Gen 1,gaming,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus 12R,44800,16,256,5500,50,6.78,Snapdragon 8 Gen 1,gaming,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus 12R,47200,16,512,5500,50,6.78,Snapdragon 8 Gen 1,gaming,Yes,30000 to 50000,4.5,2024
+OnePlus,OnePlus 13R,47518,8,512,6000,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2025
+OnePlus,OnePlus 13R,49278,16,256,6000,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2025
+OnePlus,OnePlus 13R,51918,16,512,6000,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,Above 50000,4.6,2025
+OnePlus,OnePlus 12,70200,12,512,5400,50,6.82,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+OnePlus,OnePlus 12,72800,24,256,5400,50,6.82,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+OnePlus,OnePlus 12,76700,24,512,5400,50,6.82,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+OnePlus,OnePlus 13,75598,12,512,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13,78398,24,256,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13,82598,24,512,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13s,86398,16,1024,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13s,89598,32,512,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus 13s,94398,32,1024,6000,50,6.82,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+OnePlus,OnePlus Open,151198,16,1024,4805,48,7.82,Snapdragon 8 Gen 2,premium,Yes,Above 50000,4.6,2023
+OnePlus,OnePlus Open,156798,32,512,4805,48,7.82,Snapdragon 8 Gen 2,premium,Yes,Above 50000,4.6,2023
+OnePlus,OnePlus Open,165198,32,1024,4805,48,7.82,Snapdragon 8 Gen 2,premium,Yes,Above 50000,4.6,2023
+Realme,Realme C65,10800,6,256,5000,50,6.67,Helio G85,budget,No,10000 to 15000,3.9,2024
+Realme,Realme C65,11200,12,128,5000,50,6.67,Helio G85,budget,No,10000 to 15000,3.9,2024
+Realme,Realme C65,11800,12,256,5000,50,6.67,Helio G85,budget,No,10000 to 15000,3.9,2024
+Realme,Realme C83 5G,12958,6,256,5000,50,6.72,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2026
+Realme,Realme C83 5G,13438,12,128,5000,50,6.72,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2026
+Realme,Realme C83 5G,14158,12,256,5000,50,6.72,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2026
+Realme,Realme P1 Speed,16198,6,256,5000,50,6.67,Dimensity 7050,gaming,Yes,15000 to 20000,4.1,2024
+Realme,Realme P1 Speed,16798,12,128,5000,50,6.67,Dimensity 7050,gaming,Yes,15000 to 20000,4.1,2024
+Realme,Realme P1 Speed,17698,12,256,5000,50,6.67,Dimensity 7050,gaming,Yes,15000 to 20000,4.1,2024
+Realme,Realme P2 Pro,19438,8,512,5200,50,6.7,Snapdragon 6 Gen 1,all-rounder,Yes,15000 to 20000,4.3,2024
+Realme,Realme P2 Pro,20158,16,256,5200,50,6.7,Snapdragon 6 Gen 1,all-rounder,Yes,20000 to 30000,4.3,2024
+Realme,Realme P2 Pro,21238,16,512,5200,50,6.7,Snapdragon 6 Gen 1,all-rounder,Yes,20000 to 30000,4.3,2024
+Realme,Realme P3 Pro,19438,8,256,5500,50,6.7,Snapdragon 6 Gen 1,camera,Yes,15000 to 20000,4.2,2025
+Realme,Realme P3 Pro,20158,16,128,5500,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2025
+Realme,Realme P3 Pro,21238,16,256,5500,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2025
+Realme,Realme P4 Lite 4G,10798,6,256,5000,50,6.75,Helio G100,budget,No,10000 to 15000,3.9,2025
+Realme,Realme P4 Lite 4G,11198,12,128,5000,50,6.75,Helio G100,budget,No,10000 to 15000,3.9,2025
+Realme,Realme P4 Lite 4G,11798,12,256,5000,50,6.75,Helio G100,budget,No,10000 to 15000,3.9,2025
+Realme,Realme Narzo 70 Pro,21600,8,256,5000,50,6.7,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2024
+Realme,Realme Narzo 70 Pro,22400,16,128,5000,50,6.7,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2024
+Realme,Realme Narzo 70 Pro,23600,16,256,5000,50,6.7,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2024
+Realme,Realme Narzo 80 Pro,19438,8,256,6000,50,6.72,Dimensity 7400,all-rounder,Yes,15000 to 20000,4.4,2026
+Realme,Realme Narzo 80 Pro,20158,16,128,6000,50,6.72,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.4,2026
+Realme,Realme Narzo 80 Pro,21238,16,256,6000,50,6.72,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.4,2026
+Realme,Realme 12 Pro,23760,8,512,5000,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2024
+Realme,Realme 12 Pro,24640,16,256,5000,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2024
+Realme,Realme 12 Pro,25960,16,512,5000,50,6.7,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2024
+Realme,Realme 12 Pro+,29160,12,512,5000,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.4,2024
+Realme,Realme 12 Pro+,30240,24,256,5000,50,6.7,Snapdragon 7s Gen 2,camera,Yes,30000 to 50000,4.4,2024
+Realme,Realme 12 Pro+,31860,24,512,5000,50,6.7,Snapdragon 7s Gen 2,camera,Yes,30000 to 50000,4.4,2024
+Realme,Realme 13 Pro,26998,8,512,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.3,2024
+Realme,Realme 13 Pro,27998,16,256,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.3,2024
+Realme,Realme 13 Pro,29498,16,512,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,20000 to 30000,4.3,2024
+Realme,Realme 13 Pro+,32398,12,1024,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,30000 to 50000,4.5,2024
+Realme,Realme 13 Pro+,33598,24,512,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,30000 to 50000,4.5,2024
+Realme,Realme 13 Pro+,35398,24,1024,5200,50,6.7,Snapdragon 7s Gen 2,camera,Yes,30000 to 50000,4.5,2024
+Realme,Realme 14 Pro,30238,8,512,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.4,2025
+Realme,Realme 14 Pro,31358,16,256,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.4,2025
+Realme,Realme 14 Pro,33038,16,512,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.4,2025
+Realme,Realme 14 Pro+,37798,12,1024,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Realme,Realme 14 Pro+,39198,24,512,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Realme,Realme 14 Pro+,41298,24,1024,6000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Realme,Realme 15 Pro 5G,36718,8,512,6800,50,6.83,Snapdragon 7 Gen 4,camera,Yes,30000 to 50000,4.5,2026
+Realme,Realme 15 Pro 5G,38078,16,256,6800,50,6.83,Snapdragon 7 Gen 4,camera,Yes,30000 to 50000,4.5,2026
+Realme,Realme 15 Pro 5G,40118,16,512,6800,50,6.83,Snapdragon 7 Gen 4,camera,Yes,30000 to 50000,4.5,2026
+Realme,Realme 15T 5G,28078,12,512,7000,50,6.67,Dimensity 6400 Max,battery,Yes,20000 to 30000,4.3,2026
+Realme,Realme 15T 5G,29118,24,256,7000,50,6.67,Dimensity 6400 Max,battery,Yes,20000 to 30000,4.3,2026
+Realme,Realme 15T 5G,30678,24,512,7000,50,6.67,Dimensity 6400 Max,battery,Yes,30000 to 50000,4.3,2026
+Realme,Realme GT 6T,38880,8,512,5500,50,6.78,Snapdragon 7+ Gen 3,gaming,Yes,30000 to 50000,4.5,2024
+Realme,Realme GT 6T,40320,16,256,5500,50,6.78,Snapdragon 7+ Gen 3,gaming,Yes,30000 to 50000,4.5,2024
+Realme,Realme GT 6T,42480,16,512,5500,50,6.78,Snapdragon 7+ Gen 3,gaming,Yes,30000 to 50000,4.5,2024
+Realme,Realme GT 6,48600,12,512,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2024
+Realme,Realme GT 6,50400,24,256,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,Above 50000,4.6,2024
+Realme,Realme GT 6,53100,24,512,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,Above 50000,4.6,2024
+Realme,Realme GT 7,42118,12,512,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Realme,Realme GT 7,43678,24,256,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Realme,Realme GT 7,46018,24,512,5500,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+Realme,Realme GT 7T,31374,8,512,7000,50,6.8,Dimensity 8400-Max,battery,Yes,30000 to 50000,4.5,2026
+Realme,Realme GT 7T,32536,16,256,7000,50,6.8,Dimensity 8400-Max,battery,Yes,30000 to 50000,4.5,2026
+Realme,Realme GT 7T,34279,16,512,7000,50,6.8,Dimensity 8400-Max,battery,Yes,30000 to 50000,4.5,2026
+Realme,Realme GT 7 Pro,60478,12,512,6500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Realme,Realme GT 7 Pro,62718,24,256,6500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Realme,Realme GT 7 Pro,66078,24,512,6500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+iQOO,iQOO Z10 Lite 5G,10798,6,256,6000,50,6.56,Dimensity 6300,gaming,Yes,10000 to 15000,4.1,2026
+iQOO,iQOO Z10 Lite 5G,11198,12,128,6000,50,6.56,Dimensity 6300,gaming,Yes,10000 to 15000,4.1,2026
+iQOO,iQOO Z10 Lite 5G,11798,12,256,6000,50,6.56,Dimensity 6300,gaming,Yes,10000 to 15000,4.1,2026
+iQOO,iQOO Z9 Lite,11880,4,256,5000,50,6.56,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2024
+iQOO,iQOO Z9 Lite,12320,8,128,5000,50,6.56,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2024
+iQOO,iQOO Z9 Lite,12980,8,256,5000,50,6.56,Snapdragon 4 Gen 2,budget,Yes,10000 to 15000,4.0,2024
+iQOO,iQOO Z9x,17280,6,256,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,15000 to 20000,4.2,2024
+iQOO,iQOO Z9x,17920,12,128,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,15000 to 20000,4.2,2024
+iQOO,iQOO Z9x,18880,12,256,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,15000 to 20000,4.2,2024
+iQOO,iQOO Z9,23760,8,512,5000,50,6.67,Dimensity 7200,all-rounder,Yes,20000 to 30000,4.3,2024
+iQOO,iQOO Z9,24640,16,256,5000,50,6.67,Dimensity 7200,all-rounder,Yes,20000 to 30000,4.3,2024
+iQOO,iQOO Z9,25960,16,512,5000,50,6.67,Dimensity 7200,all-rounder,Yes,20000 to 30000,4.3,2024
+iQOO,iQOO Z10x,15118,6,256,6000,50,6.67,Snapdragon 4 Gen 2,battery,Yes,15000 to 20000,4.1,2025
+iQOO,iQOO Z10x,15678,12,128,6000,50,6.67,Snapdragon 4 Gen 2,battery,Yes,15000 to 20000,4.1,2025
+iQOO,iQOO Z10x,16518,12,256,6000,50,6.67,Snapdragon 4 Gen 2,battery,Yes,15000 to 20000,4.1,2025
+iQOO,iQOO Z10 5G,29158,12,512,7300,50,6.67,Snapdragon 7s Gen 3,battery,Yes,20000 to 30000,4.4,2026
+iQOO,iQOO Z10 5G,30238,24,256,7300,50,6.67,Snapdragon 7s Gen 3,battery,Yes,30000 to 50000,4.4,2026
+iQOO,iQOO Z10 5G,31858,24,512,7300,50,6.67,Snapdragon 7s Gen 3,battery,Yes,30000 to 50000,4.4,2026
+iQOO,iQOO Z11x,20518,8,256,7200,50,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.3,2026
+iQOO,iQOO Z11x,21278,16,128,7200,50,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.3,2026
+iQOO,iQOO Z11x,22418,16,256,7200,50,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.3,2026
+iQOO,iQOO Neo 9,32398,8,512,5160,50,6.78,Dimensity 9300,gaming,Yes,30000 to 50000,4.5,2024
+iQOO,iQOO Neo 9,33598,16,256,5160,50,6.78,Dimensity 9300,gaming,Yes,30000 to 50000,4.5,2024
+iQOO,iQOO Neo 9,35398,16,512,5160,50,6.78,Dimensity 9300,gaming,Yes,30000 to 50000,4.5,2024
+iQOO,iQOO Neo 9 Pro,37800,8,512,4600,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+iQOO,iQOO Neo 9 Pro,39200,16,256,4600,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+iQOO,iQOO Neo 9 Pro,41300,16,512,4600,50,6.78,Snapdragon 8 Gen 2,gaming,Yes,30000 to 50000,4.6,2024
+iQOO,iQOO Neo 10R 5G,31318,8,512,6400,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+iQOO,iQOO Neo 10R 5G,32478,16,256,6400,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+iQOO,iQOO Neo 10R 5G,34218,16,512,6400,50,6.78,Snapdragon 8s Gen 3,gaming,Yes,30000 to 50000,4.6,2025
+iQOO,iQOO Neo 10,37798,8,512,6000,50,6.78,Snapdragon 8s Gen 4,gaming,Yes,30000 to 50000,4.6,2026
+iQOO,iQOO Neo 10,39198,16,256,6000,50,6.78,Snapdragon 8s Gen 4,gaming,Yes,30000 to 50000,4.6,2026
+iQOO,iQOO Neo 10,41298,16,512,6000,50,6.78,Snapdragon 8s Gen 4,gaming,Yes,30000 to 50000,4.6,2026
+iQOO,iQOO 12,59400,12,512,5100,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+iQOO,iQOO 12,61600,24,256,5100,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+iQOO,iQOO 12,64900,24,512,5100,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+iQOO,iQOO 13,70198,16,512,6150,50,6.82,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+iQOO,iQOO 13,72798,32,256,6150,50,6.82,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+iQOO,iQOO 13,76698,32,512,6150,50,6.82,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Vivo,Vivo T3x,14040,4,256,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,10000 to 15000,4.1,2024
+Vivo,Vivo T3x,14560,8,128,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,10000 to 15000,4.1,2024
+Vivo,Vivo T3x,15340,8,256,6000,50,6.72,Snapdragon 6 Gen 1,battery,Yes,15000 to 20000,4.1,2024
+Vivo,Vivo T3 Pro,25920,8,512,5000,50,6.67,Dimensity 7300T,gaming,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo T3 Pro,26880,16,256,5000,50,6.67,Dimensity 7300T,gaming,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo T3 Pro,28320,16,512,5000,50,6.67,Dimensity 7300T,gaming,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo T3 Ultra,20518,8,512,5500,50,6.67,Dimensity 7300,gaming,Yes,20000 to 30000,4.2,2025
+Vivo,Vivo T3 Ultra,21278,16,256,5500,50,6.67,Dimensity 7300,gaming,Yes,20000 to 30000,4.2,2025
+Vivo,Vivo T3 Ultra,22418,16,512,5500,50,6.67,Dimensity 7300,gaming,Yes,20000 to 30000,4.2,2025
+Vivo,Vivo T4R 5G,27149,12,512,5700,50,6.77,Dimensity 7400,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo T4R 5G,28154,24,256,5700,50,6.77,Dimensity 7400,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo T4R 5G,29662,24,512,5700,50,6.77,Dimensity 7400,camera,Yes,20000 to 30000,4.3,2025
+Vivo,Vivo T4x,15118,8,256,6500,50,6.72,Dimensity 7300,battery,Yes,15000 to 20000,4.2,2025
+Vivo,Vivo T4x,15678,16,128,6500,50,6.72,Dimensity 7300,battery,Yes,15000 to 20000,4.2,2025
+Vivo,Vivo T4x,16518,16,256,6500,50,6.72,Dimensity 7300,battery,Yes,15000 to 20000,4.2,2025
+Vivo,Vivo V30e,27000,8,256,5000,50,6.67,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo V30e,28000,16,128,5000,50,6.67,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo V30e,29500,16,256,5000,50,6.67,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.3,2024
+Vivo,Vivo V30 Pro,37800,12,512,5000,50,6.78,Dimensity 8200,camera,Yes,30000 to 50000,4.5,2024
+Vivo,Vivo V30 Pro,39200,24,256,5000,50,6.78,Dimensity 8200,camera,Yes,30000 to 50000,4.5,2024
+Vivo,Vivo V30 Pro,41300,24,512,5000,50,6.78,Dimensity 8200,camera,Yes,30000 to 50000,4.5,2024
+Vivo,Vivo V40e,30238,8,256,5500,50,6.67,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2024
+Vivo,Vivo V40e,31358,16,128,5500,50,6.67,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2024
+Vivo,Vivo V40e,33038,16,256,5500,50,6.67,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2024
+Vivo,Vivo V40 Pro,43198,12,512,5000,50,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2024
+Vivo,Vivo V40 Pro,44798,24,256,5000,50,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2024
+Vivo,Vivo V40 Pro,47198,24,512,5000,50,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2024
+Vivo,Vivo V50e,30238,8,512,5500,50,6.77,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo V50e,31358,16,256,5500,50,6.77,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo V50e,33038,16,512,5500,50,6.77,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo V50 Pro,46438,12,512,6000,50,6.78,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Vivo,Vivo V50 Pro,48158,24,256,6000,50,6.78,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Vivo,Vivo V50 Pro,50738,24,512,6000,50,6.78,Snapdragon 7 Gen 3,camera,Yes,Above 50000,4.5,2025
+Vivo,Vivo Y400 Pro 5G,30238,8,512,5500,50,6.77,Dimensity 7400,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo Y400 Pro 5G,31358,16,256,5500,50,6.77,Dimensity 7400,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo Y400 Pro 5G,33038,16,512,5500,50,6.77,Dimensity 7400,camera,Yes,30000 to 50000,4.3,2025
+Vivo,Vivo X100,70198,16,512,5000,50,6.78,Dimensity 9300,camera,Yes,Above 50000,4.7,2024
+Vivo,Vivo X100,72798,32,256,5000,50,6.78,Dimensity 9300,camera,Yes,Above 50000,4.7,2024
+Vivo,Vivo X100,76698,32,512,5000,50,6.78,Dimensity 9300,camera,Yes,Above 50000,4.7,2024
+Vivo,Vivo X100 Pro,97200,16,1024,5400,50,6.78,Dimensity 9300,flagship,Yes,Above 50000,4.8,2024
+Vivo,Vivo X100 Pro,100800,32,512,5400,50,6.78,Dimensity 9300,flagship,Yes,Above 50000,4.8,2024
+Vivo,Vivo X100 Pro,106200,32,1024,5400,50,6.78,Dimensity 9300,flagship,Yes,Above 50000,4.8,2024
+Vivo,Vivo X200,70198,12,512,5800,50,6.67,Dimensity 9400,camera,Yes,Above 50000,4.7,2025
+Vivo,Vivo X200,72798,24,256,5800,50,6.67,Dimensity 9400,camera,Yes,Above 50000,4.7,2025
+Vivo,Vivo X200,76698,24,512,5800,50,6.67,Dimensity 9400,camera,Yes,Above 50000,4.7,2025
+Vivo,Vivo X200 Pro,102598,16,1024,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X200 Pro,106398,32,512,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X200 Pro,112098,32,1024,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X300 Pro,97198,16,1024,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X300 Pro,100798,32,512,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo X300 Pro,106198,32,1024,6000,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.8,2025
+Vivo,Vivo Y300 5G,19438,8,256,5000,50,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+Vivo,Vivo Y300 5G,20158,16,128,5000,50,6.67,Snapdragon 695,all-rounder,Yes,20000 to 30000,4.1,2024
+Vivo,Vivo Y300 5G,21238,16,256,5000,50,6.67,Snapdragon 695,all-rounder,Yes,20000 to 30000,4.1,2024
+Vivo,Vivo Y300 Plus,23760,8,512,5500,50,6.77,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Vivo,Vivo Y300 Plus,24640,16,256,5500,50,6.77,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Vivo,Vivo Y300 Plus,25960,16,512,5500,50,6.77,Snapdragon 7 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Vivo,Vivo Y60e,35638,12,512,5500,50,6.67,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2025
+Vivo,Vivo Y60e,36958,24,256,5500,50,6.67,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2025
+Vivo,Vivo Y60e,38938,24,512,5500,50,6.67,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2025
+OPPO,OPPO A3 Pro,19440,8,512,5100,50,6.67,Dimensity 6300,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A3 Pro,20160,16,256,5100,50,6.67,Dimensity 6300,all-rounder,Yes,20000 to 30000,4.1,2024
+OPPO,OPPO A3 Pro,21240,16,512,5100,50,6.67,Dimensity 6300,all-rounder,Yes,20000 to 30000,4.1,2024
+OPPO,OPPO A60,17280,8,256,5000,64,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A60,17920,16,128,5000,64,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A60,18880,16,256,5000,64,6.67,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2024
+OPPO,OPPO A3,16198,6,256,5000,50,6.72,Helio G99,budget,No,15000 to 20000,4.0,2024
+OPPO,OPPO A3,16798,12,128,5000,50,6.72,Helio G99,budget,No,15000 to 20000,4.0,2024
+OPPO,OPPO A3,17698,12,256,5000,50,6.72,Helio G99,budget,No,15000 to 20000,4.0,2024
+OPPO,OPPO A80,22678,8,512,5000,50,6.67,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2025
+OPPO,OPPO A80,23518,16,256,5000,50,6.67,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2025
+OPPO,OPPO A80,24778,16,512,5000,50,6.67,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.2,2025
+OPPO,OPPO F27 Pro+,27000,8,512,5000,64,6.7,Dimensity 6300,camera,Yes,20000 to 30000,4.2,2024
+OPPO,OPPO F27 Pro+,28000,16,256,5000,64,6.7,Dimensity 6300,camera,Yes,20000 to 30000,4.2,2024
+OPPO,OPPO F27 Pro+,29500,16,512,5000,64,6.7,Dimensity 6300,camera,Yes,20000 to 30000,4.2,2024
+OPPO,OPPO F29 Pro,30238,8,512,5700,50,6.7,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+OPPO,OPPO F29 Pro,31358,16,256,5700,50,6.7,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+OPPO,OPPO F29 Pro,33038,16,512,5700,50,6.7,Snapdragon 6 Gen 1,camera,Yes,30000 to 50000,4.3,2025
+OPPO,OPPO Reno 12 Pro,38880,12,512,5000,50,6.7,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2024
+OPPO,OPPO Reno 12 Pro,40320,24,256,5000,50,6.7,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2024
+OPPO,OPPO Reno 12 Pro,42480,24,512,5000,50,6.7,Dimensity 7300,camera,Yes,30000 to 50000,4.4,2024
+OPPO,OPPO Reno 13 Pro,43198,12,512,5600,50,6.83,Dimensity 8350,camera,Yes,30000 to 50000,4.5,2025
+OPPO,OPPO Reno 13 Pro,44798,24,256,5600,50,6.83,Dimensity 8350,camera,Yes,30000 to 50000,4.5,2025
+OPPO,OPPO Reno 13 Pro,47198,24,512,5600,50,6.83,Dimensity 8350,camera,Yes,30000 to 50000,4.5,2025
+OPPO,OPPO Find X8,75600,12,512,5630,50,6.59,Dimensity 9400,flagship,Yes,Above 50000,4.7,2025
+OPPO,OPPO Find X8,78400,24,256,5630,50,6.59,Dimensity 9400,flagship,Yes,Above 50000,4.7,2025
+OPPO,OPPO Find X8,82600,24,512,5630,50,6.59,Dimensity 9400,flagship,Yes,Above 50000,4.7,2025
+OPPO,OPPO Find X8 Pro,102598,16,1024,5910,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.9,2025
+OPPO,OPPO Find X8 Pro,106398,32,512,5910,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.9,2025
+OPPO,OPPO Find X8 Pro,112098,32,1024,5910,50,6.78,Dimensity 9400,flagship,Yes,Above 50000,4.9,2025
+OPPO,OPPO K13 5G,15118,6,256,5800,50,6.72,Snapdragon 4s Gen 2,all-rounder,Yes,15000 to 20000,4.0,2025
+OPPO,OPPO K13 5G,15678,12,128,5800,50,6.72,Snapdragon 4s Gen 2,all-rounder,Yes,15000 to 20000,4.0,2025
+OPPO,OPPO K13 5G,16518,12,256,5800,50,6.72,Snapdragon 4s Gen 2,all-rounder,Yes,15000 to 20000,4.0,2025
+OPPO,OPPO K13x 5G,17278,6,256,6000,50,6.72,Snapdragon 695,battery,Yes,15000 to 20000,4.0,2025
+OPPO,OPPO K13x 5G,17918,12,128,6000,50,6.72,Snapdragon 695,battery,Yes,15000 to 20000,4.0,2025
+OPPO,OPPO K13x 5G,18878,12,256,6000,50,6.72,Snapdragon 695,battery,Yes,15000 to 20000,4.0,2025
+Motorola,Motorola Moto G35 5G,10798,4,256,5000,50,6.72,Unisoc T760,all-rounder,Yes,10000 to 15000,4.0,2025
+Motorola,Motorola Moto G35 5G,11198,8,128,5000,50,6.72,Unisoc T760,all-rounder,Yes,10000 to 15000,4.0,2025
+Motorola,Motorola Moto G35 5G,11798,8,256,5000,50,6.72,Unisoc T760,all-rounder,Yes,10000 to 15000,4.0,2025
+Motorola,Motorola Moto G55 5G,15118,8,256,5000,50,6.49,Dimensity 7025,all-rounder,Yes,15000 to 20000,4.1,2024
+Motorola,Motorola Moto G55 5G,15678,16,128,5000,50,6.49,Dimensity 7025,all-rounder,Yes,15000 to 20000,4.1,2024
+Motorola,Motorola Moto G55 5G,16518,16,256,5000,50,6.49,Dimensity 7025,all-rounder,Yes,15000 to 20000,4.1,2024
+Motorola,Motorola Moto G56 5G,14578,6,256,5000,50,6.56,Dimensity 6300,all-rounder,Yes,10000 to 15000,4.0,2025
+Motorola,Motorola Moto G56 5G,15118,12,128,5000,50,6.56,Dimensity 6300,all-rounder,Yes,15000 to 20000,4.0,2025
+Motorola,Motorola Moto G56 5G,15928,12,256,5000,50,6.56,Dimensity 6300,all-rounder,Yes,15000 to 20000,4.0,2025
+Motorola,Motorola Moto G67 Power,15118,8,512,6000,50,6.67,Snapdragon 695,battery,Yes,15000 to 20000,4.2,2025
+Motorola,Motorola Moto G67 Power,15678,16,256,6000,50,6.67,Snapdragon 695,battery,Yes,15000 to 20000,4.2,2025
+Motorola,Motorola Moto G67 Power,16518,16,512,6000,50,6.67,Snapdragon 695,battery,Yes,15000 to 20000,4.2,2025
+Motorola,Motorola Moto G75 5G,19438,8,512,5000,50,6.78,Snapdragon 6 Gen 1,all-rounder,Yes,15000 to 20000,4.2,2024
+Motorola,Motorola Moto G75 5G,20158,16,256,5000,50,6.78,Snapdragon 6 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Motorola,Motorola Moto G75 5G,21238,16,512,5000,50,6.78,Snapdragon 6 Gen 1,all-rounder,Yes,20000 to 30000,4.2,2024
+Motorola,Motorola Moto G85 5G,19440,8,512,5000,50,6.67,Snapdragon 6s Gen 3,all-rounder,Yes,15000 to 20000,4.3,2024
+Motorola,Motorola Moto G85 5G,20160,16,256,5000,50,6.67,Snapdragon 6s Gen 3,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Moto G85 5G,21240,16,512,5000,50,6.67,Snapdragon 6s Gen 3,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Moto G86 Power,19438,8,512,6000,50,6.67,Snapdragon 6s Gen 3,battery,Yes,15000 to 20000,4.2,2025
+Motorola,Motorola Moto G86 Power,20158,16,256,6000,50,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.2,2025
+Motorola,Motorola Moto G86 Power,21238,16,512,6000,50,6.67,Snapdragon 6s Gen 3,battery,Yes,20000 to 30000,4.2,2025
+Motorola,Motorola Edge 50 Fusion,23760,8,512,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Edge 50 Fusion,24640,16,256,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Edge 50 Fusion,25960,16,512,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,20000 to 30000,4.3,2024
+Motorola,Motorola Edge 50 Pro,32400,12,512,4500,50,6.7,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Edge 50 Pro,33600,24,256,4500,50,6.7,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Edge 50 Pro,35400,24,512,4500,50,6.7,Snapdragon 7 Gen 3,camera,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Edge 50 Ultra,43198,12,512,4500,50,6.7,Snapdragon 8s Gen 3,camera,Yes,30000 to 50000,4.5,2024
+Motorola,Motorola Edge 50 Ultra,44798,24,256,4500,50,6.7,Snapdragon 8s Gen 3,camera,Yes,30000 to 50000,4.5,2024
+Motorola,Motorola Edge 50 Ultra,47198,24,512,4500,50,6.7,Snapdragon 8s Gen 3,camera,Yes,30000 to 50000,4.5,2024
+Motorola,Motorola Edge 60 Fusion,25918,8,512,5000,50,6.7,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.3,2025
+Motorola,Motorola Edge 60 Fusion,26878,16,256,5000,50,6.7,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.3,2025
+Motorola,Motorola Edge 60 Fusion,28318,16,512,5000,50,6.7,Dimensity 7400,all-rounder,Yes,20000 to 30000,4.3,2025
+Motorola,Motorola Edge 60 Pro,32398,12,512,5000,50,6.7,Dimensity 8350 Extreme,camera,Yes,30000 to 50000,4.4,2025
+Motorola,Motorola Edge 60 Pro,33598,24,256,5000,50,6.7,Dimensity 8350 Extreme,camera,Yes,30000 to 50000,4.4,2025
+Motorola,Motorola Edge 60 Pro,35398,24,512,5000,50,6.7,Dimensity 8350 Extreme,camera,Yes,30000 to 50000,4.4,2025
+Motorola,Motorola Edge 70 Fusion,30238,8,512,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,30000 to 50000,4.3,2025
+Motorola,Motorola Edge 70 Fusion,31358,16,256,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,30000 to 50000,4.3,2025
+Motorola,Motorola Edge 70 Fusion,33038,16,512,5000,50,6.7,Snapdragon 7s Gen 2,all-rounder,Yes,30000 to 50000,4.3,2025
+Motorola,Motorola Razr 50,48600,8,512,4200,50,6.9,Snapdragon 7 Gen 1,premium,Yes,30000 to 50000,4.4,2024
+Motorola,Motorola Razr 50,50400,16,256,4200,50,6.9,Snapdragon 7 Gen 1,premium,Yes,Above 50000,4.4,2024
+Motorola,Motorola Razr 50,53100,16,512,4200,50,6.9,Snapdragon 7 Gen 1,premium,Yes,Above 50000,4.4,2024
+Motorola,Motorola Razr 50 Ultra,80998,12,1024,3800,50,6.9,Snapdragon 8s Gen 3,premium,Yes,Above 50000,4.5,2024
+Motorola,Motorola Razr 50 Ultra,83998,24,512,3800,50,6.9,Snapdragon 8s Gen 3,premium,Yes,Above 50000,4.5,2024
+Motorola,Motorola Razr 50 Ultra,88498,24,1024,3800,50,6.9,Snapdragon 8s Gen 3,premium,Yes,Above 50000,4.5,2024
+Motorola,Motorola Moto G64 5G,15120,8,256,6000,50,6.5,Dimensity 7025,battery,Yes,15000 to 20000,4.1,2024
+Motorola,Motorola Moto G64 5G,15680,16,128,6000,50,6.5,Dimensity 7025,battery,Yes,15000 to 20000,4.1,2024
+Motorola,Motorola Moto G64 5G,16520,16,256,6000,50,6.5,Dimensity 7025,battery,Yes,15000 to 20000,4.1,2024
+Nothing,CMF Phone 1,17278,6,256,5000,50,6.67,Dimensity 7300,all-rounder,Yes,15000 to 20000,4.2,2024
+Nothing,CMF Phone 1,17918,12,128,5000,50,6.67,Dimensity 7300,all-rounder,Yes,15000 to 20000,4.2,2024
+Nothing,CMF Phone 1,18878,12,256,5000,50,6.67,Dimensity 7300,all-rounder,Yes,15000 to 20000,4.2,2024
+Nothing,CMF Phone 2 Pro,20518,8,256,5000,50,6.77,Dimensity 7300 Pro,camera,Yes,20000 to 30000,4.4,2025
+Nothing,CMF Phone 2 Pro,21278,16,128,5000,50,6.77,Dimensity 7300 Pro,camera,Yes,20000 to 30000,4.4,2025
+Nothing,CMF Phone 2 Pro,22418,16,256,5000,50,6.77,Dimensity 7300 Pro,camera,Yes,20000 to 30000,4.4,2025
+Nothing,Nothing Phone 2a,27000,8,256,5000,50,6.7,Dimensity 7200 Pro,all-rounder,Yes,20000 to 30000,4.4,2024
+Nothing,Nothing Phone 2a,28000,16,128,5000,50,6.7,Dimensity 7200 Pro,all-rounder,Yes,20000 to 30000,4.4,2024
+Nothing,Nothing Phone 2a,29500,16,256,5000,50,6.7,Dimensity 7200 Pro,all-rounder,Yes,20000 to 30000,4.4,2024
+Nothing,Nothing Phone 2a Plus,30240,12,512,5000,50,6.7,Dimensity 7350 Pro,all-rounder,Yes,30000 to 50000,4.5,2024
+Nothing,Nothing Phone 2a Plus,31360,24,256,5000,50,6.7,Dimensity 7350 Pro,all-rounder,Yes,30000 to 50000,4.5,2024
+Nothing,Nothing Phone 2a Plus,33040,24,512,5000,50,6.7,Dimensity 7350 Pro,all-rounder,Yes,30000 to 50000,4.5,2024
+Nothing,Nothing Phone 3a,32400,8,512,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a,33600,16,256,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a,35400,16,512,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a Pro,32398,8,512,5000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a Pro,33598,16,256,5000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 3a Pro,35398,16,512,5000,50,6.77,Snapdragon 7s Gen 3,camera,Yes,30000 to 50000,4.5,2025
+Nothing,Nothing Phone 4a,31318,8,512,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2026
+Nothing,Nothing Phone 4a,32478,16,256,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2026
+Nothing,Nothing Phone 4a,34218,16,512,5000,50,6.77,Snapdragon 7s Gen 3,all-rounder,Yes,30000 to 50000,4.5,2026
+Nothing,Nothing Phone 3,60478,12,512,4700,50,6.77,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2025
+Nothing,Nothing Phone 3,62718,24,256,4700,50,6.77,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2025
+Nothing,Nothing Phone 3,66078,24,512,4700,50,6.77,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 13,52920,4,256,3227,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2021
+Apple,iPhone 13,54880,8,128,3227,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2021
+Apple,iPhone 13,57820,8,256,3227,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2021
+Apple,iPhone 13 mini,48598,4,256,2438,12,5.4,A15 Bionic,flagship,No,30000 to 50000,4.4,2021
+Apple,iPhone 13 mini,50398,8,128,2438,12,5.4,A15 Bionic,flagship,No,Above 50000,4.4,2021
+Apple,iPhone 13 mini,53098,8,256,2438,12,5.4,A15 Bionic,flagship,No,Above 50000,4.4,2021
+Apple,iPhone 14,64798,6,256,3279,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14,67198,12,128,3279,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14,70798,12,256,3279,12,6.1,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Plus,75598,6,256,4325,12,6.7,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Plus,78398,12,128,4325,12,6.7,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Plus,82598,12,256,4325,12,6.7,A15 Bionic,flagship,No,Above 50000,4.5,2022
+Apple,iPhone 14 Pro,97198,6,256,3200,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro,100798,12,128,3200,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro,106198,12,256,3200,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro Max,118798,6,256,4323,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro Max,123198,12,128,4323,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 14 Pro Max,129798,12,256,4323,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2022
+Apple,iPhone 15,74520,6,256,3349,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15,77280,12,128,3349,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15,81420,12,256,3349,48,6.1,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Plus,85320,6,256,4383,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Plus,88480,12,128,4383,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Plus,93220,12,256,4383,48,6.7,A16 Bionic,flagship,Yes,Above 50000,4.7,2023
+Apple,iPhone 15 Pro,124200,8,512,3274,48,6.1,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro,128800,16,256,3274,48,6.1,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro,135700,16,512,3274,48,6.1,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro Max,145798,8,512,4422,48,6.7,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro Max,151198,16,256,4422,48,6.7,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 15 Pro Max,159298,16,512,4422,48,6.7,A17 Pro,flagship,Yes,Above 50000,4.8,2023
+Apple,iPhone 16,86398,8,256,3561,48,6.1,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16,89598,16,128,3561,48,6.1,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16,94398,16,256,3561,48,6.1,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Plus,97198,8,256,4674,48,6.7,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Plus,100798,16,128,4674,48,6.7,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Plus,106198,16,256,4674,48,6.7,A18,flagship,Yes,Above 50000,4.8,2024
+Apple,iPhone 16 Pro,129598,8,512,3582,48,6.3,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro,134398,16,256,3582,48,6.3,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro,141598,16,512,3582,48,6.3,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro Max,145798,8,512,4685,48,6.9,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro Max,151198,16,256,4685,48,6.9,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16 Pro Max,159298,16,512,4685,48,6.9,A18 Pro,flagship,Yes,Above 50000,4.9,2024
+Apple,iPhone 16e,64798,8,256,3279,48,6.1,A16,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 16e,67198,16,128,3279,48,6.1,A16,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 16e,70798,16,256,3279,48,6.1,A16,flagship,Yes,Above 50000,4.6,2025
+Apple,iPhone 17,97198,8,512,4000,48,6.1,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17,100798,16,256,4000,48,6.1,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17,106198,16,512,4000,48,6.1,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Plus,107998,8,512,4500,48,6.7,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Plus,111998,16,256,4500,48,6.7,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Plus,117998,16,512,4500,48,6.7,A19,flagship,Yes,Above 50000,4.8,2025
+Apple,iPhone 17 Pro,140398,8,1024,4000,48,6.3,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro,145598,16,512,4000,48,6.3,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro,153398,16,1024,4000,48,6.3,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro Max,161998,8,1024,4685,48,6.9,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro Max,167998,16,512,4685,48,6.9,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Apple,iPhone 17 Pro Max,176998,16,1024,4685,48,6.9,A19 Pro,flagship,Yes,Above 50000,4.9,2025
+Google,Pixel 8a,48598,8,256,4492,64,6.1,Tensor G3,camera,Yes,30000 to 50000,4.5,2024
+Google,Pixel 8a,50398,16,128,4492,64,6.1,Tensor G3,camera,Yes,Above 50000,4.5,2024
+Google,Pixel 8a,53098,16,256,4492,64,6.1,Tensor G3,camera,Yes,Above 50000,4.5,2024
+Google,Pixel 8,64798,8,256,4575,50,6.2,Tensor G3,camera,Yes,Above 50000,4.6,2024
+Google,Pixel 8,67198,16,128,4575,50,6.2,Tensor G3,camera,Yes,Above 50000,4.6,2024
+Google,Pixel 8,70798,16,256,4575,50,6.2,Tensor G3,camera,Yes,Above 50000,4.6,2024
+Google,Pixel 8 Pro,97198,12,512,5050,50,6.7,Tensor G3,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 8 Pro,100798,24,256,5050,50,6.7,Tensor G3,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 8 Pro,106198,24,512,5050,50,6.7,Tensor G3,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9,86398,12,256,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9,89598,24,128,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9,94398,24,256,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.7,2024
+Google,Pixel 9 Pro,107998,16,512,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro,111998,32,256,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro,117998,32,512,4700,50,6.3,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro XL,129598,16,512,5060,50,6.8,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro XL,134398,32,256,5060,50,6.8,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9 Pro XL,141598,32,512,5060,50,6.8,Tensor G4,camera,Yes,Above 50000,4.8,2024
+Google,Pixel 9a,48598,8,512,4700,48,6.3,Tensor G4,camera,Yes,30000 to 50000,4.6,2025
+Google,Pixel 9a,50398,16,256,4700,48,6.3,Tensor G4,camera,Yes,Above 50000,4.6,2025
+Google,Pixel 9a,53098,16,512,4700,48,6.3,Tensor G4,camera,Yes,Above 50000,4.6,2025
+Google,Pixel 9 Pro Fold,194398,16,512,4650,48,8.0,Tensor G4,premium,Yes,Above 50000,4.6,2024
+Google,Pixel 9 Pro Fold,201598,32,256,4650,48,8.0,Tensor G4,premium,Yes,Above 50000,4.6,2024
+Google,Pixel 9 Pro Fold,212398,32,512,4650,48,8.0,Tensor G4,premium,Yes,Above 50000,4.6,2024
+Lava,Lava Agni 2,21598,8,256,4700,50,6.78,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.0,2023
+Lava,Lava Agni 2,22398,16,128,4700,50,6.78,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.0,2023
+Lava,Lava Agni 2,23598,16,256,4700,50,6.78,Dimensity 7050,all-rounder,Yes,20000 to 30000,4.0,2023
+Lava,Lava Agni 3,24838,8,512,5000,50,6.78,Dimensity 7300,all-rounder,Yes,20000 to 30000,4.1,2024
+Lava,Lava Agni 3,25758,16,256,5000,50,6.78,Dimensity 7300,all-rounder,Yes,20000 to 30000,4.1,2024
+Lava,Lava Agni 3,27138,16,512,5000,50,6.78,Dimensity 7300,all-rounder,Yes,20000 to 30000,4.1,2024
+Lava,Lava Agni 4 5G,26997,8,512,5000,50,6.67,Dimensity 8350,gaming,Yes,20000 to 30000,4.3,2026
+Lava,Lava Agni 4 5G,27997,16,256,5000,50,6.67,Dimensity 8350,gaming,Yes,20000 to 30000,4.3,2026
+Lava,Lava Agni 4 5G,29497,16,512,5000,50,6.67,Dimensity 8350,gaming,Yes,20000 to 30000,4.3,2026
+Lava,Lava Blaze 2 5G,12958,4,256,5000,50,6.52,Dimensity 6020,budget,Yes,10000 to 15000,3.8,2023
+Lava,Lava Blaze 2 5G,13438,8,128,5000,50,6.52,Dimensity 6020,budget,Yes,10000 to 15000,3.8,2023
+Lava,Lava Blaze 2 5G,14158,8,256,5000,50,6.52,Dimensity 6020,budget,Yes,10000 to 15000,3.8,2023
+Lava,Lava Blaze 3 5G,15118,6,256,5000,50,6.56,Dimensity 6080,budget,Yes,15000 to 20000,3.9,2024
+Lava,Lava Blaze 3 5G,15678,12,128,5000,50,6.56,Dimensity 6080,budget,Yes,15000 to 20000,3.9,2024
+Lava,Lava Blaze 3 5G,16518,12,256,5000,50,6.56,Dimensity 6080,budget,Yes,15000 to 20000,3.9,2024
+Lava,Lava Blaze Curve 5G,15118,8,256,5000,50,6.67,Dimensity 7050,all-rounder,Yes,15000 to 20000,4.0,2024
+Lava,Lava Blaze Curve 5G,15678,16,128,5000,50,6.67,Dimensity 7050,all-rounder,Yes,15000 to 20000,4.0,2024
+Lava,Lava Blaze Curve 5G,16518,16,256,5000,50,6.67,Dimensity 7050,all-rounder,Yes,15000 to 20000,4.0,2024
+Lava,Lava Yuva 3,10258,4,128,5000,13,6.5,Helio G37,budget,No,10000 to 15000,3.7,2023
+Lava,Lava Yuva 3,10638,8,64,5000,13,6.5,Helio G37,budget,No,10000 to 15000,3.7,2023
+Lava,Lava Yuva 3,11208,8,128,5000,13,6.5,Helio G37,budget,No,10000 to 15000,3.7,2023
+Lava,Lava Yuva 4 Pro,12958,4,128,5000,50,6.56,Helio G85,budget,No,10000 to 15000,3.8,2024
+Lava,Lava Yuva 4 Pro,13438,8,64,5000,50,6.56,Helio G85,budget,No,10000 to 15000,3.8,2024
+Lava,Lava Yuva 4 Pro,14158,8,128,5000,50,6.56,Helio G85,budget,No,10000 to 15000,3.8,2024
+Infinix,Infinix Hot 40i,9718,4,128,5000,13,6.6,Helio G36,budget,No,Under 10000,3.7,2024
+Infinix,Infinix Hot 40i,10078,8,64,5000,13,6.6,Helio G36,budget,No,10000 to 15000,3.7,2024
+Infinix,Infinix Hot 40i,10618,8,128,5000,13,6.6,Helio G36,budget,No,10000 to 15000,3.7,2024
+Infinix,Infinix Hot 40 Pro,12958,8,256,5000,108,6.78,Helio G99,camera,No,10000 to 15000,4.0,2024
+Infinix,Infinix Hot 40 Pro,13438,16,128,5000,108,6.78,Helio G99,camera,No,10000 to 15000,4.0,2024
+Infinix,Infinix Hot 40 Pro,14158,16,256,5000,108,6.78,Helio G99,camera,No,10000 to 15000,4.0,2024
+Infinix,Infinix Hot 50 5G,9718,4,128,5000,48,6.7,Dimensity 6000,budget,Yes,Under 10000,3.8,2025
+Infinix,Infinix Hot 50 5G,10078,8,64,5000,48,6.7,Dimensity 6000,budget,Yes,10000 to 15000,3.8,2025
+Infinix,Infinix Hot 50 5G,10618,8,128,5000,48,6.7,Dimensity 6000,budget,Yes,10000 to 15000,3.8,2025
+Infinix,Infinix Hot 50 Pro+,14038,8,512,5000,108,6.78,Helio G100,camera,No,10000 to 15000,4.1,2025
+Infinix,Infinix Hot 50 Pro+,14558,16,256,5000,108,6.78,Helio G100,camera,No,10000 to 15000,4.1,2025
+Infinix,Infinix Hot 50 Pro+,15338,16,512,5000,108,6.78,Helio G100,camera,No,15000 to 20000,4.1,2025
+Infinix,Infinix Note 40,19438,8,512,5000,108,6.78,Helio G99 Ultra,camera,No,15000 to 20000,4.2,2024
+Infinix,Infinix Note 40,20158,16,256,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40,21238,16,512,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 Pro,23758,12,512,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 Pro,24638,24,256,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 Pro,25958,24,512,5000,108,6.78,Helio G99 Ultra,camera,No,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 5G,20518,8,512,5000,108,6.78,Dimensity 7020,camera,Yes,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 5G,21278,16,256,5000,108,6.78,Dimensity 7020,camera,Yes,20000 to 30000,4.2,2024
+Infinix,Infinix Note 40 5G,22418,16,512,5000,108,6.78,Dimensity 7020,camera,Yes,20000 to 30000,4.2,2024
+Infinix,Infinix GT 30 5G,16198,8,256,5000,50,6.78,Dimensity 6300,gaming,Yes,15000 to 20000,4.1,2025
+Infinix,Infinix GT 30 5G,16798,16,128,5000,50,6.78,Dimensity 6300,gaming,Yes,15000 to 20000,4.1,2025
+Infinix,Infinix GT 30 5G,17698,16,256,5000,50,6.78,Dimensity 6300,gaming,Yes,15000 to 20000,4.1,2025
+Infinix,Infinix GT 30 Pro,19438,8,512,5000,64,6.78,Dimensity 7300,gaming,Yes,15000 to 20000,4.3,2025
+Infinix,Infinix GT 30 Pro,20158,16,256,5000,64,6.78,Dimensity 7300,gaming,Yes,20000 to 30000,4.3,2025
+Infinix,Infinix GT 30 Pro,21238,16,512,5000,64,6.78,Dimensity 7300,gaming,Yes,20000 to 30000,4.3,2025
+Infinix,Infinix Zero 40 5G,30238,12,512,5000,108,6.78,Dimensity 8020,camera,Yes,30000 to 50000,4.4,2024
+Infinix,Infinix Zero 40 5G,31358,24,256,5000,108,6.78,Dimensity 8020,camera,Yes,30000 to 50000,4.4,2024
+Infinix,Infinix Zero 40 5G,33038,24,512,5000,108,6.78,Dimensity 8020,camera,Yes,30000 to 50000,4.4,2024
+Infinix,Infinix Zero 40 Ultra,37798,12,1024,5000,200,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2025
+Infinix,Infinix Zero 40 Ultra,39198,24,512,5000,200,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2025
+Infinix,Infinix Zero 40 Ultra,41298,24,1024,5000,200,6.78,Dimensity 9300,camera,Yes,30000 to 50000,4.6,2025
+Tecno,Tecno Spark 30C,9718,4,128,5000,16,6.67,Helio G36,budget,No,Under 10000,3.7,2024
+Tecno,Tecno Spark 30C,10078,8,64,5000,16,6.67,Helio G36,budget,No,10000 to 15000,3.7,2024
+Tecno,Tecno Spark 30C,10618,8,128,5000,16,6.67,Helio G36,budget,No,10000 to 15000,3.7,2024
+Tecno,Tecno Spark 30 Pro,15118,8,256,5000,64,6.78,Helio G99,camera,No,15000 to 20000,4.0,2024
+Tecno,Tecno Spark 30 Pro,15678,16,128,5000,64,6.78,Helio G99,camera,No,15000 to 20000,4.0,2024
+Tecno,Tecno Spark 30 Pro,16518,16,256,5000,64,6.78,Helio G99,camera,No,15000 to 20000,4.0,2024
+Tecno,Tecno Pova 6 Pro,21598,8,512,6000,108,6.78,Dimensity 6080,battery,Yes,20000 to 30000,4.2,2024
+Tecno,Tecno Pova 6 Pro,22398,16,256,6000,108,6.78,Dimensity 6080,battery,Yes,20000 to 30000,4.2,2024
+Tecno,Tecno Pova 6 Pro,23598,16,512,6000,108,6.78,Dimensity 6080,battery,Yes,20000 to 30000,4.2,2024
+Tecno,Tecno Pova 6 Neo,14038,8,256,6000,50,6.78,Helio G91 Ultra,battery,No,10000 to 15000,4.0,2024
+Tecno,Tecno Pova 6 Neo,14558,16,128,6000,50,6.78,Helio G91 Ultra,battery,No,10000 to 15000,4.0,2024
+Tecno,Tecno Pova 6 Neo,15338,16,256,6000,50,6.78,Helio G91 Ultra,battery,No,15000 to 20000,4.0,2024
+Tecno,Tecno Camon 30 Pro,28078,8,512,5000,50,6.78,Dimensity 8050,camera,Yes,20000 to 30000,4.3,2024
+Tecno,Tecno Camon 30 Pro,29118,16,256,5000,50,6.78,Dimensity 8050,camera,Yes,20000 to 30000,4.3,2024
+Tecno,Tecno Camon 30 Pro,30678,16,512,5000,50,6.78,Dimensity 8050,camera,Yes,30000 to 50000,4.3,2024
+Tecno,Tecno Camon 40 Pro,30238,12,512,5200,50,6.78,Dimensity 8350,camera,Yes,30000 to 50000,4.4,2025
+Tecno,Tecno Camon 40 Pro,31358,24,256,5200,50,6.78,Dimensity 8350,camera,Yes,30000 to 50000,4.4,2025
+Tecno,Tecno Camon 40 Pro,33038,24,512,5200,50,6.78,Dimensity 8350,camera,Yes,30000 to 50000,4.4,2025
+Tecno,Tecno Phantom X2 Pro,48598,12,512,5160,50,6.8,Dimensity 9000,flagship,Yes,30000 to 50000,4.5,2023
+Tecno,Tecno Phantom X2 Pro,50398,24,256,5160,50,6.8,Dimensity 9000,flagship,Yes,Above 50000,4.5,2023
+Tecno,Tecno Phantom X2 Pro,53098,24,512,5160,50,6.8,Dimensity 9000,flagship,Yes,Above 50000,4.5,2023
+Tecno,Tecno Phantom V Fold,75598,12,512,4800,50,7.85,Dimensity 9000+,premium,Yes,Above 50000,4.4,2023
+Tecno,Tecno Phantom V Fold,78398,24,256,4800,50,7.85,Dimensity 9000+,premium,Yes,Above 50000,4.4,2023
+Tecno,Tecno Phantom V Fold,82598,24,512,4800,50,7.85,Dimensity 9000+,premium,Yes,Above 50000,4.4,2023
+Honor,Honor X7b,14038,6,256,6000,108,6.8,Snapdragon 695,battery,Yes,10000 to 15000,4.0,2024
+Honor,Honor X7b,14558,12,128,6000,108,6.8,Snapdragon 695,battery,Yes,10000 to 15000,4.0,2024
+Honor,Honor X7b,15338,12,256,6000,108,6.8,Snapdragon 695,battery,Yes,15000 to 20000,4.0,2024
+Honor,Honor X8b,18358,8,512,4500,108,6.78,Snapdragon 6 Gen 1,camera,Yes,15000 to 20000,4.2,2024
+Honor,Honor X8b,19038,16,256,4500,108,6.78,Snapdragon 6 Gen 1,camera,Yes,15000 to 20000,4.2,2024
+Honor,Honor X8b,20058,16,512,4500,108,6.78,Snapdragon 6 Gen 1,camera,Yes,20000 to 30000,4.2,2024
+Honor,Honor 90 Lite,21598,8,512,4500,100,6.7,Dimensity 6080,camera,Yes,20000 to 30000,4.2,2023
+Honor,Honor 90 Lite,22398,16,256,4500,100,6.7,Dimensity 6080,camera,Yes,20000 to 30000,4.2,2023
+Honor,Honor 90 Lite,23598,16,512,4500,100,6.7,Dimensity 6080,camera,Yes,20000 to 30000,4.2,2023
+Honor,Honor 90 5G,32398,12,512,5000,200,6.7,Snapdragon 7 Gen 1,camera,Yes,30000 to 50000,4.4,2023
+Honor,Honor 90 5G,33598,24,256,5000,200,6.7,Snapdragon 7 Gen 1,camera,Yes,30000 to 50000,4.4,2023
+Honor,Honor 90 5G,35398,24,512,5000,200,6.7,Snapdragon 7 Gen 1,camera,Yes,30000 to 50000,4.4,2023
+Honor,Honor 200 Lite,24838,8,512,4500,108,6.7,Snapdragon 695,camera,Yes,20000 to 30000,4.2,2024
+Honor,Honor 200 Lite,25758,16,256,4500,108,6.7,Snapdragon 695,camera,Yes,20000 to 30000,4.2,2024
+Honor,Honor 200 Lite,27138,16,512,4500,108,6.7,Snapdragon 695,camera,Yes,20000 to 30000,4.2,2024
+Honor,Honor 200 Pro,53998,12,1024,5200,50,6.78,Snapdragon 8s Gen 3,camera,Yes,Above 50000,4.6,2024
+Honor,Honor 200 Pro,55998,24,512,5200,50,6.78,Snapdragon 8s Gen 3,camera,Yes,Above 50000,4.6,2024
+Honor,Honor 200 Pro,58998,24,1024,5200,50,6.78,Snapdragon 8s Gen 3,camera,Yes,Above 50000,4.6,2024
+Honor,Honor Magic 6 Pro,75598,12,512,5600,50,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Honor,Honor Magic 6 Pro,78398,24,256,5600,50,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Honor,Honor Magic 6 Pro,82598,24,512,5600,50,6.8,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.7,2024
+Honor,Honor Magic 7 Pro,86398,12,1024,5600,50,6.8,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Honor,Honor Magic 7 Pro,89598,24,512,5600,50,6.8,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Honor,Honor Magic 7 Pro,94398,24,1024,5600,50,6.8,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.8,2025
+Honor,Honor X9b,24838,12,512,5800,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.2,2024
+Honor,Honor X9b,25758,24,256,5800,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.2,2024
+Honor,Honor X9b,27138,24,512,5800,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.2,2024
+Honor,Honor X9c,26998,12,512,6600,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.3,2025
+Honor,Honor X9c,27998,24,256,6600,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.3,2025
+Honor,Honor X9c,29498,24,512,6600,108,6.78,Snapdragon 6 Gen 1,battery,Yes,20000 to 30000,4.3,2025
+Asus,Asus ROG Phone 8,97198,12,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+Asus,Asus ROG Phone 8,100798,24,256,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+Asus,Asus ROG Phone 8,106198,24,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.7,2024
+Asus,Asus ROG Phone 8 Pro,118798,16,1024,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.8,2024
+Asus,Asus ROG Phone 8 Pro,123198,32,512,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.8,2024
+Asus,Asus ROG Phone 8 Pro,129798,32,1024,5500,50,6.78,Snapdragon 8 Gen 3,gaming,Yes,Above 50000,4.8,2024
+Asus,Asus ROG Phone 9,107998,16,512,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Asus,Asus ROG Phone 9,111998,32,256,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Asus,Asus ROG Phone 9,117998,32,512,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.8,2025
+Asus,Asus ROG Phone 9 Pro,140398,24,2048,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.9,2025
+Asus,Asus ROG Phone 9 Pro,145598,48,1024,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.9,2025
+Asus,Asus ROG Phone 9 Pro,153398,48,2048,5800,50,6.78,Snapdragon 8 Elite,gaming,Yes,Above 50000,4.9,2025
+Asus,Asus Zenfone 11 Ultra,86398,12,512,5500,50,6.78,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Asus,Asus Zenfone 11 Ultra,89598,24,256,5500,50,6.78,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Asus,Asus Zenfone 11 Ultra,94398,24,512,5500,50,6.78,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.6,2024
+Asus,Asus Zenfone 12 Ultra,97198,12,512,5500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Asus,Asus Zenfone 12 Ultra,100798,24,256,5500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Asus,Asus Zenfone 12 Ultra,106198,24,512,5500,50,6.78,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.7,2025
+Sony,Sony Xperia 1 VI,129598,12,512,5000,52,6.5,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.5,2024
+Sony,Sony Xperia 1 VI,134398,24,256,5000,52,6.5,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.5,2024
+Sony,Sony Xperia 1 VI,141598,24,512,5000,52,6.5,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.5,2024
+Sony,Sony Xperia 5 VI,97198,8,512,4000,50,6.1,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.4,2024
+Sony,Sony Xperia 5 VI,100798,16,256,4000,50,6.1,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.4,2024
+Sony,Sony Xperia 5 VI,106198,16,512,4000,50,6.1,Snapdragon 8 Gen 3,flagship,Yes,Above 50000,4.4,2024
+Sony,Sony Xperia 10 VI,43198,6,256,5000,48,6.1,Snapdragon 6 Gen 1,all-rounder,Yes,30000 to 50000,4.1,2024
+Sony,Sony Xperia 10 VI,44798,12,128,5000,48,6.1,Snapdragon 6 Gen 1,all-rounder,Yes,30000 to 50000,4.1,2024
+Sony,Sony Xperia 10 VI,47198,12,256,5000,48,6.1,Snapdragon 6 Gen 1,all-rounder,Yes,30000 to 50000,4.1,2024
+Sony,Sony Xperia 1 VII,145798,12,512,5000,52,6.5,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.6,2025
+Sony,Sony Xperia 1 VII,151198,24,256,5000,52,6.5,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.6,2025
+Sony,Sony Xperia 1 VII,159298,24,512,5000,52,6.5,Snapdragon 8 Elite,flagship,Yes,Above 50000,4.6,2025
+Nokia,Nokia G42 5G,14038,6,256,4895,50,6.56,Snapdragon 480+,all-rounder,Yes,10000 to 15000,4.0,2023
+Nokia,Nokia G42 5G,14558,12,128,4895,50,6.56,Snapdragon 480+,all-rounder,Yes,10000 to 15000,4.0,2023
+Nokia,Nokia G42 5G,15338,12,256,4895,50,6.56,Snapdragon 480+,all-rounder,Yes,15000 to 20000,4.0,2023
+Nokia,Nokia G310 5G,16198,4,256,4470,50,6.56,Snapdragon 480+,budget,Yes,15000 to 20000,3.9,2024
+Nokia,Nokia G310 5G,16798,8,128,4470,50,6.56,Snapdragon 480+,budget,Yes,15000 to 20000,3.9,2024
+Nokia,Nokia G310 5G,17698,8,256,4470,50,6.56,Snapdragon 480+,budget,Yes,15000 to 20000,3.9,2024
+Nokia,Nokia C32,9718,4,128,5050,16,6.52,Helio G37,budget,No,Under 10000,3.7,2023
+Nokia,Nokia C32,10078,8,64,5050,16,6.52,Helio G37,budget,No,10000 to 15000,3.7,2023
+Nokia,Nokia C32,10618,8,128,5050,16,6.52,Helio G37,budget,No,10000 to 15000,3.7,2023
+Nokia,Nokia G21,12958,4,128,5050,50,6.5,Helio G85,budget,No,10000 to 15000,3.8,2023
+Nokia,Nokia G21,13438,8,64,5050,50,6.5,Helio G85,budget,No,10000 to 15000,3.8,2023
+Nokia,Nokia G21,14158,8,128,5050,50,6.5,Helio G85,budget,No,10000 to 15000,3.8,2023
+Nokia,Nokia XR21,43198,8,256,4800,64,6.49,Snapdragon 695,rugged,Yes,30000 to 50000,4.2,2023
+Nokia,Nokia XR21,44798,16,128,4800,64,6.49,Snapdragon 695,rugged,Yes,30000 to 50000,4.2,2023
+Nokia,Nokia XR21,47198,16,256,4800,64,6.49,Snapdragon 695,rugged,Yes,30000 to 50000,4.2,2023
+Poco,C61,7499,4,64,5000,50,6.74,Helio G36,budget,No,Under 10000,3.6,2024
+Poco,C75 5G,10999,6,128,5160,50,6.88,Snapdragon 4s Gen 2,budget,Yes,10000 to 15000,4.0,2025
+Samsung,Galaxy A06,7999,4,64,5000,50,6.7,Helio G85,budget,No,Under 10000,3.8,2024
+Realme,C67 5G,13999,6,128,5000,50,6.72,Dimensity 6100+,budget,Yes,10000 to 15000,4.0,2024
+Realme,C63,9999,6,128,5000,50,6.67,Helio G88,budget,No,Under 10000,3.8,2024
+Vivo,Y18s,10999,4,128,5000,8,6.56,Helio G85,budget,No,10000 to 15000,3.8,2024
+Vivo,Y28 5G,14999,6,128,6000,50,6.56,Dimensity 6020,battery,Yes,10000 to 15000,4.0,2024
+Vivo,Y58 5G,19999,8,256,5000,50,6.56,Snapdragon 4 Gen 2,all-rounder,Yes,15000 to 20000,4.1,2024
+Oppo,A78 5G,19999,8,128,5000,50,6.56,Snapdragon 695,all-rounder,Yes,15000 to 20000,4.1,2023
+Motorola,Moto E14,7499,2,64,5000,8,6.56,Unisoc T606,budget,No,Under 10000,3.5,2024
+Motorola,Moto G04,7999,4,64,5000,16,6.56,Helio G37,budget,No,Under 10000,3.6,2024
+Motorola,Moto G14,9999,4,128,5000,50,6.5,Helio G85,budget,No,Under 10000,3.8,2024
+Motorola,Moto G24,9999,4,128,5000,50,6.56,Helio G85,budget,No,Under 10000,3.9,2024
+Motorola,Moto G34 5G,10999,8,128,5000,50,6.5,Snapdragon 695,all-rounder,Yes,10000 to 15000,4.0,2024
+Motorola,Moto G44 5G,14999,8,128,5000,50,6.56,Snapdragon 6 Gen 1,all-rounder,Yes,10000 to 15000,4.1,2025
+Nokia,C22,7999,3,64,5000,13,6.52,Unisoc SC9863A,budget,No,Under 10000,3.6,2023
+Nokia,C32,8999,4,64,5050,16,6.52,Helio G37,budget,No,Under 10000,3.7,2023
+Nokia,G22,11999,4,64,5050,50,6.52,Helio G37,budget,No,10000 to 15000,3.8,2023
+Infinix,Smart 8 Plus,8499,4,64,5000,13,6.6,Helio G36,budget,No,Under 10000,3.6,2024
+Infinix,Hot 30 Play,8999,4,64,6000,13,6.82,Helio G37,budget,No,Under 10000,3.6,2024
+Itel,A70,6999,3,64,5000,8,6.6,Helio A22,budget,No,Under 10000,3.5,2024
+Itel,P55+,9999,4,128,6000,13,6.78,Unisoc T606,budget,No,Under 10000,3.7,2024
+Itel,A60s,7499,3,32,5000,8,6.6,Helio A22,budget,No,Under 10000,3.4,2023
+Xiaomi,Redmi 13R,9999,4,128,5000,50,6.74,Snapdragon 4 Gen 2,budget,Yes,Under 10000,4.0,2024
+Xiaomi,Poco M6 5G,9999,6,128,5000,50,6.79,Dimensity 6100+,gaming,Yes,Under 10000,4.0,2024
+Samsung,Galaxy A16 5G,17999,8,128,5000,50,6.7,Dimensity 6300,all-rounder,Yes,15000 to 20000,4.1,2024
+Realme,C75 5G,11999,6,128,5000,50,6.72,Dimensity 6300,budget,Yes,10000 to 15000,3.9,2025
+Oppo,A97 5G,21999,8,256,5000,50,6.56,Dimensity 810,all-rounder,Yes,20000 to 30000,4.0,2023

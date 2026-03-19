@@ -646,4 +646,4 @@ def update_ai_settings():
     except Exception as e:
         db.session.rollback()
         print(f"Error updating AI settings: {e}")
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"status": "error", "message": str(e)}), 500 

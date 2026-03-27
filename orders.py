@@ -63,7 +63,33 @@ def place_order():
     except Exception as e:
         db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
+@orders_bp.route('/cancel_order/<int:order_id>', methods=['POST'])
+@jwt_required()
+def cancel_order(order_id):
+    try:
+        # Get the currently logged-in user
+        user_id = get_jwt_identity()
+        
+        # Find the order belonging to this user
+        order = Order.query.filter_by(id=order_id, user_id=user_id).first()
+        
+        if not order:
+            return jsonify({"status": "error", "message": "Order not found or unauthorized"}), 404
+            
+        # Prevent cancelling if it's already shipped or delivered
+        current_status = order.status.lower()
+        if current_status in ['shipped', 'out for delivery', 'delivered', 'cancelled']:
+            return jsonify({"status": "error", "message": f"Order cannot be cancelled because it is already {order.status}"}), 400
+            
+        # Update the status to Cancelled
+        order.status = "Cancelled"
+        db.session.commit()
+        
+        return jsonify({"status": "success", "message": "Order cancelled successfully"}), 200
 
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
 @orders_bp.route('/my_orders', methods=['GET'])
 @jwt_required()
 def my_orders():
